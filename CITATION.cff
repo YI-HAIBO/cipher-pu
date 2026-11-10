@@ -13,7 +13,7 @@ authors:
     orcid: "https://orcid.org/0000-0002-1635-3738"
 identifiers:
   - type: url
-    value: "https://github.com/cipher-pu/cipher-pu"
+    value: "https://github.com/YI-HAIBO/cipher-pu"
 keywords:
   - Fully Homomorphic Encryption
   - CKKS
@@ -24,11 +24,11 @@ keywords:
   - Privacy-Preserving Inference
   - Hardware Accelerator
 license: Apache-2.0
-repository-code: "https://github.com/cipher-pu/cipher-pu"
-repository-data: "https://github.com/cipher-pu/cipher-pu/tree/main/data"
+repository-code: "https://github.com/YI-HAIBO/cipher-pu"
+repository-data: "https://github.com/YI-HAIBO/cipher-pu/tree/main/data"
 date-released: "2026-10-24"
 version: 1.0.0
-url: "https://github.com/cipher-pu/cipher-pu"
+url: "https://github.com/YI-HAIBO/cipher-pu"
 related-work:
   - title: "Poseidon: Practical FHE Accelerator"
     type: article

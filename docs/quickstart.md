@@ -13,7 +13,7 @@
 ## Installation
 
 ```bash
-git clone https://github.com/cipher-pu/cipher-pu.git
+git clone https://github.com/YI-HAIBO/cipher-pu.git
 cd cipher-pu
 make setup          # Install Python dependencies
 ```

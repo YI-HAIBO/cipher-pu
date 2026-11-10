@@ -30,7 +30,7 @@ The following data were generated during experiments and are available in the
 
 All experiments can be reproduced by following:
 
-1. Clone this repository: `git clone https://github.com/cipher-pu/cipher-pu.git`
+1. Clone this repository: `git clone https://github.com/YI-HAIBO/cipher-pu.git`
 2. Install prerequisites: Vivado 2026.1 (with xsim), Python 3.11+ (`pip install -r scripts/requirements.txt`)
 3. Run experiments: `make verify` for functional simulation, `make sim TB=<name>` for a single testbench, `make exp EXP=e39` for a single experiment
 4. Consult individual experiment reports in `reports/experiments/` for specific parameters

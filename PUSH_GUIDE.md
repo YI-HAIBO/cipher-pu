@@ -26,7 +26,7 @@ Before pushing, review these key files:
 - `README.md` - **Update author name, affiliation, contact email**
 - `LICENSE` - Apache-2.0 (default; change if preferred)
 - `CITATION.cff` - **Update ORCID IDs, institution**
-- `.github/CODEOWNERS` - **Replace `@cipher-pu/maintainers` with your GitHub handle**
+- `.github/CODEOWNERS` - **Replace `@YI-HAIBO` with your GitHub handle**
 - `.github/FUNDING.yml` - **Update funding profile if applicable**
 
 ## Step 2: Verify Real Source Files
@@ -63,7 +63,7 @@ cd open_source_repo
 git init
 git add .
 git commit -m "Initial skeleton for CIPHER-PU open source repository"
-git remote add origin https://github.com/cipher-pu/cipher-pu.git
+git remote add origin https://github.com/YI-HAIBO/cipher-pu.git
 git push -u origin main
 ```
 
@@ -81,7 +81,7 @@ git init
 git branch -M main
 
 # Add remote
-git remote add origin https://github.com/cipher-pu/cipher-pu.git
+git remote add origin https://github.com/YI-HAIBO/cipher-pu.git
 
 # First commit
 git add .
@@ -142,7 +142,7 @@ requires local license). Run `make verify` locally before PR.
 
 ## Step 6: Post-Push Checklist
 
-- [ ] GitHub repo visible at https://github.com/cipher-pu/cipher-pu
+- [ ] GitHub repo visible at https://github.com/YI-HAIBO/cipher-pu
 - [ ] README renders correctly with badges
 - [ ] CI runs on first push (may fail initially)
 - [ ] GitHub Actions tab shows workflow runs
@@ -153,7 +153,7 @@ requires local license). Run `make verify` locally before PR.
 After pushing, update the paper draft with the live URL:
 
 ```markdown
-- GitHub: https://github.com/cipher-pu/cipher-pu
+- GitHub: https://github.com/YI-HAIBO/cipher-pu
 - DOI (if registered via Zenodo): TBD
 ```
 
@@ -189,7 +189,7 @@ Apache-2.0 recommended for academic + industry dual use.
 
 - Email: haiboyi@szpu.edu.cn
 - Institution: Shenzhen Polytechnic University, Shenzhen, China
-- GitHub: https://github.com/cipher-pu
+- GitHub: https://github.com/YI-HAIBO
 
 ---
 

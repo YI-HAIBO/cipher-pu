@@ -2,7 +2,7 @@
 
 **Runtime SNR-driven adaptive sparsity + DARE bootstrap-lite for edge-deployable privacy-preserving inference**
 
-![CI](https://github.com/cipher-pu/cipher-pu/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/YI-HAIBO/cipher-pu/actions/workflows/ci.yml/badge.svg)
 ![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)
 ![Device](https://img.shields.io/badge/FPGA-Xilinx%20UltraScale%2B%20xcau25p-orange.svg)
 ![Security](https://img.shields.io/badge/Security-256--bit%20PQ-green.svg)
@@ -53,7 +53,7 @@ CIPHER-PU is an FPGA-accelerated CKKS (Cheon-Kim-Kim-Song) Fully Homomorphic Enc
 ### Installation
 
 ```bash
-git clone https://github.com/cipher-pu/cipher-pu.git
+git clone https://github.com/YI-HAIBO/cipher-pu.git
 cd cipher-pu
 make verify     # Run functional simulation
 make synth      # Run Vivado synthesis
@@ -175,7 +175,7 @@ If you use CIPHER-PU in your research, please cite:
   title        = {CIPHER-PU: Runtime-Adaptive CKKS Homomorphic Encryption FPGA Accelerator for Edge Deployment},
   howpublished = {Submitted to IEEE TCAS-I},
   year         = {2026},
-  url          = {https://github.com/cipher-pu/cipher-pu},
+  url          = {https://github.com/YI-HAIBO/cipher-pu},
   note         = {Work in progress}
 }
 ```

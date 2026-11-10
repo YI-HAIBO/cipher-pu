@@ -66,7 +66,7 @@ jobs:
           for link in links:
               if link.startswith('http') or link.startswith('mailto:') or link.startswith('#'):
                   continue
-              if not os.path.exists(link) and not os.path.exists(link.replace('https://github.com/cipher-pu/cipher-pu/', '')):
+              if not os.path.exists(link) and not os.path.exists(link.replace('https://github.com/YI-HAIBO/cipher-pu/', '')):
                   print(f'Warning: broken link in README.md: {link}')
           print('Link check complete')
           "

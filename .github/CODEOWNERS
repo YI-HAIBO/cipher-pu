@@ -2,17 +2,17 @@
 # Format: <pattern> <owner(s)>
 
 # Default owner for all files
-* @cipher-pu/maintainers
+* @YI-HAIBO
 
 # Specific directory owners
-/rtl/ @cipher-pu/rtl-team
-/tb/ @cipher-pu/rtl-team
-/scripts/ @cipher-pu/scripts-team
-/reports/ @cipher-pu/docs-team
-/docs/ @cipher-pu/docs-team
-/figures/ @cipher-pu/docs-team
+/rtl/ @YI-HAIBO
+/tb/ @YI-HAIBO
+/scripts/ @YI-HAIBO
+/reports/ @YI-HAIBO
+/docs/ @YI-HAIBO
+/figures/ @YI-HAIBO
 
 # Governance files
-/LICENSE @cipher-pu/legal
-/CODE_OF_CONDUCT.md @cipher-pu/legal
-/CONTRIBUTING.md @cipher-pu/maintainers
+/LICENSE @YI-HAIBO
+/CODE_OF_CONDUCT.md @YI-HAIBO
+/CONTRIBUTING.md @YI-HAIBO

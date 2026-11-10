@@ -96,9 +96,9 @@ For substantial changes, please:
 
 ## Reporting Issues
 
-- Use the [Bug Report](https://github.com/cipher-pu/cipher-pu/issues/new?template=bug_report.md) template for bugs
-- Use the [Feature Request](https://github.com/cipher-pu/cipher-pu/issues/new?template=feature_request.md) template for new features
-- Use the [Question](https://github.com/cipher-pu/cipher-pu/issues/new?template=question.md) template for questions
+- Use the [Bug Report](https://github.com/YI-HAIBO/cipher-pu/issues/new?template=bug_report.md) template for bugs
+- Use the [Feature Request](https://github.com/YI-HAIBO/cipher-pu/issues/new?template=feature_request.md) template for new features
+- Use the [Question](https://github.com/YI-HAIBO/cipher-pu/issues/new?template=question.md) template for questions
 
 Please include:
 - Vivado version
