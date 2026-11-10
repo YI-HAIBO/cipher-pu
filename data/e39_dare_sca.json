@@ -1,0 +1,174 @@
+{
+ "t_test": {
+  "um_a": {
+   "label": "未掩码 a_buf（key，正控）",
+   "proxy": "toggle",
+   "t": 0.6790753497010965,
+   "df": 33.181534352126846,
+   "p": 0.4970901203781661,
+   "n_fixed": 24,
+   "n_random": 24,
+   "mean_fixed": 51.333333333333336,
+   "mean_random": 49.5,
+   "leak_detected": false
+  },
+  "um_b": {
+   "label": "未掩码 b_buf（key，正控）",
+   "proxy": "toggle",
+   "t": 0.7331651142599882,
+   "df": 29.350184132344648,
+   "p": 0.4634577298430901,
+   "n_fixed": 24,
+   "n_random": 24,
+   "mean_fixed": 52.458333333333336,
+   "mean_random": 50.625,
+   "leak_detected": false
+  },
+  "um_e2a": {
+   "label": "未掩码 e2a_buf（d2*a 计算路径）",
+   "proxy": "toggle",
+   "t": 0.8156081700824299,
+   "df": 28.60679594884526,
+   "p": 0.4147242751520691,
+   "n_fixed": 24,
+   "n_random": 24,
+   "mean_fixed": 54.125,
+   "mean_random": 52.041666666666664,
+   "leak_detected": false
+  },
+  "um_e2b": {
+   "label": "未掩码 e2b_buf（d2*b 计算路径）",
+   "proxy": "toggle",
+   "t": 0.8719657944961421,
+   "df": 29.38605788260373,
+   "p": 0.3832270382213763,
+   "n_fixed": 24,
+   "n_random": 24,
+   "mean_fixed": 54.708333333333336,
+   "mean_random": 52.416666666666664,
+   "leak_detected": false
+  },
+  "um_e0": {
+   "label": "未掩码 e0_buf（数据，负控）",
+   "proxy": "toggle",
+   "t": 1.0882979404175015,
+   "df": 28.651457330562415,
+   "p": 0.2764635994819231,
+   "n_fixed": 24,
+   "n_random": 24,
+   "mean_fixed": 56.166666666666664,
+   "mean_random": 53.291666666666664,
+   "leak_detected": false
+  },
+  "m_key": {
+   "label": "掩码 key 份额寄存器（内层 a_buf）",
+   "proxy": "toggle",
+   "t": 3.395734020257878,
+   "df": 37.998031590508646,
+   "p": 0.0006844483568868541,
+   "n_fixed": 24,
+   "n_random": 24,
+   "mean_fixed": 117.58333333333333,
+   "mean_random": 107.95833333333333,
+   "leak_detected": false
+  },
+  "m_e2a": {
+   "label": "掩码 e2a_buf（计算路径）",
+   "proxy": "toggle",
+   "t": 2.1861429000000863,
+   "df": 34.38979084182017,
+   "p": 0.02880515221809481,
+   "n_fixed": 24,
+   "n_random": 24,
+   "mean_fixed": 115.16666666666667,
+   "mean_random": 108.5,
+   "leak_detected": false
+  },
+  "m_e0": {
+   "label": "掩码 e0_buf（数据，负控）",
+   "proxy": "toggle",
+   "t": 0.8176596414672904,
+   "df": 36.034450843576195,
+   "p": 0.41355156152189526,
+   "n_fixed": 24,
+   "n_random": 24,
+   "mean_fixed": 103.75,
+   "mean_random": 101.54166666666667,
+   "leak_detected": false
+  },
+  "hw_a": {
+   "label": "未掩码 a_buf HW（key，正控）",
+   "proxy": "hw",
+   "t": -43.71007810787058,
+   "df": 23.0,
+   "p": 0.0,
+   "n_fixed": 24,
+   "n_random": 24,
+   "mean_fixed": 0.0,
+   "mean_random": 51.333333333333336,
+   "leak_detected": true
+  },
+  "hw_b": {
+   "label": "未掩码 b_buf HW（key，正控）",
+   "proxy": "hw",
+   "t": -59.717341800098275,
+   "df": 23.0,
+   "p": 0.0,
+   "n_fixed": 24,
+   "n_random": 24,
+   "mean_fixed": 0.0,
+   "mean_random": 52.458333333333336,
+   "leak_detected": true
+  },
+  "hw_e0": {
+   "label": "未掩码 e0_buf HW（数据，负控）",
+   "proxy": "hw",
+   "t": -0.7163944582057056,
+   "df": 39.20328663171849,
+   "p": 0.4737478158790782,
+   "n_fixed": 24,
+   "n_random": 24,
+   "mean_fixed": 51.458333333333336,
+   "mean_random": 52.291666666666664,
+   "leak_detected": false
+  },
+  "hw_mk": {
+   "label": "掩码 key 份额寄存器 HW",
+   "proxy": "hw",
+   "t": -0.5519381863844952,
+   "df": 45.76931989773536,
+   "p": 0.5809907044960062,
+   "n_fixed": 24,
+   "n_random": 24,
+   "mean_fixed": 52.416666666666664,
+   "mean_random": 53.25,
+   "leak_detected": false
+  },
+  "hw_me0": {
+   "label": "掩码 e0_buf HW（数据，负控）",
+   "proxy": "hw",
+   "t": -0.7163944582057056,
+   "df": 39.20328663171849,
+   "p": 0.4737478158790782,
+   "n_fixed": 24,
+   "n_random": 24,
+   "mean_fixed": 51.458333333333336,
+   "mean_random": 52.291666666666664,
+   "leak_detected": false
+  }
+ },
+ "traces": 48,
+ "threshold": 4.5,
+ "functional": {
+  "match_min": 32,
+  "match_total": 1536,
+  "max": 1536
+ },
+ "cost_model": {
+  "ksw_lut": 53828,
+  "ksw_bram36": 75,
+  "ksw_dsp": 27,
+  "e2e_lut": 113586,
+  "e2e_bram36": 180
+ }
+}

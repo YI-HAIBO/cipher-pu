@@ -1,0 +1,363 @@
+{
+  "experiment": "E24",
+  "title": "Rotation / Automorphism / Bootstrap 原语",
+  "date": "2026-10-24 08:09",
+  "parameters": {
+    "N": 1024,
+    "Q": 998244353,
+    "SCALE": 1024,
+    "n_seeds": 2,
+    "n_test": 30
+  },
+  "headline_claims": [
+    "rotation = ct × X^ν 是纯明文乘法，20 次连续旋转噪声零增长",
+    "系数求和/内积 = 1 次密文乘法，d 维聚合约 d-1 倍加速",
+    "Conv+GAP 融合：206 → 14 次密文乘法，14.7× 操作数减少",
+    "DARE（解密→重加密）把指数噪声增长转为每层 +1 新鲜误差：噪声预算重置 26×，代价是消息域吸收 e/Δ ≈ 0.02"
+  ],
+  "primitive_verification": {
+    "V1_rotation": [
+      {
+        "nu": 1,
+        "error": 0.0011598910203467483,
+        "pass": true
+      },
+      {
+        "nu": 2,
+        "error": 0.0004646001035052971,
+        "pass": true
+      },
+      {
+        "nu": 3,
+        "error": 0.0010865840120872772,
+        "pass": true
+      },
+      {
+        "nu": 7,
+        "error": 0.0013854998964092369,
+        "pass": true
+      },
+      {
+        "nu": 100,
+        "error": 0.0013985286583440004,
+        "pass": true
+      },
+      {
+        "nu": 500,
+        "error": 0.0007602522845381321,
+        "pass": true
+      },
+      {
+        "nu": "full_poly_nu3",
+        "error": 0.0014618791619904897,
+        "pass": true
+      }
+    ],
+    "V2_automorphism": [
+      {
+        "nu": 3,
+        "error": 0.001464399493204871,
+        "noise_std_msg_domain": 0.9992726575404064,
+        "pass": true
+      },
+      {
+        "nu": 5,
+        "error": 0.0014644811483082165,
+        "noise_std_msg_domain": 0.9894941814605894,
+        "pass": true
+      },
+      {
+        "nu": 7,
+        "error": 0.001464634932444031,
+        "noise_std_msg_domain": 1.0298076596667483,
+        "pass": true
+      }
+    ],
+    "V3_inner_product": [
+      {
+        "dim": 8,
+        "error": 0.0017537366506497065,
+        "bound": 0.007477396728019903,
+        "rel_error": 0.00039958612876036246,
+        "pass": true
+      },
+      {
+        "dim": 64,
+        "error": 0.0025832895557797997,
+        "bound": 0.017578125,
+        "rel_error": 0.00013606451704168538,
+        "pass": true
+      },
+      {
+        "dim": 200,
+        "error": 0.006545807144650695,
+        "bound": 0.029574483640099514,
+        "rel_error": 0.0007533247524938826,
+        "pass": true
+      },
+      {
+        "dim": 784,
+        "error": 0.01797537807643934,
+        "bound": 0.056640625,
+        "rel_error": 0.0009721522504711,
+        "pass": true
+      }
+    ],
+    "V4_coef_sum": [
+      {
+        "dim": 7,
+        "error": 0.004226547476112952,
+        "bound": 0.007120608029423029,
+        "naive_ops": 6,
+        "fused_ops": 1,
+        "speedup": 6,
+        "pass": true
+      },
+      {
+        "dim": 49,
+        "error": 0.0014186441814341144,
+        "bound": 0.015625,
+        "naive_ops": 48,
+        "fused_ops": 1,
+        "speedup": 48,
+        "pass": true
+      },
+      {
+        "dim": 196,
+        "error": 0.004260007363011908,
+        "bound": 0.029296875,
+        "naive_ops": 195,
+        "fused_ops": 1,
+        "speedup": 195,
+        "pass": true
+      },
+      {
+        "dim": 784,
+        "error": 0.04084073637483954,
+        "bound": 0.056640625,
+        "naive_ops": 783,
+        "fused_ops": 1,
+        "speedup": 783,
+        "pass": true
+      }
+    ]
+  },
+  "noise_behavior": {
+    "initial_noise_std": 0.8214649642559322,
+    "saturation_threshold": 249561088.25,
+    "weight_sigma": 0.0032401950382282565,
+    "weight_nonzero": 64,
+    "curve_no_reencrypt": [
+      {
+        "depth": 0,
+        "noise_std": 0.8214649642559322,
+        "saturated": false
+      },
+      {
+        "depth": 1,
+        "noise_std": 21.347616490556526,
+        "saturated": false
+      },
+      {
+        "depth": 2,
+        "noise_std": 770.6216917884277,
+        "saturated": false
+      },
+      {
+        "depth": 3,
+        "noise_std": 32571.14747192933,
+        "saturated": false
+      },
+      {
+        "depth": 4,
+        "noise_std": 1510848.4531920066,
+        "saturated": false
+      },
+      {
+        "depth": 5,
+        "noise_std": 74448976.944386,
+        "saturated": false
+      },
+      {
+        "depth": 6,
+        "noise_std": 289091567.0398071,
+        "saturated": true
+      }
+    ],
+    "curve_with_reencrypt": [
+      {
+        "depth": 0,
+        "noise_std": 0.8214649642559322,
+        "saturated": false
+      },
+      {
+        "depth": 1,
+        "noise_before_re": 21.347616490556526,
+        "noise_after_re": 0.8276987958375072,
+        "recovery_ratio": 25.791527785123737,
+        "absorbed_msg_error": 0.020847281729059107,
+        "saturated": false
+      },
+      {
+        "depth": 2,
+        "noise_before_re": 21.272976649318753,
+        "noise_after_re": 0.8157611835542005,
+        "recovery_ratio": 26.07745634161489,
+        "absorbed_msg_error": 0.020774391259100345,
+        "saturated": false
+      },
+      {
+        "depth": 3,
+        "noise_before_re": 21.562826933662798,
+        "noise_after_re": 0.8147504890302306,
+        "recovery_ratio": 26.4655587495606,
+        "absorbed_msg_error": 0.021057448177405076,
+        "saturated": false
+      },
+      {
+        "depth": 4,
+        "noise_before_re": 21.30513262449828,
+        "noise_after_re": 0.8166953127242029,
+        "recovery_ratio": 26.087002450683833,
+        "absorbed_msg_error": 0.020805793578611603,
+        "saturated": false
+      },
+      {
+        "depth": 5,
+        "noise_before_re": 21.843223205239113,
+        "noise_after_re": 0.8220498714864796,
+        "recovery_ratio": 26.571652113686113,
+        "absorbed_msg_error": 0.02133127266136632,
+        "saturated": false
+      },
+      {
+        "depth": 6,
+        "noise_before_re": 23.023844342217867,
+        "noise_after_re": 0.8093570663056008,
+        "recovery_ratio": 28.447078923166426,
+        "absorbed_msg_error": 0.022484222990447136,
+        "saturated": false
+      }
+    ],
+    "rotation_noise_20x": {
+      "min": 0.820830844417097,
+      "max": 0.8220568321610948,
+      "ratio_vs_initial": 1.0007205029196817,
+      "zero_growth_pass": true
+    }
+  },
+  "application_a1": {
+    "naive_mult_count": 206,
+    "fused_mult_count": 14,
+    "speedup": 14.714285714285714,
+    "seeds": [],
+    "无ReLU(融合=精确等价)": [
+      {
+        "seed": 0,
+        "plain_full": 0.3012,
+        "plain_subset": 0.3333333333333333,
+        "fused": 0.36666666666666664,
+        "naive": 0.3333333333333333,
+        "max_logit_err": 0.010491243763780744
+      },
+      {
+        "seed": 1,
+        "plain_full": 0.3009,
+        "plain_subset": 0.3,
+        "fused": 0.3333333333333333,
+        "naive": 0.3,
+        "max_logit_err": 0.00727010953405216
+      }
+    ],
+    "标准-ReLU(融合=后聚合近似)": [
+      {
+        "seed": 0,
+        "plain_full": 0.2468,
+        "plain_subset": 0.3333333333333333,
+        "fused": 0.0,
+        "naive": 0.3333333333333333,
+        "max_logit_err": 35.56364856585401
+      },
+      {
+        "seed": 1,
+        "plain_full": 0.3027,
+        "plain_subset": 0.26666666666666666,
+        "fused": 0.23333333333333334,
+        "naive": 0.26666666666666666,
+        "max_logit_err": 5.742622384752622
+      }
+    ]
+  },
+  "statistics": {
+    "seeds": {
+      "明文(全集)": {
+        "n": 0,
+        "mean": NaN,
+        "std": 0.0,
+        "ci_95_low": NaN,
+        "ci_95_high": NaN
+      },
+      "融合加密": {
+        "n": 0,
+        "mean": NaN,
+        "std": 0.0,
+        "ci_95_low": NaN,
+        "ci_95_high": NaN
+      },
+      "朴素加密": {
+        "n": 0,
+        "mean": NaN,
+        "std": 0.0,
+        "ci_95_low": NaN,
+        "ci_95_high": NaN
+      }
+    },
+    "无ReLU(融合=精确等价)": {
+      "明文(全集)": {
+        "n": 2,
+        "mean": 0.30105000000000004,
+        "std": 0.00021213203435598016,
+        "ci_95_low": 0.2991440692895737,
+        "ci_95_high": 0.30295593071042637
+      },
+      "融合加密": {
+        "n": 2,
+        "mean": 0.35,
+        "std": 0.02357022603955158,
+        "ci_95_low": 0.13822992106375512,
+        "ci_95_high": 0.5617700789362449
+      },
+      "朴素加密": {
+        "n": 2,
+        "mean": 0.31666666666666665,
+        "std": 0.02357022603955158,
+        "ci_95_low": 0.10489658773042179,
+        "ci_95_high": 0.5284367456029115
+      }
+    },
+    "标准-ReLU(融合=后聚合近似)": {
+      "明文(全集)": {
+        "n": 2,
+        "mean": 0.27475,
+        "std": 0.039527269068328034,
+        "ci_95_low": 0.0,
+        "ci_95_high": 0.6298884223760829
+      },
+      "融合加密": {
+        "n": 2,
+        "mean": 0.11666666666666667,
+        "std": 0.1649915822768611,
+        "ci_95_low": 0.0,
+        "ci_95_high": 1.0
+      },
+      "朴素加密": {
+        "n": 2,
+        "mean": 0.3,
+        "std": 0.04714045207910316,
+        "ci_95_low": 0.0,
+        "ci_95_high": 0.7235401578724897
+      }
+    }
+  },
+  "elapsed_s": 526.3361282348633
+}

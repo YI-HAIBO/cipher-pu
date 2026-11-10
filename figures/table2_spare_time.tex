@@ -1,0 +1,17 @@
+\begin{table}[htbp]
+\centering
+\caption{Spare-time area/timing scaling across tiers.
+LUT grows superlinearly with $N$; BRAM plateaus at 60 units (45-bit$\times$N fits in 36Kb RAMB36E2).}
+\label{tab:scaling}
+\footnotesize
+\begin{tabular}{lcccl}
+\toprule
+Metric & S82 & S90 & S128 & Scaling \\
+\midrule
+LUT (count)     &  53,542 & 103,239 & 251,380 & $\propto N^{1.13}$ \\
+BRAM36 (count)  &  30     &  60     &  60     & $\propto N^{1.00}$ (plateau) \\
+DSP48E2         &  27     &  27     &  28     & Weakly correlated \\
+WNS (ns)        & $-0.612$ & $+3.250$ & $-6.623$ & Non-monotonic \\
+\bottomrule
+\end{tabular}
+\end{table}

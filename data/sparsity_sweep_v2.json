@@ -1,0 +1,167 @@
+{
+  "experiment": "E10: 稀疏 sweep v2 + 稀疏训练",
+  "baseline_accuracy": 0.9200999736785889,
+  "B": 4,
+  "weight_stats": {
+    "max": 0.7191060185432434,
+    "p90": 0.2026112973690033,
+    "p95": 0.2563472092151642,
+    "p99": 0.4115375876426697,
+    "mean": 0.07936818152666092,
+    "std": 0.09060381352901459
+  },
+  "n_epochs_pretrain": 10,
+  "n_epochs_finetune": 3,
+  "results": [
+    {
+      "threshold": 0.0,
+      "skip_rate": 0.0,
+      "skip_blocks": 0,
+      "total_blocks": 1960,
+      "kept_density": 1.0,
+      "accuracy": 0.9201,
+      "accuracy_drop": 0.0,
+      "speedup": 1.0
+    },
+    {
+      "threshold": 0.0382116847,
+      "skip_rate": 0.3102,
+      "skip_blocks": 608,
+      "total_blocks": 1960,
+      "kept_density": 0.6898,
+      "accuracy": 0.9217,
+      "accuracy_drop": -0.0016,
+      "speedup": 1.45
+    },
+    {
+      "threshold": 0.0632319003,
+      "skip_rate": 0.4143,
+      "skip_blocks": 812,
+      "total_blocks": 1960,
+      "kept_density": 0.5857,
+      "accuracy": 0.921,
+      "accuracy_drop": -0.0009,
+      "speedup": 1.71
+    },
+    {
+      "threshold": 0.09683007,
+      "skip_rate": 0.5194,
+      "skip_blocks": 1018,
+      "total_blocks": 1960,
+      "kept_density": 0.4806,
+      "accuracy": 0.9207,
+      "accuracy_drop": -0.0006,
+      "speedup": 2.08
+    },
+    {
+      "threshold": 0.1163967103,
+      "skip_rate": 0.5827,
+      "skip_blocks": 1142,
+      "total_blocks": 1960,
+      "kept_density": 0.4173,
+      "accuracy": 0.9217,
+      "accuracy_drop": -0.0016,
+      "speedup": 2.4
+    },
+    {
+      "threshold": 0.139575094,
+      "skip_rate": 0.65,
+      "skip_blocks": 1274,
+      "total_blocks": 1960,
+      "kept_density": 0.35,
+      "accuracy": 0.9206,
+      "accuracy_drop": -0.0005,
+      "speedup": 2.86
+    },
+    {
+      "threshold": 0.1668614596,
+      "skip_rate": 0.7204,
+      "skip_blocks": 1412,
+      "total_blocks": 1960,
+      "kept_density": 0.2796,
+      "accuracy": 0.9188,
+      "accuracy_drop": 0.0013,
+      "speedup": 3.58
+    },
+    {
+      "threshold": 0.2026112974,
+      "skip_rate": 0.801,
+      "skip_blocks": 1570,
+      "total_blocks": 1960,
+      "kept_density": 0.199,
+      "accuracy": 0.9149,
+      "accuracy_drop": 0.0052,
+      "speedup": 5.03
+    },
+    {
+      "threshold": 0.2204745263,
+      "skip_rate": 0.8321,
+      "skip_blocks": 1631,
+      "total_blocks": 1960,
+      "kept_density": 0.1679,
+      "accuracy": 0.9119,
+      "accuracy_drop": 0.0082,
+      "speedup": 5.96
+    },
+    {
+      "threshold": 0.2435328215,
+      "skip_rate": 0.8679,
+      "skip_blocks": 1701,
+      "total_blocks": 1960,
+      "kept_density": 0.1321,
+      "accuracy": 0.9078,
+      "accuracy_drop": 0.0123,
+      "speedup": 7.57
+    },
+    {
+      "threshold": 0.2563472092,
+      "skip_rate": 0.8847,
+      "skip_blocks": 1734,
+      "total_blocks": 1960,
+      "kept_density": 0.1153,
+      "accuracy": 0.9072,
+      "accuracy_drop": 0.0129,
+      "speedup": 8.67
+    },
+    {
+      "threshold": 0.2793825865,
+      "skip_rate": 0.9077,
+      "skip_blocks": 1779,
+      "total_blocks": 1960,
+      "kept_density": 0.0923,
+      "accuracy": 0.9052,
+      "accuracy_drop": 0.0149,
+      "speedup": 10.83
+    },
+    {
+      "threshold": 0.3041353524,
+      "skip_rate": 0.9296,
+      "skip_blocks": 1822,
+      "total_blocks": 1960,
+      "kept_density": 0.0704,
+      "accuracy": 0.905,
+      "accuracy_drop": 0.0151,
+      "speedup": 14.2
+    },
+    {
+      "threshold": 0.3439324796,
+      "skip_rate": 0.9526,
+      "skip_blocks": 1867,
+      "total_blocks": 1960,
+      "kept_density": 0.0474,
+      "accuracy": 0.9023,
+      "accuracy_drop": 0.0178,
+      "speedup": 21.08
+    },
+    {
+      "threshold": 0.4115375876,
+      "skip_rate": 0.9735,
+      "skip_blocks": 1908,
+      "total_blocks": 1960,
+      "kept_density": 0.0265,
+      "accuracy": 0.901,
+      "accuracy_drop": 0.0191,
+      "speedup": 37.69
+    }
+  ]
+}

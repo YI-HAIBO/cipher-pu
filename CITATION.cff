@@ -1,0 +1,66 @@
+# CFF format specification v1.2.0
+# https://citation-format-specification.readthedocs.io/
+
+cff-version: "1.2.0"
+message: "If you use this software, please cite it using these metadata."
+title: "CIPHER-PU: Runtime-Adaptive CKKS Homomorphic Encryption FPGA Accelerator for Edge Deployment"
+type: software
+authors:
+  - family-names: Yi
+    given-names: Haibo
+    affiliation: "School of Artificial Intelligence, Shenzhen Polytechnic University"
+    email: haiboyi@szpu.edu.cn
+    orcid: "https://orcid.org/0000-0002-1635-3738"
+identifiers:
+  - type: url
+    value: "https://github.com/cipher-pu/cipher-pu"
+keywords:
+  - Fully Homomorphic Encryption
+  - CKKS
+  - FPGA
+  - Homomorphic Encryption Accelerator
+  - Runtime Adaptivity
+  - Post-Quantum Cryptography
+  - Privacy-Preserving Inference
+  - Hardware Accelerator
+license: Apache-2.0
+repository-code: "https://github.com/cipher-pu/cipher-pu"
+repository-data: "https://github.com/cipher-pu/cipher-pu/tree/main/data"
+date-released: "2026-10-24"
+version: 1.0.0
+url: "https://github.com/cipher-pu/cipher-pu"
+related-work:
+  - title: "Poseidon: Practical FHE Accelerator"
+    type: article
+    authors:
+      - family-names: Yang
+        given-names: Yinghao
+    date-published: "2023-01-01"
+    journal: "IEEE HPCA 2023"
+    doi: "10.1109/HPCA56546.2023.10070984"
+  - title: "SoK: Homomorphic Encryption Accelerators"
+    type: article
+    authors:
+      - family-names: Albrecht
+        given-names: Marc
+    date-published: "2024-01-01"
+  - title: "HomomorphicEncryption.org v1.1: Standard and Recommendations"
+    type: standard
+    authors:
+      - family-names: Albrecht
+        given-names: Marc
+    date-published: "2024-01-01"
+  - title: "Homomorphic Encryption for Arithmetic of Approximate Numbers"
+    type: article
+    authors:
+      - family-names: Cheon
+        given-names: Jung Hee
+      - family-names: Kim
+        given-names: Andrey
+      - family-names: Kim
+        given-names: Miran
+      - family-names: Song
+        given-names: Yongsoo
+    date-published: "2017-12-01"
+    journal: "ASIACRYPT 2017, LNCS vol. 10680, pp. 409-437"
+    doi: "10.1007/978-3-319-70697-8_15"

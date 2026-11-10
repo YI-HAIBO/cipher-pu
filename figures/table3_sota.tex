@@ -1,0 +1,20 @@
+\begin{table}[htbp]
+\centering
+\caption{Efficiency comparison with state-of-the-art CKKS implementations.
+CIPHER-PU achieves $68.8\times10^6$ ops/W (routed SAIF power), 15.3$\times$ higher than cuFHE on A100 GPU,
+583K$\times$ higher than CPU.}
+\label{tab:sota}
+\footnotesize
+\begin{tabular}{lccccc}
+\toprule
+System & Platform & Power (W) & Throughput (MOPS) & Efficiency (ops/W) & Source \\
+\midrule
+\textbf{CIPHER-PU (ours)} & FPGA xcau25p & 0.698 & 48.0   & \textbf{68.8M} & This work (routed SAIF, E34) \\
+cuFHE            & NVIDIA A100  & 400  & 1800.0 & 4.5M   & \cite{frigg2022cufhe} \\
+cuOpenFHE        & NVIDIA A100  & 400  & 1500.0 & 3.75M  & \cite{openfhe} \\
+cuFHE            & NVIDIA V100  & 250  & 800.0  & 3.2M   & \cite{frigg2022cufhe} \\
+OpenFHE (CPU)    & Intel Xeon   & 85   & 0.00014 & 215   & \cite{openfhe} \\
+SEAL (CPU)       & Intel Xeon   & 85   & 0.00011 & 178   & \cite{openfhe} \\
+\bottomrule
+\end{tabular}
+\end{table}

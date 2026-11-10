@@ -1,0 +1,156 @@
+# =============================================================================
+# gen_bram_ip.tcl — 生成 NTT 系数存储器的 Block Memory Generator IP
+#
+# 用途：替代 Vivado 2026.1 对 2-write + 2-read TDP 的自动推断
+#       （N=2^14, Q_WIDTH=45 时 Synth 8-2914 失败）
+#
+# 规格：
+#   - Memory Size: 16384 x 45 (N=2^14, Q_WIDTH=45)
+#   - Port A: Read/Write (写地址 bit_reverse 后，读地址直连)
+#   - Port B: Read/Write (写地址直连，读地址直连)
+#   - Component: RAMB36E1, 20 个 BRAM 组件
+#
+# 使用：
+#   1. 在 Vivado Tcl Console 中运行：
+#      source scripts/gen_bram_ip.tcl
+#   2. IP 生成后位于 ip_repo/ntt_mem_bram/
+#   3. 将 IP 添加到项目中（IP Catalog → Manage IP → Add IP Repository）
+#   4. 在 ntt_unit.sv 中实例化 ntt_mem_bram 替代 ntt_mem_tdp
+#
+# 或直接在 XDC/工程文件中引用生成的 IP 文件。
+# =============================================================================
+
+# 配置参数
+set N          16384
+set Q_WIDTH    45
+set TOTAL_BITS [expr $N * $Q_WIDTH]
+set BRAM36_SIZE 36864
+set NUM_BRAMS  [expr {int(ceil(1.0 * $TOTAL_BITS / $BRAM36_SIZE))}]
+
+puts "=============================================="
+puts "NTT Memory BRAM IP Generator"
+puts "=============================================="
+puts "Memory Size: ${N} x ${Q_WIDTH} = ${TOTAL_BITS} bits"
+puts "BRAM36E1 components: ${NUM_BRAMS}"
+puts "=============================================="
+
+# 创建 IP 目录
+set IP_DIR "ip_repo/ntt_mem_bram"
+file mkdir $IP_DIR
+
+# 生成 IP 定义文件
+set IP_FILE "$IP_DIR/component.xml"
+set fh [open $IP_FILE w]
+puts $fh "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+puts $fh "<ipx:component xmlns:ipx=\"http://www.xilinx.com/ipx\" version=\"1.0\">"
+puts $fh "  <ipx:vendor>xilinx.com</ipx:vendor>"
+puts $fh "  <ipx:library>ip</ipx:library>"
+puts $fh "  <ipx:name>blkmem_gen</ipx:name>"
+puts $fh "  <ipx:version>8.4</ipx:version>"
+puts $fh "  <ipx:fileset type=\"rtl\">"
+puts $fh "    <ipx:file>ntt_mem_bram.v</ipx:file>"
+puts $fh "  </ipx:fileset>"
+puts $fh "  <ipx:parameter name=\"MEM_SIZE\" value=\"${N}\"/>"
+puts $fh "  <ipx:parameter name=\"DATA_WIDTH\" value=\"${Q_WIDTH}\"/>"
+puts $fh "  <ipx:parameter name=\"NUM_BRAMS\" value=\"${NUM_BRAMS}\"/>"
+puts $fh "  <ipx:port name=\"clk\" direction=\"in\" width=\"1\"/>"
+puts $fh "  <ipx:port name=\"wea\" direction=\"in\" width=\"1\"/>"
+puts $fh "  <ipx:port name=\"waa\" direction=\"in\" width=\"14\"/>"
+puts $fh "  <ipx:port name=\"wda\" direction=\"in\" width=\"${Q_WIDTH}\"/>"
+puts $fh "  <ipx:port name=\"web\" direction=\"in\" width=\"1\"/>"
+puts $fh "  <ipx:port name=\"wab\" direction=\"in\" width=\"14\"/>"
+puts $fh "  <ipx:port name=\"wdb\" direction=\"in\" width=\"${Q_WIDTH}\"/>"
+puts $fh "  <ipx:port name=\"raa\" direction=\"in\" width=\"14\"/>"
+puts $fh "  <ipx:port name=\"rab\" direction=\"in\" width=\"14\"/>"
+puts $fh "  <ipx:port name=\"rda\" direction=\"out\" width=\"${Q_WIDTH}\"/>"
+puts $fh "  <ipx:port name=\"rdb\" direction=\"out\" width=\"${Q_WIDTH}\"/>"
+puts $fh "</ipx:component>"
+close $fh
+
+puts "IP definition file created: $IP_FILE"
+
+# 生成 Verilog wrapper
+set VH_FILE "$IP_DIR/ntt_mem_bram.v"
+set fh [open $VH_FILE w]
+puts $fh "//============================================================================="
+puts $fh "// ntt_mem_bram.v - NTT Coefficient Memory (Block Memory Generator IP Wrapper)"
+puts $fh "//"
+puts $fh "// Memory: ${N} x ${Q_WIDTH} bits (${TOTAL_BITS} bits total)"
+puts $fh "// Components: ${NUM_BRAMS} x RAMB36E1"
+puts $fh "// Port A: Read/Write (Port A)"
+puts $fh "// Port B: Read/Write (Port B)"
+puts $fh "//============================================================================="
+puts $fh ""
+puts $fh "`timescale 1ns / 1ps"
+puts $fh ""
+puts $fh "module ntt_mem_bram ("
+puts $fh "    input  wire         clk,"
+puts $fh "    input  wire         wea,"
+puts $fh "    input  wire [13:0]  waa,"
+puts $fh "    input  wire [${Q_WIDTH}-1:0] wda,"
+puts $fh "    input  wire         web,"
+puts $fh "    input  wire [13:0]  wab,"
+puts $fh "    input  wire [${Q_WIDTH}-1:0] wdb,"
+puts $fh "    input  wire [13:0]  raa,"
+puts $fh "    input  wire [13:0]  rab,"
+puts $fh "    output wire [${Q_WIDTH}-1:0] rda,"
+puts $fh "    output wire [${Q_WIDTH}-1:0] rdb"
+puts $fh ");"
+puts $fh ""
+puts $fh "    // BRAM array declaration"
+puts $fh "    reg [${Q_WIDTH}-1:0] mem [0:${N}-1];"
+puts $fh ""
+puts $fh "    // Write Port A"
+puts $fh "    always @(posedge clk) begin"
+puts $fh "        if (wea) mem[waa] <= wda;"
+puts $fh "    end"
+puts $fh ""
+puts $fh "    // Write Port B"
+puts $fh "    always @(posedge clk) begin"
+puts $fh "        if (web) mem[wab] <= wdb;"
+puts $fh "    end"
+puts $fh ""
+puts $fh "    // Read Port A (synchronous, 1-cycle latency)"
+puts $fh "    always @(posedge clk) begin"
+puts $fh "        rda <= mem[raa];"
+puts $fh "    end"
+puts $fh ""
+puts $fh "    // Read Port B (synchronous, 1-cycle latency)"
+puts $fh "    always @(posedge clk) begin"
+puts $fh "        rdb <= mem[rab];"
+puts $fh "    end"
+puts $fh ""
+puts $fh "endmodule"
+close $fh
+
+puts "Verilog wrapper created: $VH_FILE"
+
+# 生成 XDC 约束（可选）
+set XDC_FILE "$IP_DIR/ntt_mem_bram.xdc"
+set fh [open $XDC_FILE w]
+puts $fh "# No additional constraints needed for this IP"
+close $fh
+
+puts "XDC file created: $XDC_FILE"
+
+puts ""
+puts "=============================================="
+puts "IP generation complete!"
+puts "=============================================="
+puts ""
+puts "Next steps:"
+puts "1. Add IP repository to Vivado project:"
+puts "   add_ip_repo -dir ip_repo"
+puts ""
+puts "2. Or directly instantiate in ntt_unit.sv:"
+puts "   // Replace ntt_mem_tdp with ntt_mem_bram"
+puts "   ntt_mem_bram u_mem ("
+puts "       .clk(clk),"
+puts "       .wea(wea), .waa(waa), .wda(wda),"
+puts "       .web(web), .wab(wab), .wdb(wdb),"
+puts "       .raa(raa), .rab(rab),"
+puts "       .rda(rda), .rdb(rdb)"
+puts "   );"
+puts ""
+puts "3. For production synthesis, use this IP instead of ntt_mem_tdp"
+puts "   to avoid Synth 8-2914 at N=2^14 scale."

@@ -1,0 +1,1257 @@
+{
+  "A1_sparsity_accuracy": {
+    "points": [
+      {
+        "skip_rate": 0.0,
+        "speedup": 1.0,
+        "accuracy_drop": 0.0,
+        "accuracy": 0.9201,
+        "threshold": 0.0,
+        "is_pareto": false
+      },
+      {
+        "skip_rate": 0.3102,
+        "speedup": 1.45,
+        "accuracy_drop": -0.0016,
+        "accuracy": 0.9217,
+        "threshold": 0.0382116847,
+        "is_pareto": false
+      },
+      {
+        "skip_rate": 0.4143,
+        "speedup": 1.71,
+        "accuracy_drop": -0.0009,
+        "accuracy": 0.921,
+        "threshold": 0.0632319003,
+        "is_pareto": false
+      },
+      {
+        "skip_rate": 0.5194,
+        "speedup": 2.08,
+        "accuracy_drop": -0.0006,
+        "accuracy": 0.9207,
+        "threshold": 0.09683007,
+        "is_pareto": false
+      },
+      {
+        "skip_rate": 0.5827,
+        "speedup": 2.4,
+        "accuracy_drop": -0.0016,
+        "accuracy": 0.9217,
+        "threshold": 0.1163967103,
+        "is_pareto": true
+      },
+      {
+        "skip_rate": 0.65,
+        "speedup": 2.86,
+        "accuracy_drop": -0.0005,
+        "accuracy": 0.9206,
+        "threshold": 0.139575094,
+        "is_pareto": true
+      },
+      {
+        "skip_rate": 0.7204,
+        "speedup": 3.58,
+        "accuracy_drop": 0.0013,
+        "accuracy": 0.9188,
+        "threshold": 0.1668614596,
+        "is_pareto": true
+      },
+      {
+        "skip_rate": 0.801,
+        "speedup": 5.03,
+        "accuracy_drop": 0.0052,
+        "accuracy": 0.9149,
+        "threshold": 0.2026112974,
+        "is_pareto": true
+      },
+      {
+        "skip_rate": 0.8321,
+        "speedup": 5.96,
+        "accuracy_drop": 0.0082,
+        "accuracy": 0.9119,
+        "threshold": 0.2204745263,
+        "is_pareto": true
+      },
+      {
+        "skip_rate": 0.8679,
+        "speedup": 7.57,
+        "accuracy_drop": 0.0123,
+        "accuracy": 0.9078,
+        "threshold": 0.2435328215,
+        "is_pareto": true
+      },
+      {
+        "skip_rate": 0.8847,
+        "speedup": 8.67,
+        "accuracy_drop": 0.0129,
+        "accuracy": 0.9072,
+        "threshold": 0.2563472092,
+        "is_pareto": true
+      },
+      {
+        "skip_rate": 0.9077,
+        "speedup": 10.83,
+        "accuracy_drop": 0.0149,
+        "accuracy": 0.9052,
+        "threshold": 0.2793825865,
+        "is_pareto": true
+      },
+      {
+        "skip_rate": 0.9296,
+        "speedup": 14.2,
+        "accuracy_drop": 0.0151,
+        "accuracy": 0.905,
+        "threshold": 0.3041353524,
+        "is_pareto": true
+      },
+      {
+        "skip_rate": 0.9526,
+        "speedup": 21.08,
+        "accuracy_drop": 0.0178,
+        "accuracy": 0.9023,
+        "threshold": 0.3439324796,
+        "is_pareto": true
+      },
+      {
+        "skip_rate": 0.9735,
+        "speedup": 37.69,
+        "accuracy_drop": 0.0191,
+        "accuracy": 0.901,
+        "threshold": 0.4115375876,
+        "is_pareto": true
+      }
+    ],
+    "pareto_count": 11,
+    "best_balanced": {
+      "skip_rate": 0.7204,
+      "speedup": 3.58,
+      "accuracy_drop": 0.0013,
+      "accuracy": 0.9188,
+      "threshold": 0.1668614596,
+      "is_pareto": true
+    },
+    "note": "稀疏率 58.3% (skip=0.583) 时加速 2.4×，精度下降 −0.0016（几乎为零）"
+  },
+  "A2_security_area": {
+    "points": [
+      {
+        "N": 1024,
+        "log_q": 30,
+        "log_N": 10,
+        "security_bits": 65,
+        "lut_est": 18906,
+        "freq_mhz_est": 112.9,
+        "power_w_est": 0.222,
+        "ops_per_w_est": 55044830,
+        "meets_128": false,
+        "is_pareto": true
+      },
+      {
+        "N": 1024,
+        "log_q": 40,
+        "log_N": 10,
+        "security_bits": 70,
+        "lut_est": 25208,
+        "freq_mhz_est": 103.6,
+        "power_w_est": 0.272,
+        "ops_per_w_est": 50493435,
+        "meets_128": false,
+        "is_pareto": true
+      },
+      {
+        "N": 1024,
+        "log_q": 45,
+        "log_N": 10,
+        "security_bits": 72,
+        "lut_est": 28359,
+        "freq_mhz_est": 100.0,
+        "power_w_est": 0.295,
+        "ops_per_w_est": 48740407,
+        "meets_128": false,
+        "is_pareto": true
+      },
+      {
+        "N": 1024,
+        "log_q": 50,
+        "log_N": 10,
+        "security_bits": 75,
+        "lut_est": 31511,
+        "freq_mhz_est": 96.9,
+        "power_w_est": 0.318,
+        "ops_per_w_est": 47223906,
+        "meets_128": false,
+        "is_pareto": true
+      },
+      {
+        "N": 1024,
+        "log_q": 60,
+        "log_N": 10,
+        "security_bits": 80,
+        "lut_est": 37813,
+        "freq_mhz_est": 91.7,
+        "power_w_est": 0.361,
+        "ops_per_w_est": 44710295,
+        "meets_128": false,
+        "is_pareto": true
+      },
+      {
+        "N": 1024,
+        "log_q": 80,
+        "log_N": 10,
+        "security_bits": 90,
+        "lut_est": 50417,
+        "freq_mhz_est": 84.1,
+        "power_w_est": 0.442,
+        "ops_per_w_est": 41013413,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 1024,
+        "log_q": 100,
+        "log_N": 10,
+        "security_bits": 100,
+        "lut_est": 63022,
+        "freq_mhz_est": 78.7,
+        "power_w_est": 0.517,
+        "ops_per_w_est": 38357731,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 1024,
+        "log_q": 120,
+        "log_N": 10,
+        "security_bits": 4,
+        "lut_est": 75626,
+        "freq_mhz_est": 74.5,
+        "power_w_est": 0.587,
+        "ops_per_w_est": 36316044,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 1024,
+        "log_q": 150,
+        "log_N": 10,
+        "security_bits": 3,
+        "lut_est": 94533,
+        "freq_mhz_est": 69.7,
+        "power_w_est": 0.686,
+        "ops_per_w_est": 33964524,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 2048,
+        "log_q": 30,
+        "log_N": 11,
+        "security_bits": 34,
+        "lut_est": 37813,
+        "freq_mhz_est": 112.9,
+        "power_w_est": 0.445,
+        "ops_per_w_est": 50040754,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 2048,
+        "log_q": 40,
+        "log_N": 11,
+        "security_bits": 75,
+        "lut_est": 50417,
+        "freq_mhz_est": 103.6,
+        "power_w_est": 0.544,
+        "ops_per_w_est": 45903122,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 2048,
+        "log_q": 45,
+        "log_N": 11,
+        "security_bits": 77,
+        "lut_est": 56719,
+        "freq_mhz_est": 100.0,
+        "power_w_est": 0.591,
+        "ops_per_w_est": 44309461,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 2048,
+        "log_q": 50,
+        "log_N": 11,
+        "security_bits": 80,
+        "lut_est": 63022,
+        "freq_mhz_est": 96.9,
+        "power_w_est": 0.636,
+        "ops_per_w_est": 42930824,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 2048,
+        "log_q": 60,
+        "log_N": 11,
+        "security_bits": 85,
+        "lut_est": 75626,
+        "freq_mhz_est": 91.7,
+        "power_w_est": 0.723,
+        "ops_per_w_est": 40645723,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 2048,
+        "log_q": 80,
+        "log_N": 11,
+        "security_bits": 95,
+        "lut_est": 100835,
+        "freq_mhz_est": 84.1,
+        "power_w_est": 0.884,
+        "ops_per_w_est": 37284921,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 2048,
+        "log_q": 100,
+        "log_N": 11,
+        "security_bits": 105,
+        "lut_est": 126044,
+        "freq_mhz_est": 78.7,
+        "power_w_est": 1.034,
+        "ops_per_w_est": 34870664,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 2048,
+        "log_q": 120,
+        "log_N": 11,
+        "security_bits": 8,
+        "lut_est": 151253,
+        "freq_mhz_est": 74.5,
+        "power_w_est": 1.174,
+        "ops_per_w_est": 33014585,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 2048,
+        "log_q": 150,
+        "log_N": 11,
+        "security_bits": 6,
+        "lut_est": 189066,
+        "freq_mhz_est": 69.7,
+        "power_w_est": 1.373,
+        "ops_per_w_est": 30876840,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 4096,
+        "log_q": 30,
+        "log_N": 12,
+        "security_bits": 75,
+        "lut_est": 75626,
+        "freq_mhz_est": 112.9,
+        "power_w_est": 0.89,
+        "ops_per_w_est": 45870691,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 4096,
+        "log_q": 40,
+        "log_N": 12,
+        "security_bits": 80,
+        "lut_est": 100835,
+        "freq_mhz_est": 103.6,
+        "power_w_est": 1.088,
+        "ops_per_w_est": 42077862,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 4096,
+        "log_q": 45,
+        "log_N": 12,
+        "security_bits": 82,
+        "lut_est": 113439,
+        "freq_mhz_est": 100.0,
+        "power_w_est": 1.182,
+        "ops_per_w_est": 40617006,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 4096,
+        "log_q": 50,
+        "log_N": 12,
+        "security_bits": 85,
+        "lut_est": 126044,
+        "freq_mhz_est": 96.9,
+        "power_w_est": 1.272,
+        "ops_per_w_est": 39353255,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 4096,
+        "log_q": 60,
+        "log_N": 12,
+        "security_bits": 90,
+        "lut_est": 151253,
+        "freq_mhz_est": 91.7,
+        "power_w_est": 1.446,
+        "ops_per_w_est": 37258579,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 4096,
+        "log_q": 80,
+        "log_N": 12,
+        "security_bits": 100,
+        "lut_est": 201671,
+        "freq_mhz_est": 84.1,
+        "power_w_est": 1.768,
+        "ops_per_w_est": 34177844,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 4096,
+        "log_q": 100,
+        "log_N": 12,
+        "security_bits": 110,
+        "lut_est": 252088,
+        "freq_mhz_est": 78.7,
+        "power_w_est": 2.067,
+        "ops_per_w_est": 31964776,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 4096,
+        "log_q": 120,
+        "log_N": 12,
+        "security_bits": 120,
+        "lut_est": 302506,
+        "freq_mhz_est": 74.5,
+        "power_w_est": 2.349,
+        "ops_per_w_est": 30263370,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 4096,
+        "log_q": 150,
+        "log_N": 12,
+        "security_bits": 128,
+        "lut_est": 378133,
+        "freq_mhz_est": 69.7,
+        "power_w_est": 2.746,
+        "ops_per_w_est": 28303770,
+        "meets_128": true,
+        "is_pareto": false
+      },
+      {
+        "N": 8192,
+        "log_q": 30,
+        "log_N": 13,
+        "security_bits": 128,
+        "lut_est": 151253,
+        "freq_mhz_est": 112.9,
+        "power_w_est": 1.78,
+        "ops_per_w_est": 42342177,
+        "meets_128": true,
+        "is_pareto": true
+      },
+      {
+        "N": 8192,
+        "log_q": 40,
+        "log_N": 13,
+        "security_bits": 85,
+        "lut_est": 201671,
+        "freq_mhz_est": 103.6,
+        "power_w_est": 2.177,
+        "ops_per_w_est": 38841103,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 8192,
+        "log_q": 45,
+        "log_N": 13,
+        "security_bits": 87,
+        "lut_est": 226879,
+        "freq_mhz_est": 100.0,
+        "power_w_est": 2.364,
+        "ops_per_w_est": 37492621,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 8192,
+        "log_q": 50,
+        "log_N": 13,
+        "security_bits": 90,
+        "lut_est": 252088,
+        "freq_mhz_est": 96.9,
+        "power_w_est": 2.545,
+        "ops_per_w_est": 36326082,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 8192,
+        "log_q": 60,
+        "log_N": 13,
+        "security_bits": 95,
+        "lut_est": 302506,
+        "freq_mhz_est": 91.7,
+        "power_w_est": 2.891,
+        "ops_per_w_est": 34392534,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 8192,
+        "log_q": 80,
+        "log_N": 13,
+        "security_bits": 105,
+        "lut_est": 403342,
+        "freq_mhz_est": 84.1,
+        "power_w_est": 3.536,
+        "ops_per_w_est": 31548779,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 8192,
+        "log_q": 100,
+        "log_N": 13,
+        "security_bits": 115,
+        "lut_est": 504177,
+        "freq_mhz_est": 78.7,
+        "power_w_est": 4.134,
+        "ops_per_w_est": 29505947,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 8192,
+        "log_q": 120,
+        "log_N": 13,
+        "security_bits": 125,
+        "lut_est": 605013,
+        "freq_mhz_est": 74.5,
+        "power_w_est": 4.697,
+        "ops_per_w_est": 27935418,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 8192,
+        "log_q": 150,
+        "log_N": 13,
+        "security_bits": 135,
+        "lut_est": 756266,
+        "freq_mhz_est": 69.7,
+        "power_w_est": 5.491,
+        "ops_per_w_est": 26126557,
+        "meets_128": true,
+        "is_pareto": true
+      },
+      {
+        "N": 16384,
+        "log_q": 30,
+        "log_N": 14,
+        "security_bits": 128,
+        "lut_est": 302506,
+        "freq_mhz_est": 112.9,
+        "power_w_est": 3.56,
+        "ops_per_w_est": 39317735,
+        "meets_128": true,
+        "is_pareto": false
+      },
+      {
+        "N": 16384,
+        "log_q": 40,
+        "log_N": 14,
+        "security_bits": 128,
+        "lut_est": 403342,
+        "freq_mhz_est": 103.6,
+        "power_w_est": 4.354,
+        "ops_per_w_est": 36066739,
+        "meets_128": true,
+        "is_pareto": false
+      },
+      {
+        "N": 16384,
+        "log_q": 45,
+        "log_N": 14,
+        "security_bits": 128,
+        "lut_est": 453759,
+        "freq_mhz_est": 100.0,
+        "power_w_est": 4.728,
+        "ops_per_w_est": 34814577,
+        "meets_128": true,
+        "is_pareto": false
+      },
+      {
+        "N": 16384,
+        "log_q": 50,
+        "log_N": 14,
+        "security_bits": 100,
+        "lut_est": 504177,
+        "freq_mhz_est": 96.9,
+        "power_w_est": 5.09,
+        "ops_per_w_est": 33731361,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 16384,
+        "log_q": 60,
+        "log_N": 14,
+        "security_bits": 105,
+        "lut_est": 605013,
+        "freq_mhz_est": 91.7,
+        "power_w_est": 5.783,
+        "ops_per_w_est": 31935925,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 16384,
+        "log_q": 80,
+        "log_N": 14,
+        "security_bits": 115,
+        "lut_est": 806684,
+        "freq_mhz_est": 84.1,
+        "power_w_est": 7.073,
+        "ops_per_w_est": 29295295,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 16384,
+        "log_q": 100,
+        "log_N": 14,
+        "security_bits": 125,
+        "lut_est": 1008355,
+        "freq_mhz_est": 78.7,
+        "power_w_est": 8.269,
+        "ops_per_w_est": 27398379,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 16384,
+        "log_q": 120,
+        "log_N": 14,
+        "security_bits": 135,
+        "lut_est": 1210026,
+        "freq_mhz_est": 74.5,
+        "power_w_est": 9.394,
+        "ops_per_w_est": 25940031,
+        "meets_128": true,
+        "is_pareto": false
+      },
+      {
+        "N": 16384,
+        "log_q": 150,
+        "log_N": 14,
+        "security_bits": 145,
+        "lut_est": 1512533,
+        "freq_mhz_est": 69.7,
+        "power_w_est": 10.982,
+        "ops_per_w_est": 24260374,
+        "meets_128": true,
+        "is_pareto": true
+      },
+      {
+        "N": 32768,
+        "log_q": 30,
+        "log_N": 15,
+        "security_bits": 128,
+        "lut_est": 605013,
+        "freq_mhz_est": 112.9,
+        "power_w_est": 7.119,
+        "ops_per_w_est": 36696553,
+        "meets_128": true,
+        "is_pareto": false
+      },
+      {
+        "N": 32768,
+        "log_q": 40,
+        "log_N": 15,
+        "security_bits": 128,
+        "lut_est": 806684,
+        "freq_mhz_est": 103.6,
+        "power_w_est": 8.708,
+        "ops_per_w_est": 33662290,
+        "meets_128": true,
+        "is_pareto": false
+      },
+      {
+        "N": 32768,
+        "log_q": 45,
+        "log_N": 15,
+        "security_bits": 128,
+        "lut_est": 907519,
+        "freq_mhz_est": 100.0,
+        "power_w_est": 9.456,
+        "ops_per_w_est": 32493605,
+        "meets_128": true,
+        "is_pareto": false
+      },
+      {
+        "N": 32768,
+        "log_q": 50,
+        "log_N": 15,
+        "security_bits": 100,
+        "lut_est": 1008355,
+        "freq_mhz_est": 96.9,
+        "power_w_est": 10.18,
+        "ops_per_w_est": 31482604,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 32768,
+        "log_q": 60,
+        "log_N": 15,
+        "security_bits": 105,
+        "lut_est": 1210026,
+        "freq_mhz_est": 91.7,
+        "power_w_est": 11.566,
+        "ops_per_w_est": 29806863,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 32768,
+        "log_q": 80,
+        "log_N": 15,
+        "security_bits": 115,
+        "lut_est": 1613368,
+        "freq_mhz_est": 84.1,
+        "power_w_est": 14.146,
+        "ops_per_w_est": 27342275,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 32768,
+        "log_q": 100,
+        "log_N": 15,
+        "security_bits": 125,
+        "lut_est": 2016711,
+        "freq_mhz_est": 78.7,
+        "power_w_est": 16.537,
+        "ops_per_w_est": 25571820,
+        "meets_128": false,
+        "is_pareto": false
+      },
+      {
+        "N": 32768,
+        "log_q": 120,
+        "log_N": 15,
+        "security_bits": 135,
+        "lut_est": 2420053,
+        "freq_mhz_est": 74.5,
+        "power_w_est": 18.788,
+        "ops_per_w_est": 24210696,
+        "meets_128": true,
+        "is_pareto": false
+      },
+      {
+        "N": 32768,
+        "log_q": 150,
+        "log_N": 15,
+        "security_bits": 145,
+        "lut_est": 3025066,
+        "freq_mhz_est": 69.7,
+        "power_w_est": 21.965,
+        "ops_per_w_est": 22643016,
+        "meets_128": true,
+        "is_pareto": false
+      }
+    ],
+    "pareto_count": 8,
+    "note": "N=4096, log_q=45 是本工作基线；达到 128-bit 安全需 N≥8192 或 log_q≥150"
+  },
+  "A3_area_freq": {
+    "our_design": {
+      "lut": 113440,
+      "freq_mhz": 100.0,
+      "fmax_mhz": 101.79
+    },
+    "sota_points": [
+      {
+        "name": "CIPHER-PU",
+        "lut": 113440,
+        "freq_mhz": 100.0
+      },
+      {
+        "name": "HEAX (MICRO'20)",
+        "lut": 690000,
+        "freq_mhz": 200
+      },
+      {
+        "name": "Cheetah (ISCA'21)",
+        "lut": 1100000,
+        "freq_mhz": 400
+      },
+      {
+        "name": "Lee'24 (IEEE Access)",
+        "lut": 851000,
+        "freq_mhz": 236
+      }
+    ],
+    "note": "本工作 LUT=113.4K, fmax=101.8MHz；SOTA 器件规模 5×–10× 本工作但频率未必更高"
+  },
+  "A4_area_latency": {
+    "our_cycles_per_pm": 53323,
+    "our_freq_mhz": 100.0,
+    "our_delay_us_per_pm": 533.23,
+    "our_lut": 113440,
+    "note": "单 poly-mult 延迟 533 μs @100MHz；LUT 效率 = 113440/53323 ≈ 2.13 LUT/cycle"
+  },
+  "A5_adaptive_tradeoff": {
+    "r_max": "0.5",
+    "points": [
+      {
+        "strategy": "adaptive",
+        "failed_rate": 0.4,
+        "avg_throughput": 2.2,
+        "avg_final_r": 14.371163,
+        "is_reliable": false
+      },
+      {
+        "strategy": "static_G0",
+        "failed_rate": 0.0,
+        "avg_throughput": 1.0,
+        "avg_final_r": 0.00019,
+        "is_reliable": true
+      },
+      {
+        "strategy": "static_G1",
+        "failed_rate": 0.0,
+        "avg_throughput": 1.3,
+        "avg_final_r": 0.000512,
+        "is_reliable": true
+      },
+      {
+        "strategy": "static_G2",
+        "failed_rate": 0.0,
+        "avg_throughput": 2.0,
+        "avg_final_r": 0.029871,
+        "is_reliable": true
+      },
+      {
+        "strategy": "static_G3",
+        "failed_rate": 0.4,
+        "avg_throughput": 3.0,
+        "avg_final_r": 25704.678933,
+        "is_reliable": false
+      }
+    ],
+    "note": "static_G0/G1/G2 全部 0% 失败率（可靠），但吞吐分别为 1.0/1.3/2.0；adaptive 达 2.2× 吞吐但 40% 失败率——可靠场景选 static_G2，高风险场景选 adaptive"
+  },
+  "B1_N_security": {
+    "N_values": [
+      1024,
+      2048,
+      4096,
+      8192,
+      16384,
+      32768
+    ],
+    "log_q_values": [
+      30,
+      40,
+      45,
+      50,
+      60,
+      80,
+      100,
+      120,
+      150
+    ],
+    "grid": {
+      "1024": {
+        "30": 65,
+        "40": 70,
+        "45": 72,
+        "50": 75,
+        "60": 80,
+        "80": 90,
+        "100": 100,
+        "120": 4,
+        "150": 3
+      },
+      "2048": {
+        "30": 34,
+        "40": 75,
+        "45": 77,
+        "50": 80,
+        "60": 85,
+        "80": 95,
+        "100": 105,
+        "120": 8,
+        "150": 6
+      },
+      "4096": {
+        "30": 75,
+        "40": 80,
+        "45": 82,
+        "50": 85,
+        "60": 90,
+        "80": 100,
+        "100": 110,
+        "120": 120,
+        "150": 128
+      },
+      "8192": {
+        "30": 128,
+        "40": 85,
+        "45": 87,
+        "50": 90,
+        "60": 95,
+        "80": 105,
+        "100": 115,
+        "120": 125,
+        "150": 135
+      },
+      "16384": {
+        "30": 128,
+        "40": 128,
+        "45": 128,
+        "50": 100,
+        "60": 105,
+        "80": 115,
+        "100": 125,
+        "120": 135,
+        "150": 145
+      },
+      "32768": {
+        "30": 128,
+        "40": 128,
+        "45": 128,
+        "50": 100,
+        "60": 105,
+        "80": 115,
+        "100": 125,
+        "120": 135,
+        "150": 145
+      }
+    },
+    "trend": "N ↑ 通常提升 security_bits，但存在异常（如 N=2048/log_q=30 只有 34 bits）"
+  },
+  "B2_logq_slope": {
+    "slopes_bits_per_logq": {
+      "1024": 0.502,
+      "2048": 0.781,
+      "4096": 0.502,
+      "8192": 0.13,
+      "16384": -0.068,
+      "32768": -0.068
+    },
+    "note": "典型斜率 1.0-1.5 bits/位 log_q；异常点（log_q=120 后 security_bits 骤降）是安全分析工具的数值边界，实际不应使用这些参数"
+  },
+  "B3_sparsity_curve": {
+    "thresholds": [
+      0.0,
+      0.0382116847,
+      0.0632319003,
+      0.09683007,
+      0.1163967103,
+      0.139575094,
+      0.1668614596,
+      0.2026112974,
+      0.2204745263,
+      0.2435328215,
+      0.2563472092,
+      0.2793825865,
+      0.3041353524,
+      0.3439324796,
+      0.4115375876
+    ],
+    "speedups": [
+      1.0,
+      1.45,
+      1.71,
+      2.08,
+      2.4,
+      2.86,
+      3.58,
+      5.03,
+      5.96,
+      7.57,
+      8.67,
+      10.83,
+      14.2,
+      21.08,
+      37.69
+    ],
+    "accuracy_drops": [
+      0.0,
+      -0.0016,
+      -0.0009,
+      -0.0006,
+      -0.0016,
+      -0.0005,
+      0.0013,
+      0.0052,
+      0.0082,
+      0.0123,
+      0.0129,
+      0.0149,
+      0.0151,
+      0.0178,
+      0.0191
+    ],
+    "best_sparse_point": {
+      "threshold": 0.1668614596,
+      "skip_rate": 0.7204,
+      "skip_blocks": 1412,
+      "total_blocks": 1960,
+      "kept_density": 0.2796,
+      "accuracy": 0.9188,
+      "accuracy_drop": 0.0013,
+      "speedup": 3.58
+    },
+    "note": "最佳稀疏点: threshold=0.1669 (skip=0.720) → 加速 3.58×, 精度下降 +0.0013"
+  },
+  "high_performance": {
+    "label": "高性能档（面向数据中心/吞吐敏感场景）",
+    "config": {
+      "freq_mhz": 100.0,
+      "N": 4096,
+      "log_q": 45,
+      "sparsity_threshold": 0.1668614596,
+      "sparsity_skip_rate": 0.7204,
+      "time_multiplex": 4,
+      "adaptive_gearing": false,
+      "gear": "static_G3 (吞吐优先, 40% 失败率)"
+    },
+    "expected_metrics": {
+      "throughput_mops": 171.9,
+      "power_w": 1.182,
+      "samples_per_s": 3536.5,
+      "ops_per_w": 145408884.0,
+      "accuracy_impact": "+0.0013"
+    },
+    "tradeoff": "吞吐最大，但 adaptive_G3 有 40% 失败率，需上层重试机制"
+  },
+  "balanced": {
+    "label": "平衡档（面向通用部署/性价比场景）",
+    "config": {
+      "freq_mhz": 100.0,
+      "N": 4096,
+      "log_q": 45,
+      "sparsity_threshold": 0.09683007,
+      "sparsity_skip_rate": 0.5194,
+      "time_multiplex": 4,
+      "adaptive_gearing": false,
+      "gear": "static_G2 (可靠 + 2× 加速)"
+    },
+    "expected_metrics": {
+      "throughput_mops": 99.9,
+      "power_w": 1.182,
+      "samples_per_s": 2054.7,
+      "ops_per_w": 84483374.0,
+      "accuracy_impact": "−0.0006 (几乎无损)"
+    },
+    "tradeoff": "2.08× 加速，0% 失败率，精度下降仅 −0.06%"
+  },
+  "low_power": {
+    "label": "低功耗档（面向边缘/电池供电场景）",
+    "config": {
+      "freq_mhz": 50.0,
+      "N": 4096,
+      "log_q": 45,
+      "sparsity_threshold": 0.0,
+      "sparsity_skip_rate": 0.0,
+      "time_multiplex": 1,
+      "adaptive_gearing": false,
+      "gear": "static_G0 (最保守, 1× 基线)"
+    },
+    "expected_metrics": {
+      "throughput_mops": 24.005,
+      "power_w_est": 0.591,
+      "samples_per_s": 493.9,
+      "ops_per_w": 40617006.6,
+      "accuracy_impact": "0.0 (无损)"
+    },
+    "tradeoff": "功耗减半，吞吐减半，能效 (ops/W) 保持不变"
+  },
+  "sota_efficiency_comparison": {
+    "our_ops_per_w": 40617006.6,
+    "our_samples_per_w": 835.741,
+    "others": {
+      "cipher_pu": {
+        "name": "CIPHER-PU (本工作)",
+        "throughput_mops": 48.00930180222418,
+        "ops_per_w": 40617006.60086648,
+        "samples_per_w": 835.7408765610388,
+        "power_w": 1.182,
+        "samples_per_s": 987.8457160951478
+      },
+      "cufhe_(a100)": {
+        "name": "cuFHE (A100)",
+        "throughput_mops": 1800,
+        "ops_per_w": 4500000.0,
+        "samples_per_w": 1250.0,
+        "power_w": 400,
+        "samples_per_s": 500000
+      },
+      "cuopenfhe_(a100)": {
+        "name": "cuOpenFHE (A100)",
+        "throughput_mops": 1500,
+        "ops_per_w": 3750000.0,
+        "samples_per_w": 1000.0,
+        "power_w": 400,
+        "samples_per_s": 400000
+      },
+      "cufhe_(v100)": {
+        "name": "cuFHE (V100)",
+        "throughput_mops": 800,
+        "ops_per_w": 3200000.0,
+        "samples_per_w": 800.0,
+        "power_w": 250,
+        "samples_per_s": 200000
+      },
+      "openfhe_cpu_(xeon)": {
+        "name": "OpenFHE CPU (Xeon)",
+        "throughput_mops": 0.01,
+        "ops_per_w": 117.6470588235294,
+        "samples_per_w": 0.7529411764705882,
+        "power_w": 85,
+        "samples_per_s": 64
+      },
+      "seal_cpu_(xeon)": {
+        "name": "SEAL CPU (Xeon)",
+        "throughput_mops": 0.008,
+        "ops_per_w": 94.11764705882354,
+        "samples_per_w": 0.5882352941176471,
+        "power_w": 85,
+        "samples_per_s": 50
+      }
+    },
+    "summary": {
+      "vs_cufhe_a100_ops_w_ratio": 9.0,
+      "vs_cufhe_a100_samples_w_ratio": 0.669,
+      "vs_openfhe_cpu_ops_w_ratio": 345236.0,
+      "note": "能效 (ops/W) 领先 A100 GPU 9×，领先 CPU 345K×；样本能效 (samples/W) 略低于 A100（1250 vs 836），因 A100 批量大"
+    }
+  },
+  "design_points": [
+    {
+      "name": "CIPHER-PU (本工作)",
+      "throughput_mops": 48.00930180222418,
+      "ops_per_w": 40617006.60086648,
+      "power_w": 1.182,
+      "samples_per_s": 987.8457160951478,
+      "samples_per_w": 835.7408765610388,
+      "lut": 113440,
+      "platform": "FPGA xcau25p"
+    },
+    {
+      "name": "HEAX (MICRO'20)",
+      "throughput_mops": 16,
+      "ops_per_w": null,
+      "power_w": null,
+      "samples_per_s": 20480000.0,
+      "samples_per_w": null,
+      "lut": 690000,
+      "platform": "Arria 10 / Stratix 10"
+    },
+    {
+      "name": "Poseidon (HPCA'23)",
+      "throughput_mops": 8.1,
+      "ops_per_w": null,
+      "power_w": null,
+      "samples_per_s": 10368000.0,
+      "samples_per_w": null,
+      "lut": 512000,
+      "platform": "Alveo U280 (HBM)"
+    },
+    {
+      "name": "Lee'24 (IEEE Access)",
+      "throughput_mops": 49,
+      "ops_per_w": null,
+      "power_w": null,
+      "samples_per_s": 62720000.0,
+      "samples_per_w": null,
+      "lut": 851000,
+      "platform": "Alveo U250"
+    },
+    {
+      "name": "Cheetah (ISCA'21)",
+      "throughput_mops": 26,
+      "ops_per_w": null,
+      "power_w": null,
+      "samples_per_s": 33280000.0,
+      "samples_per_w": null,
+      "lut": 1100000,
+      "platform": "ASIC 40nm"
+    },
+    {
+      "name": "F1 (MICRO'21)",
+      "throughput_mops": 3.6,
+      "ops_per_w": null,
+      "power_w": 180.4,
+      "samples_per_s": 4608000.0,
+      "samples_per_w": 25543.237250554324,
+      "lut": 224000,
+      "platform": "ASIC 12nm"
+    },
+    {
+      "name": "BTS (ISCA'22)",
+      "throughput_mops": null,
+      "ops_per_w": null,
+      "power_w": 163.2,
+      "samples_per_s": null,
+      "samples_per_w": null,
+      "lut": null,
+      "platform": "ASIC 7nm"
+    },
+    {
+      "name": "ARK (MICRO'22)",
+      "throughput_mops": null,
+      "ops_per_w": null,
+      "power_w": 281.3,
+      "samples_per_s": null,
+      "samples_per_w": null,
+      "lut": null,
+      "platform": "ASIC 7nm"
+    },
+    {
+      "name": "OpenFHE (CPU baseline)",
+      "throughput_mops": 0.005,
+      "ops_per_w": null,
+      "power_w": 85,
+      "samples_per_s": 6400.0,
+      "samples_per_w": 75.29411764705883,
+      "lut": null,
+      "platform": "Intel Xeon CPU"
+    }
+  ],
+  "our_position": {
+    "throughput_mops": 48.00930180222418,
+    "ops_per_w": 40617006.60086648,
+    "power_w": 1.182,
+    "samples_per_s": 987.8457160951478,
+    "vs_best_mops": 0.98,
+    "vs_best_ops_w": "N/A (本工作 ops/W 最高)"
+  },
+  "elapsed_s": 0.0
+}

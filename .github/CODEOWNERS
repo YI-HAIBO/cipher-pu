@@ -1,0 +1,18 @@
+# CIPHER-PU CODEOWNERS
+# Format: <pattern> <owner(s)>
+
+# Default owner for all files
+* @cipher-pu/maintainers
+
+# Specific directory owners
+/rtl/ @cipher-pu/rtl-team
+/tb/ @cipher-pu/rtl-team
+/scripts/ @cipher-pu/scripts-team
+/reports/ @cipher-pu/docs-team
+/docs/ @cipher-pu/docs-team
+/figures/ @cipher-pu/docs-team
+
+# Governance files
+/LICENSE @cipher-pu/legal
+/CODE_OF_CONDUCT.md @cipher-pu/legal
+/CONTRIBUTING.md @cipher-pu/maintainers

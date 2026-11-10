@@ -1,0 +1,16 @@
+\begin{table}[htbp]
+\centering
+\caption{Three-tier security-parameter DSE on xcau25p-ffvb676-1-e.
+Safety level from HE Standard v1.1 (uniform secret, $\sigma$=3.2, BKZ.sieve).}
+\label{tab:three_tier}
+\footnotesize
+\begin{tabular}{lccccccc}
+\toprule
+Tier & $N$ & $\log_2 N$ & $Q$ width & Security & LUT (\%) & BRAM36 & WNS @100MHz \\
+\midrule
+S82  & 4096  & 12 & 45 & $\ge$ 256 bit &  37.97\% & 30 & $-0.612$ ns \\
+S90  & 8192  & 13 & 45 & $\ge$ 256 bit &  73.22\% & 60 & $+3.250$ ns \\
+S128 & 16384 & 14 & 45 & $\ge$ 256 bit & 178.28\% & 60 & $-6.623$ ns \\
+\bottomrule
+\end{tabular}
+\end{table}

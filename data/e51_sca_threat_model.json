@@ -1,0 +1,198 @@
+{
+  "id": "E51",
+  "name": "Full-pipeline side-channel threat model",
+  "date": "2026-10-26",
+  "type": "analysis",
+  "attacker_tiers": [
+    {
+      "tier": "A1",
+      "profile": "passive non-profiled (TVLA/CPA, power/EM)",
+      "goal": "recover relinearization key (a,b) -> recover s",
+      "evidence": "E39 positive control |t|=43.7 (a_buf HW), 59.7 (b_buf HW); CPA trace count = estimate only (hundreds-thousands, 8-bit limbs of 45-bit coefficients)"
+    },
+    {
+      "tier": "A2",
+      "profile": "passive profiled / higher-order",
+      "goal": "same, plus noise-level inference",
+      "evidence": "E39 masked toggle proxy residual |t|=3.40 (a2 = key - a1 sequence dependence)"
+    },
+    {
+      "tier": "A3",
+      "profile": "active fault injection (clk/vcc glitch, laser)",
+      "goal": "break correctness / bypass masking",
+      "evidence": "deferred to E52"
+    }
+  ],
+  "assets": [
+    {
+      "id": "A-RLK",
+      "name": "relinearization key (a,b)",
+      "location": "keyswitch_pipe a_buf/b_buf (BRAM)",
+      "sensitivity": "critical",
+      "leak_consequence": "b ~ -a*s + e (mod q, small e) => exact (a,b) allows rounding recovery of s"
+    },
+    {
+      "id": "A-SK",
+      "name": "secret key s",
+      "location": "host only",
+      "sensitivity": "n/a (never on chip)"
+    },
+    {
+      "id": "A-CT",
+      "name": "ciphertexts / model weights",
+      "location": "all BRAMs and buses",
+      "sensitivity": "medium",
+      "leak_consequence": "weight statistics, not s"
+    },
+    {
+      "id": "A-RNG",
+      "name": "share re-randomization entropy",
+      "location": "keyswitch_masked per-trace shares",
+      "sensitivity": "high (masking premise)",
+      "leak_consequence": "degenerate masking revives first-order leak"
+    },
+    {
+      "id": "A-TW",
+      "name": "twiddle tables omega/omega^-1",
+      "location": "ntt_mem_tdp_prod BRAM",
+      "sensitivity": "public"
+    }
+  ],
+  "modules": [
+    {
+      "module": "keyswitch_pipe",
+      "assets": [
+        "A-RLK",
+        "A-CT"
+      ],
+      "channels": [
+        "C1 key register HW/toggle",
+        "C5 BRAM data bus"
+      ],
+      "first_order_leak": "measured (E39 unmasked |t|=43.7/59.7; masked 0.55)",
+      "required_order": 1,
+      "countermeasure": "sequential two-pass additive masking",
+      "cost": "0% area, +100% keyswitch latency"
+    },
+    {
+      "module": "approx_poly_mult / poly_mult (NTT+PWM+INTT)",
+      "assets": [
+        "A-CT"
+      ],
+      "channels": [
+        "C2 data-dependent toggles"
+      ],
+      "first_order_leak": "none against s (NTT addressing fixed, no key material)",
+      "required_order": 0,
+      "cost": "n/a for A1; >=2x for weight-privacy first-order (bilinear pointwise mult)"
+    },
+    {
+      "module": "rescale",
+      "assets": [
+        "A-CT"
+      ],
+      "channels": [
+        "C2"
+      ],
+      "required_order": 0,
+      "cost": "n/a"
+    },
+    {
+      "module": "activation_approx",
+      "assets": [
+        "A-CT"
+      ],
+      "channels": [
+        "C2",
+        "C3 coeff ROM address"
+      ],
+      "required_order": 0,
+      "cost": "public coefficients"
+    },
+    {
+      "module": "noise_monitor + adaptive_gear_ctrl",
+      "assets": [
+        "A-CT derived statistics"
+      ],
+      "channels": [
+        "C4 control-flow timing (gear switching instants depend on ciphertext noise level)"
+      ],
+      "required_order": 0,
+      "cost": "accepted + declared; leaks noise statistics, not key"
+    },
+    {
+      "module": "ckks_bram / ntt_mem_tdp_prod",
+      "assets": [
+        "A-RLK (keyswitch side only)",
+        "A-CT"
+      ],
+      "channels": [
+        "C5 BRAM bus activity (82-90% of dynamic power, E34)"
+      ],
+      "required_order": 1,
+      "cost": "follows keyswitch"
+    },
+    {
+      "module": "e2e_slot_simd_wrapper / fc / conv / maxpool",
+      "assets": [
+        "A-CT"
+      ],
+      "channels": [
+        "C2"
+      ],
+      "required_order": 0
+    },
+    {
+      "module": "m6 bringup (JTAG/UART)",
+      "assets": [
+        "control interface"
+      ],
+      "channels": [
+        "C6 debug port"
+      ],
+      "required_order": 0,
+      "cost": "process requirement: disable ILA/debug readback in production"
+    }
+  ],
+  "linearity_analysis": {
+    "keyswitch_linear_in_key": true,
+    "ntt_linear": true,
+    "pointwise_mult_bilinear": true,
+    "conclusion": "cheap one-order masking covers key x ciphertext ops only; ciphertext x ciphertext needs masked triples (>=2x)",
+    "security_argument": "s-targeting attacker (A1) only needs keyswitch masked because c.d factors are non-key A-CT"
+  },
+  "full_chain_first_order_cost": {
+    "area_overhead": "0% (sequential two-pass reuses the keyswitch instance)",
+    "keyswitch_latency": "+100%",
+    "per_multiplication_latency": "+33% (6->8 poly_mult)",
+    "batch_throughput": "-25%",
+    "energy_per_multiplication_mJ": {
+      "unmasked": 1.489,
+      "masked": 1.99,
+      "source": "E34 0.698 W anchor, time-amortized"
+    },
+    "efficiency": {
+      "unmasked_ops_per_J": 68800000.0,
+      "masked_ops_per_J": 51600000.0,
+      "unmasked_samples_per_W": 1415,
+      "masked_samples_per_W": 1061,
+      "vs_a100": {
+        "unmasked": 15.3,
+        "masked": 11.5
+      }
+    }
+  },
+  "honest_limits": [
+    "TVLA detection != key recovery; no CPA/template attack executed; trace counts are estimates",
+    "first-order TVLA pass != leakage-free chip: only keyswitch registers monitored, no NTT mid-nodes/BRAM addresses",
+    "no gate-level glitch/IR-drop modelling; behavioural proxies only (E39 scope)",
+    "trust boundary (s never on chip) is an assumption of this design, not verified on board",
+    "A3 fault analysis deferred to E52"
+  ],
+  "paper_integration": {
+    "main": "Sec. 7.8 tail (threat model summary, 4 lines)",
+    "supplementary": "Appendix D",
+    "future_work": "Sec. 9.2 item 3 update",
+    "anchors_untouched": "all power/throughput/efficiency anchors (unmasked configuration)"
+  }
+}

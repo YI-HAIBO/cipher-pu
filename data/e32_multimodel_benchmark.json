@@ -1,0 +1,159 @@
+{
+  "experiment": "E32",
+  "title": "M7 multi-model end-to-end benchmark",
+  "date": "2026-10-24 14:04",
+  "params": {
+    "N": 4096,
+    "log_q": 45,
+    "sigma_e": 3.2,
+    "R_INIT": 5.960464477539063e-08,
+    "BASE_GROWTH": 1.55,
+    "batch_slots": 512,
+    "cycles_per_poly_mult": 53323,
+    "effective_poly_mults_per_s": 468.84083791234553,
+    "power_w": 0.824
+  },
+  "models": {
+    "mnist_mlp": {
+      "arch": "784-128-10, ReLU",
+      "dataset": "MNIST",
+      "train_subset": 6000,
+      "test_subset": 1000,
+      "epochs": 3,
+      "plaintext_acc": 0.8655,
+      "encrypted_acc": 0.8655,
+      "encrypted_acc_sigma16": 0.8645,
+      "acc_drop_pct": 0.0,
+      "noise_trace": [
+        {
+          "layer": 1,
+          "r_hat": 0.002272934068123004,
+          "gear": 3,
+          "skip_rate": 0.5,
+          "trunc_bits": 17
+        },
+        {
+          "layer": 2,
+          "r_hat": 0.0035230478055906568,
+          "gear": 3,
+          "skip_rate": 0.5,
+          "trunc_bits": 17
+        }
+      ],
+      "cost": {
+        "poly_mults_per_batch": 140,
+        "inferences_per_s": 1714.6179215080065,
+        "energy_per_inference_mJ": 0.4805735375,
+        "latency_batch_ms": 298.60880000000003
+      },
+      "cost_anchor_measured_pm_per_batch": 141
+    },
+    "mnist_cnn": {
+      "arch": "Conv2d(1,4,3,p=1,s=4)->ReLU->FC(196,32)->ReLU->FC(32,10)",
+      "dataset": "MNIST",
+      "train_subset": 6000,
+      "test_subset": 1000,
+      "epochs": 3,
+      "plaintext_acc": 0.6368,
+      "encrypted_acc": 0.6368,
+      "encrypted_acc_sigma16": 0.6357,
+      "acc_drop_pct": 0.0,
+      "noise_trace": [
+        {
+          "layer": 1,
+          "r_hat": 0.002272934068123004,
+          "gear": 3,
+          "skip_rate": 0.5,
+          "trunc_bits": 17
+        },
+        {
+          "layer": 2,
+          "r_hat": 0.0035230478055906568,
+          "gear": 3,
+          "skip_rate": 0.5,
+          "trunc_bits": 17
+        },
+        {
+          "layer": 3,
+          "r_hat": 0.005460724098665518,
+          "gear": 3,
+          "skip_rate": 0.5,
+          "trunc_bits": 17
+        }
+      ],
+      "cost": {
+        "poly_mults_per_batch": 241,
+        "inferences_per_s": 996.0436058552735,
+        "energy_per_inference_mJ": 0.827273018125,
+        "latency_batch_ms": 514.0337199999999
+      },
+      "cost_anchor_measured_pm_per_batch": 243
+    },
+    "cifar10_cnn": {
+      "arch": "Conv(3,8,3,s=2)->ReLU->Conv(8,16,3,s=2)->ReLU->FC(1024,64)->ReLU->FC(64,10)",
+      "dataset": "CIFAR-10",
+      "train_subset": 8000,
+      "test_subset": 1000,
+      "epochs": 3,
+      "plaintext_acc": 0.3647,
+      "encrypted_acc": 0.3647,
+      "encrypted_acc_sigma16": 0.3627,
+      "acc_drop_pct": 0.0,
+      "noise_trace": [
+        {
+          "layer": 1,
+          "r_hat": 0.002272934068123004,
+          "gear": 3,
+          "skip_rate": 0.5,
+          "trunc_bits": 17
+        },
+        {
+          "layer": 2,
+          "r_hat": 0.0035230478055906568,
+          "gear": 3,
+          "skip_rate": 0.5,
+          "trunc_bits": 17
+        },
+        {
+          "layer": 3,
+          "r_hat": 0.005460724098665518,
+          "gear": 3,
+          "skip_rate": 0.5,
+          "trunc_bits": 17
+        },
+        {
+          "layer": 4,
+          "r_hat": 0.008464122352931553,
+          "gear": 3,
+          "skip_rate": 0.5,
+          "trunc_bits": 17
+        }
+      ],
+      "cost": {
+        "poly_mults_per_batch": 3150,
+        "inferences_per_s": 76.2052409559114,
+        "energy_per_inference_mJ": 10.812904593749998,
+        "latency_batch_ms": 6718.6979999999985
+      }
+    },
+    "resnet18_imagenet": {
+      "arch": "ResNet-18 (ImageNet 224x224)",
+      "n_layers": 18,
+      "d_out_sum": 2484712,
+      "poly_mults_per_inference": 2484733,
+      "projected_seconds_per_inference": 5299.73671036,
+      "r_hat_18": 0.00015894639091107942,
+      "feasible_on_n12": false,
+      "note": "requires multi-prime modulus chain + bootstrapping beyond ~12 multiplicative depth (E19); single-prime q=45-bit chain exhausts noise budget"
+    }
+  },
+  "conclusions": {
+    "cost_model_validation": {
+      "mnist_mlp_predicted_pm": 140,
+      "mnist_mlp_measured_pm": 141,
+      "mnist_cnn_predicted_pm": 241,
+      "mnist_cnn_measured_pm": 243
+    },
+    "resnet18_verdict": "infeasible on CIPHER-PU N=2^12 single-prime; needs N>=2^15 RNS + bootstrapping (Poseidon/ARK class)"
+  }
+}

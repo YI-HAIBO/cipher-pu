@@ -1,0 +1,146 @@
+{
+  "experiment": "E30",
+  "name": "SAIF-driven gate-level dynamic power measurement",
+  "milestone": "M4",
+  "date": "2026-10-24",
+  "device": "xcau25p-ffvb676-1-e",
+  "design": "e2e_ckks_mult_ctrl_m4",
+  "config": {
+    "N": 4096,
+    "log_N": 12,
+    "Q_WIDTH": 45,
+    "clock_mhz": 100.0,
+    "synth_mode": "out_of_context",
+    "vivado": "2026.1"
+  },
+  "flow": [
+    "synth DCP (OOC) -> write_verilog -mode funcsim netlist (preserves RTL net names)",
+    "dump_nets.tcl: get_nets -hierarchical -> dcp_names.txt (1,650,728 nets)",
+    "iverilog gate-level sim (unisims + bram stubs + glbl) -> gl.vcd",
+    "vcd_to_saif.py (strip tb scopes, dcp-name filter, bus bit-expansion) -> gl_power.saif",
+    "Vivado read_saif + report_power on OOC DCP"
+  ],
+  "simulation": {
+    "engine": "Icarus Verilog (xsim BASIC license caps at 50k instances; DUT=211k)",
+    "testbench": "tb_gl_top.sv (gen_gl_tb.py), N=4096, ITER=2 encrypted multiplications",
+    "dump_window_ns": [200, 2000000],
+    "vcd_bytes": 4806143036,
+    "vcd_vars": 2281713,
+    "saif_bytes": 142973524,
+    "saif_nets_active": 1568598
+  },
+  "annotation": {
+    "design_nets_total": 412845,
+    "design_nets_matched": 409222,
+    "match_rate_pct": 99.0,
+    "overall_confidence": "High",
+    "confidence_details": {
+      "implementation_state": "Low (synthesized, not P&R)",
+      "clock_nodes_activity": "High (>95%)",
+      "io_nodes_activity": "High (>95%)",
+      "internal_nodes_activity": "High (>25%)",
+      "device_models": "High (Production)"
+    }
+  },
+  "power": {
+    "saif_driven": {
+      "total_onchip_w": 0.824,
+      "dynamic_w": 0.369,
+      "device_static_w": 0.455,
+      "confidence": "High",
+      "junction_temp_c": 26.4,
+      "components_w": {
+        "clocks": 0.018,
+        "clb_logic": 0.007,
+        "signals": 0.006,
+        "block_ram": 0.331,
+        "dsps": 0.008,
+        "static": 0.455
+      },
+      "hierarchy_dynamic_w": {
+        "u_ksw": 0.146,
+        "u_pm_shared": 0.075,
+        "buf_instances_18x_0p009": 0.162,
+        "u_nmon": 0.003,
+        "u_rs0": 0.001,
+        "u_rs1": 0.001
+      }
+    },
+    "default_activity": {
+      "total_onchip_w": 1.316,
+      "dynamic_w": 0.858,
+      "device_static_w": 0.458,
+      "confidence": "Medium",
+      "components_w": {
+        "clocks": 0.019,
+        "clb_logic": 0.305,
+        "signals": 0.121,
+        "block_ram": 0.391,
+        "dsps": 0.021,
+        "static": 0.458
+      }
+    },
+    "prior_e13_xpower": {
+      "total_onchip_w": 1.182,
+      "dynamic_w": 0.725,
+      "static_w": 0.457,
+      "confidence": "Medium",
+      "vcd_net_match_pct": 0.0,
+      "note": "RTL-sim VCD failed to match P&R net names (0/398749); default-activity only"
+    }
+  },
+  "delta": {
+    "total_pct": -37.3,
+    "dynamic_pct": -57.0,
+    "clb_logic_pct": -97.7,
+    "signals_pct": -95.0,
+    "block_ram_pct": -15.3,
+    "dsps_pct": -61.9,
+    "note": "SAIF vs default-activity on same OOC DCP"
+  },
+  "energy": {
+    "cycles_per_pm": 53323,
+    "pm_time_us": 533.23,
+    "tdm_slots": 4,
+    "effective_pm_per_s": 468.84,
+    "energy_per_effective_pm_mj_total": 1.757,
+    "energy_per_effective_pm_mj_dynamic_only": 0.787,
+    "ops_per_s": 4.80e7,
+    "ops_per_j_total": 5.83e7,
+    "ops_per_j_dynamic_only": 1.30e8,
+    "prior_e17_ops_per_j": 4.06e7,
+    "improvement_vs_e17_pct": 43.5
+  },
+  "key_findings": [
+    "99% net annotation resolves E13's 0% match failure; confidence Medium -> High",
+    "BRAM is 89.7% of dynamic power (0.331/0.369 W): design is memory-bound, BRAM clock gating is the dominant power lever",
+    "Default 50% toggle assumption overestimates CLB logic power 43.6x (0.305 -> 0.007 W): NTT pipeline is memory-bound and most LUTs idle most cycles",
+    "Total SAIF power 0.824 W vs 1.182 W (E13 XPower) and 1.316 W (default activity on same DCP): prior numbers were conservative by 30-37%",
+    "Noise monitor (u_nmon) costs 0.003 W = 0.8% of dynamic: the closed-loop SNR feedback is nearly free in power",
+    "Key-switch unit u_ksw dominates dynamic (0.146 W, 39.6%) followed by shared poly-mult engine u_pm_shared (0.075 W, 20.3%)"
+  ],
+  "caveats": [
+    "Design is synthesized (OOC), not placed-and-routed: implementation-state confidence Low; post-route numbers may differ",
+    "OOC subtree power, not full-chip: device static 0.455 W is the xcau25p floor; no I/O, no PS, no board components",
+    "Activity from 2 encrypted-multiply window at 100 MHz on funcsim netlist (BRAM stubbed, not real BRAM behavior)",
+    "Relative comparisons (SAIF vs default on same DCP, vs E13 static estimate) are valid; absolute W should be quoted as synthesis-level estimate"
+  ],
+  "artifacts": {
+    "saif": "scripts/gl_power/out/gl_power.saif",
+    "report": "scripts/gl_power/out/gl_power_rpt",
+    "default_report": "scripts/gl_power/out/gl_power_rpt_default.rpt",
+    "netlist": "scripts/gl_power/out/gl_netlist.v",
+    "dcp_names": "scripts/gl_power/out/dcp_names.txt",
+    "vcd": "scripts/gl_power/sim_build/gl.vcd",
+    "scripts": [
+      "scripts/gl_power/gl_netlist.tcl",
+      "scripts/gl_power/gen_gl_tb.py",
+      "scripts/gl_power/run_iverilog_gl.py",
+      "scripts/gl_power/gen_bram_stubs.py",
+      "scripts/gl_power/run_vvp_only.py",
+      "scripts/gl_power/vcd_to_saif.py",
+      "scripts/gl_power/dump_nets.tcl",
+      "scripts/gl_power/gl_power.tcl"
+    ]
+  }
+}

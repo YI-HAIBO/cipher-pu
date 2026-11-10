@@ -1,0 +1,140 @@
+{
+  "title": "E50: pure-Python lattice security estimate (PrimalUSVP-GSA)",
+  "date": "2026-10-25",
+  "method": "faithful re-implementation of malb/lattice-estimator PrimalUSVP (GSA) without SageMath; cost models: BKZ.sieve full cost (0.292*beta + 16.4 + log2(8d)) validated against HE Standard v1.1 anchors, and ADPS16 core-SVP (0.292*beta classical / 0.265*beta quantum)",
+  "delta_model": "delta(beta) = (beta/(2*pi*e) * (pi*beta)^(1/beta))^(1/(2*(beta-1))) (Chen-Nguyen)",
+  "secret": "uniform over Z_q (CKKS default, xi=1)",
+  "validation": [
+    {
+      "N": 4096,
+      "log2q": 111,
+      "claimed_bits": 128,
+      "beta": 327,
+      "d": 8081,
+      "est_bits": 127.9,
+      "diff": -0.1
+    },
+    {
+      "N": 4096,
+      "log2q": 77,
+      "claimed_bits": 192,
+      "beta": 555,
+      "d": 8074,
+      "est_bits": 194.4,
+      "diff": 2.4
+    },
+    {
+      "N": 4096,
+      "log2q": 60,
+      "claimed_bits": 256,
+      "beta": 781,
+      "d": 8145,
+      "est_bits": 260.4,
+      "diff": 4.4
+    },
+    {
+      "N": 8192,
+      "log2q": 220,
+      "claimed_bits": 128,
+      "beta": 325,
+      "d": 15836,
+      "est_bits": 128.3,
+      "diff": 0.3
+    },
+    {
+      "N": 8192,
+      "log2q": 154,
+      "claimed_bits": 192,
+      "beta": 543,
+      "d": 16060,
+      "est_bits": 191.9,
+      "diff": -0.1
+    },
+    {
+      "N": 8192,
+      "log2q": 120,
+      "claimed_bits": 256,
+      "beta": 764,
+      "d": 16411,
+      "est_bits": 256.5,
+      "diff": 0.5
+    },
+    {
+      "N": 16384,
+      "log2q": 440,
+      "claimed_bits": 128,
+      "beta": 321,
+      "d": 32087,
+      "est_bits": 128.1,
+      "diff": 0.1
+    },
+    {
+      "N": 16384,
+      "log2q": 307,
+      "claimed_bits": 192,
+      "beta": 539,
+      "d": 32533,
+      "est_bits": 191.8,
+      "diff": -0.2
+    },
+    {
+      "N": 16384,
+      "log2q": 239,
+      "claimed_bits": 256,
+      "beta": 760,
+      "d": 32639,
+      "est_bits": 256.3,
+      "diff": 0.3
+    }
+  ],
+  "targets": {
+    "S82": {
+      "N": 4096,
+      "log2q": 45,
+      "sigma": 3.2,
+      "beta": 1141,
+      "d": 8255,
+      "sec_bkz_sieve_bits": 365.6,
+      "sec_bkz_sieve_quantum_bits": 334.8,
+      "sec_adps16_bits": 333.2,
+      "sec_adps16_quantum_bits": 302.4,
+      "beyond_estimator_bracket": false,
+      "he_standard_lower_bound": 256,
+      "e27b_linear_extrapolation": 312.5
+    },
+    "S90": {
+      "N": 8192,
+      "log2q": 45,
+      "sigma": 3.2,
+      "beta": 2665,
+      "d": 16254,
+      "sec_bkz_sieve_bits": 811.6,
+      "sec_bkz_sieve_quantum_bits": 739.6,
+      "sec_adps16_bits": 778.2,
+      "sec_adps16_quantum_bits": 706.2,
+      "beyond_estimator_bracket": true,
+      "he_standard_lower_bound": 256,
+      "e27b_linear_extrapolation": 397.2
+    },
+    "S128": {
+      "N": 16384,
+      "log2q": 45,
+      "sigma": 3.2,
+      "beta": 6029,
+      "d": 32181,
+      "sec_bkz_sieve_bits": 1794.8,
+      "sec_bkz_sieve_quantum_bits": 1632.1,
+      "sec_adps16_bits": 1760.5,
+      "sec_adps16_quantum_bits": 1597.7,
+      "beyond_estimator_bracket": true,
+      "he_standard_lower_bound": 256,
+      "e27b_linear_extrapolation": 438.6
+    }
+  },
+  "sigma_sweep": {
+    "3.2": 365.6,
+    "8.0": 391.9,
+    "16.0": 413.5
+  },
+  "validation_max_abs_error_bits": 4.4
+}

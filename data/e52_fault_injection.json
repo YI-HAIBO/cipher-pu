@@ -1,0 +1,137 @@
+{
+  "id": "E52",
+  "name": "Fault-injection attack analysis",
+  "date": "2026-10-26",
+  "type": "analysis",
+  "parameters": {
+    "N": 4096,
+    "log2q": 45,
+    "delta_scale": 16,
+    "sigma": 3.2,
+    "poly_mult_cycles": 53323,
+    "noise_monitor_LUT": 504
+  },
+  "fault_models": [
+    {
+      "id": "F1",
+      "desc": "single-bit flip in FF/BRAM",
+      "means": "clk/vcc glitch, laser, SEU"
+    },
+    {
+      "id": "F2",
+      "desc": "multi-bit/byte flip",
+      "means": "multi-point laser, EMP"
+    },
+    {
+      "id": "F3",
+      "desc": "stuck-at / zeroization",
+      "means": "laser damage, BRAM corruption"
+    },
+    {
+      "id": "F4",
+      "desc": "control tampering (loop abort, FSM skip, forced gear)",
+      "means": "clock glitch"
+    },
+    {
+      "id": "F5",
+      "desc": "RNG/entropy degradation",
+      "means": "rng supply disturbance"
+    }
+  ],
+  "key_recovery": {
+    "success_probability_claim": "0 under F1-F3 single-fault classes",
+    "structural_argument": "keyswitch output = sum d_i*(b_i + a_i*s); fault Delta in b_i yields output difference d_i*Delta, both known to the attacker -> no information about s",
+    "persistent_key_faults": "detected by noise erosion within 1 (k>=15) to <=5 (k>=10) multiplications",
+    "caveat": "decryption-failure-oracle class applies only if the on-chip DARE decryption path (Sec 5.4) is deployed; wrap detection + constant-time rounding are declared prerequisites"
+  },
+  "detection_quantification": {
+    "rule": "single-coefficient fault of magnitude f detected iff f > sqrt(rho*N)*n0",
+    "rho": 0.25,
+    "N": 4096,
+    "n0_bits": 9.7,
+    "k_det": 15,
+    "complementarity": "harmful magnitude >= detection magnitude; undetectable => absorbed by noise floor",
+    "key_register_rule": {
+      "k>=15": "first multiplication",
+      "10<=k<15": "<=5 multiplications",
+      "k<10": "merged into noise floor (benign)"
+    }
+  },
+  "defense_cost": [
+    {
+      "mechanism": "noise closed loop (already in design)",
+      "covers": "F1/F2/F3 datapath >=k_det, persistent key faults",
+      "area": "504 LUT / 0.44% (E35)",
+      "throughput": "0",
+      "status": "implemented"
+    },
+    {
+      "mechanism": "poly_mult cycle watchdog (53323 cycles)",
+      "covers": "F4 loop abort",
+      "area": "<0.01% LUT",
+      "throughput": "0",
+      "status": "proposed"
+    },
+    {
+      "mechanism": "FSM one-hot + illegal-state detection",
+      "covers": "F4",
+      "area": "~0.05% LUT",
+      "throughput": "0",
+      "status": "proposed"
+    },
+    {
+      "mechanism": "BRAM SEC-DED (45+6 bits)",
+      "covers": "F1/F3 storage",
+      "area": "storage +13%; ~2.5-4% LUT logic (or +60% storage native-wide ECC)",
+      "throughput": "0",
+      "status": "optional"
+    },
+    {
+      "mechanism": "temporal duplication (recompute+compare)",
+      "covers": "all single-bit",
+      "area": "~0 (reuse)",
+      "throughput": "-50%",
+      "status": "optional"
+    },
+    {
+      "mechanism": "spatial duplication",
+      "covers": "all",
+      "area": "+100% LUT infeasible at 80.45% util",
+      "throughput": "0",
+      "status": "rejected"
+    },
+    {
+      "mechanism": "share-freshness self-check (masked deployment)",
+      "covers": "F5/F3 masking bypass",
+      "area": "<0.1% LUT + 2xRNG",
+      "throughput": "0",
+      "status": "proposed"
+    },
+    {
+      "mechanism": "DARE wrap detection + constant-time rounding",
+      "covers": "decryption-failure oracle",
+      "area": "~0.1% LUT",
+      "throughput": "0",
+      "status": "prerequisite for DARE deploy"
+    }
+  ],
+  "single_random_bit_outcome": {
+    "ciphertext_data": "~0.85",
+    "key_bits": "~0.05",
+    "control": "~0.03",
+    "public_constants": "~0.07",
+    "undetected_and_harmful_upper_bound": "0",
+    "key_leak_probability": "0"
+  },
+  "honest_limits": [
+    "no FiSim/laser/glitch measurement (no board); costs are architectural estimates",
+    "n0/rho/g taken conservatively from E6/E23/E33/E48; threshold calibration requires board",
+    "F2 and combined F4 attacks not exhaustively enumerated",
+    "analysis-level coverage claim, not a complete proof over the physical fault space"
+  ],
+  "paper_integration": {
+    "main": "Sec 9.2 item 4 rewrite",
+    "supplementary": "Appendix E",
+    "anchors_untouched": true
+  }
+}

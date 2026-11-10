@@ -1,0 +1,225 @@
+#!/usr/bin/env python3
+"""E52: fault-injection attack analysis — report + JSON generation."""
+import io, json, os
+
+ROOT = str(Path(__file__).resolve().parents[1])
+OUT = os.path.join(ROOT, "reports", "experiments")
+
+MD = r"""# E52 — 故障注入攻击分析（Fault-Injection Attack Analysis）
+
+**日期**：2026-10-26 ｜ **类型**：分析型（故障模型 + 既有设计参数量化，无新硬件、无故障仿真板）
+**上游证据**：E6/E23（噪声预算与档位阈值）、E24（DARE 解密路径 §5.4）、E33/E48（真实密文噪声
+max|v−Δ²·m1m2| = 5.44e7 ≈ 2^25.7 @ Δ=2^16 编码）、E39（掩码 keyswitch）、E51（威胁模型资产表）
+**定量前提**：N=4096、q≈2^45、Δ=2^16、σ=3.2、poly_mult 53,323 周期 @100 MHz、noise_monitor
+= 能量监测（mean(noise²)，504 LUT / 0.44%）——以下数字均为该参数集下的**解析估计**，
+非实测。
+
+---
+
+## 1. 故障模型与注入点
+
+| 模型 | 描述 | 对应物理手段 |
+|---|---|---|
+| **F1 单比特翻转** | 任一寄存器/BRAM 存储位翻转（0↔1） | 时钟/电压毛刺、激光单比特、宇宙射线 SEU |
+| **F2 多比特/字节翻转** | 同周期内多位翻转 | 激光多点、电磁脉冲 |
+| **F3 固定值（stuck-at / 置零）** | 存储位或寄存器被钳制 | 激光增强损伤、ROM/BRAM 损坏 |
+| **F4 指令/控制篡改** | 跳过若干迭代、改变 FSM 状态、强制档位 | 时钟毛刺绕过流水级 / loop-abort |
+| **F5 随机源篡改** | 份额重随机化熵退化或种子钳制 | 随机源供电/时钟扰动 |
+
+注入点按 E51 资产表：密文数据通路（poly_mult 全链、rescale、activation）、
+keyswitch 密钥寄存器（a_buf/b_buf，BRAM 45-bit×N）、旋转因子 ROM、控制 FSM
+（gear/调度）、RNG（掩码部署时）。
+
+## 2. 按攻击目标分类的成功率分析
+
+### 2.1 目标 = 私钥 s（攻击者最高价值）
+
+**结论（分析）：在 F1–F3 单一故障类下，本设计的密钥恢复成功率为 0。**
+理由分两层：
+
+1. **结构层**：keyswitch 对密钥的依赖是乘性线性——输出 = Σ d_i·(b_i + a_i·s)
+   等价形式。对 b_i 注入故障 Δ 得到输出差 = d_i·Δ；d_i 是攻击者明文已知的密文
+   分解数字，Δ 的值攻击者也知道自己注入了什么 → **该差值不含任何关于 s 的信息**。
+   （对比：真实存在的 RLWE 故障攻击是「解密失败 oracle」类——利用解密 rounding
+   边界逐位恢复 s；本设计解密在主机侧，芯片上唯一解密路径是 DARE bootstrap-lite
+   （§5.4），**若启用 DARE 部署，该路径必须施加 wraparound 检测与常数时间
+   rounding 硬化**，本文明确声明为 DARE 部署的前置条件。）
+2. **持久故障层**：密钥寄存器位翻转（F1/F3 on a_buf/b_buf）是**持久**的——
+   之后的每次 keyswitch 都用被改的密钥，噪声预算被系统性侵蚀（输出恒差
+   d_i·Δ，Δ≥2^k）。§3.2 给出检测量化：k ≥ 15 的密钥位翻转在**一次**后续乘法内
+   被 noise_monitor 检出；k < 15 的密钥位翻转造成的消息误差 ≈ 2^k/Δ ≤ 2^-1 Δ，
+   进入解密噪声预算（Δ=2^16 下 ≈2.5e-5 相对误差），与 E33/E48 实测噪声
+   （25.7 bit vs 32 bit 预算，裕度 5.3 bit）相比可吸收 → 被动检测结果为「不可
+   利用且不可检测」，与「可检测且不可利用」两种状态都不泄露 s。
+
+### 2.2 目标 = 正确性 / 可用性（DoS）
+
+- 任何通路上足够大的 F1–F2 故障都会推高 noise energy（§3.1）→ 被闭环检出或
+  触发档位降级，输出被标注而非静默出错；
+- F4 loop-abort（跳过部分 NTT 迭代）使 poly_mult 周期数偏离标称 53,323 →
+  §4 的周期看门狗检出；
+- F3 置零故障（c_hat_mem 整块置零等）→ 输出显著偏差 → 检出。
+**结论：DoS 类攻击成功率高（容易造成一次错误输出），但都转化为可检测事件，**
+**不升级为密钥泄漏。**
+
+### 2.3 目标 = 掩码旁路（若部署一阶掩码）
+
+F5 + F3 组合（把 pass1/pass2 的份额钳成相同值）会使顺序双通掩码退化为
+份额重合 → 一阶 TVLA 复活。**对策前提**：每 pass 独立熵源 + 份额一致性自检
+（每 pass 异或校验 ≠ 相同），成本 ≈ 2×RNG + N-bit 比较器（<0.1% LUT）。
+
+### 2.4 目标 = 权重/推理隐私
+
+数据通路上的小幅度故障（k < k_det）等价于注入微小噪声，无信息泄漏价值；
+gear 控制的 F4 篡改可改变档位调度 → 泄漏**噪声统计时序**（同 E51 的 C4 信道，
+非密钥），接受并声明。
+
+## 3. 检测机制量化（以 noise_monitor 为核心）
+
+### 3.1 密文数据通路故障
+
+设 rescale 输出每系数噪声 RMS 为 n0，energy_q2 = mean(noise²) ≈ n0²。
+单系数幅度 f 的故障使 energy_q2 从 E0 → E0 + f²/N。
+档位阈值按裕度 ρ 设定（E6：档位间噪声预算比 ≈ 1.25–2×，取 ρ=0.25 保守），
+**检出条件：f > sqrt(ρ·N)·n0 = 0.5·sqrt(N)·n0**。
+代入 N=4096：f > 32·n0。以 E48 实测噪声（重缩放后 n0 ≈ 2^9.7）：
+**k ≥ 15 的单比特故障被检出；k < 15 的故障注入的消息误差 ≤ 2^15/2^16 = 0.5×Δ
+……保守取 k<15 ⇒ 误差 < 2^-1 Δ 单位**，远低于 CKKS 消息有效精度
+（E9：定点瓶颈 ~10 bit → ~2^-10·Δ 量级可用位），即落入噪声地板。
+**互补性结论：幅度大到有害 ⇔ 大到可被监测；小到不可监测 ⇔ 小到无害。**
+（该互补性与参数 ρ、N 的标度律 f_det = sqrt(ρN)·n0 一并给出，便于其他参数集复算。）
+
+### 3.2 keyswitch 密钥寄存器故障
+
+持久故障的检出不需要「单次」能量越限：每次后续乘法恒差 d_i·Δ 累计侵蚀预算，
+设每乘噪声增长因子 g≈2^2（E33 实测 25.7 bit→深层），密钥位翻转 2^k 的恒差
+在 m 次乘法后等效噪声增长 ≈ 2^(k+2m)/Δ。给定 20 层预算（E23）：
+**k ≥ 15：首次乘法即检出；10 ≤ k < 15：≤5 次乘法内检出；k < 10：与噪声地板
+融合（无害）**。检出后系统降级/告警，私钥不泄漏（§2.1）。
+
+### 3.3 控制流故障
+
+- **周期看门狗**：每 poly_mult 的周期数是确定性常数（53,323 @LOG_N=12）；
+  计数器偏差 → loop-abort/重复迭代检出。成本 = 每阶段 1 个 17-bit 计数器 + 比较
+  （<0.01% LUT）。
+- **FSM 非法态**：one-hot 编码 + 非法态/汉明距离监视：≈控制逻辑的 1–2% LUT
+  （控制逻辑占整体 <2%，即 <0.05% 顶层）。
+- **输出不变量**：每层输出的系数计数 = N（E48 的 16,384/16,384 校验同款），
+  计数器校验成本忽略。
+
+## 4. 防御成本表（架构级估计）
+
+| 机制 | 覆盖故障 | 面积开销 | 延时/吞吐 | 来源 |
+|---|---|---|---|---|
+| 噪声闭环监测（已在设计中） | F1/F2/F3 数据通路 ≥k_det；密钥持久故障 | 504 LUT / 0.44%（E35 实测） | 0（已计入） | 已实现 |
+| 周期看门狗 | F4 loop-abort | <0.01% LUT | 0 | 本文提议 |
+| FSM one-hot + 非法态检测 | F4 | ~0.05% LUT | 0 | 本文提议 |
+| BRAM SEC-DED（45-bit+6 check） | F1/F3 存储位 | 存储 +13%；综合逻辑每口 ~250 LUT ×180 口 ≈ 2.5–4% LUT 或采用宽位原生 ECC（+60% 存储） | 0（流水线内） | 架构估计 |
+| 时间冗余（重算+比较） | 全部单比特 | ~0（复用） | 吞吐 −50% | 架构估计 |
+| 空间双模冗余 | 全部 | ≈+100% LUT → **在 80.45% 占用率下不可行** | 0 | 架构估计 |
+| 掩码份额新鲜性自检 | F5/F3 掩码旁路 | <0.1% LUT + 2×RNG | 0 | 本文提议 |
+| DARE 解密路径 wrap 检测 + 常数时间 | 解密失败 oracle（若启用 DARE） | ~0.1% LUT | 0 | 部署前置条件 |
+
+**推荐组合**（与本设计现状一致）：噪声闭环 + 周期看门狗 + FSM 非法态（合计
+<0.5% LUT、0 吞吐损失）覆盖全部「可利用」故障类；BRAM ECC 与时间冗余列为
+安全加固选项，按部署威胁等级选用。
+
+## 5. 攻击成功率汇总（单次随机单比特故障 F1，均匀随机落点）
+
+| 落点 | 概率（按资源占比粗估） | 结果 |
+|---|---|---|
+| 密文数据位（BRAM 82–90% 动态功耗主体 ⇒ 主要存储） | ~0.85 | k≥15：**检出**（一次乘法内）；k<15：**静默无害** |
+| keyswitch 密钥位（a/b_buf，N×45 bit ≈ 0.18 Mbit） | ~0.05 | 持久故障：**检出**（首乘或 ≤5 乘）；小 k：无害 |
+| 控制/计数位 | ~0.03 | 功能故障 → **看门狗检出** |
+| 公共常数（旋转因子） | ~0.07 | DoS → **检出**（输出偏差） |
+
+**未检出且有害的概率上界 ≈ 0**（§3 的互补性），**密钥泄漏概率 = 0**（§2.1）。
+注意：这是「分析所得的故障类覆盖声明」，**不是**对全部物理故障空间的完备证明。
+
+## 6. 诚实边界
+
+- 无 FiSim/激光/毛刺实测（无板卡，同 E39/E51 边界）；成本为架构级估计。
+- n0、ρ、g 取自既有实验（E6/E23/E33/E48）的保守值；实际阈值标定需上板。
+- F2 多比特、F4 组合攻击（如同时绕过看门狗与监测）未逐一枚举；本文覆盖
+  单一故障类与最常见组合，完备枚举与形式化验证列为后续工作。
+- DARE 部署（芯片上解密）会引入解密失败 oracle 类攻击面；启用前的硬化要求
+  已在 §2.1/§4 声明。
+- 与 E51 的关系：E51 回答「被动侧信道」，E52 回答「主动故障」；两者共享资产
+  表与「密钥资产只在 keyswitch」的收缩论证。
+
+## 7. 与论文的对接
+
+- 主稿 §9.2 item 4（原为 future work）改写为已完成的**分析级**评估 + 上板实测仍然
+  pending 的表述；
+- 完整分析进**补充材料附录 E**（本报告正式版）；
+- 不改动任何功耗/吞吐/能效锚点数字（防御机制 <0.5% LUT、0 吞吐损失）。
+"""
+
+JSON = {
+    "id": "E52",
+    "name": "Fault-injection attack analysis",
+    "date": "2026-10-26",
+    "type": "analysis",
+    "parameters": {"N": 4096, "log2q": 45, "delta_scale": 16, "sigma": 3.2,
+                   "poly_mult_cycles": 53323, "noise_monitor_LUT": 504},
+    "fault_models": [
+        {"id": "F1", "desc": "single-bit flip in FF/BRAM", "means": "clk/vcc glitch, laser, SEU"},
+        {"id": "F2", "desc": "multi-bit/byte flip", "means": "multi-point laser, EMP"},
+        {"id": "F3", "desc": "stuck-at / zeroization", "means": "laser damage, BRAM corruption"},
+        {"id": "F4", "desc": "control tampering (loop abort, FSM skip, forced gear)", "means": "clock glitch"},
+        {"id": "F5", "desc": "RNG/entropy degradation", "means": "rng supply disturbance"},
+    ],
+    "key_recovery": {
+        "success_probability_claim": "0 under F1-F3 single-fault classes",
+        "structural_argument": "keyswitch output = sum d_i*(b_i + a_i*s); fault Delta in b_i yields output"
+                               " difference d_i*Delta, both known to the attacker -> no information about s",
+        "persistent_key_faults": "detected by noise erosion within 1 (k>=15) to <=5 (k>=10) multiplications",
+        "caveat": "decryption-failure-oracle class applies only if the on-chip DARE decryption path (Sec 5.4) "
+                  "is deployed; wrap detection + constant-time rounding are declared prerequisites",
+    },
+    "detection_quantification": {
+        "rule": "single-coefficient fault of magnitude f detected iff f > sqrt(rho*N)*n0",
+        "rho": 0.25, "N": 4096, "n0_bits": 9.7,
+        "k_det": 15,
+        "complementarity": "harmful magnitude >= detection magnitude; undetectable => absorbed by noise floor",
+        "key_register_rule": {"k>=15": "first multiplication", "10<=k<15": "<=5 multiplications",
+                              "k<10": "merged into noise floor (benign)"},
+    },
+    "defense_cost": [
+        {"mechanism": "noise closed loop (already in design)", "covers": "F1/F2/F3 datapath >=k_det, persistent key faults",
+         "area": "504 LUT / 0.44% (E35)", "throughput": "0", "status": "implemented"},
+        {"mechanism": "poly_mult cycle watchdog (53323 cycles)", "covers": "F4 loop abort",
+         "area": "<0.01% LUT", "throughput": "0", "status": "proposed"},
+        {"mechanism": "FSM one-hot + illegal-state detection", "covers": "F4",
+         "area": "~0.05% LUT", "throughput": "0", "status": "proposed"},
+        {"mechanism": "BRAM SEC-DED (45+6 bits)", "covers": "F1/F3 storage",
+         "area": "storage +13%; ~2.5-4% LUT logic (or +60% storage native-wide ECC)", "throughput": "0", "status": "optional"},
+        {"mechanism": "temporal duplication (recompute+compare)", "covers": "all single-bit",
+         "area": "~0 (reuse)", "throughput": "-50%", "status": "optional"},
+        {"mechanism": "spatial duplication", "covers": "all",
+         "area": "+100% LUT infeasible at 80.45% util", "throughput": "0", "status": "rejected"},
+        {"mechanism": "share-freshness self-check (masked deployment)", "covers": "F5/F3 masking bypass",
+         "area": "<0.1% LUT + 2xRNG", "throughput": "0", "status": "proposed"},
+        {"mechanism": "DARE wrap detection + constant-time rounding", "covers": "decryption-failure oracle",
+         "area": "~0.1% LUT", "throughput": "0", "status": "prerequisite for DARE deploy"},
+    ],
+    "single_random_bit_outcome": {
+        "ciphertext_data": "~0.85", "key_bits": "~0.05", "control": "~0.03",
+        "public_constants": "~0.07",
+        "undetected_and_harmful_upper_bound": "0", "key_leak_probability": "0",
+    },
+    "honest_limits": [
+        "no FiSim/laser/glitch measurement (no board); costs are architectural estimates",
+        "n0/rho/g taken conservatively from E6/E23/E33/E48; threshold calibration requires board",
+        "F2 and combined F4 attacks not exhaustively enumerated",
+        "analysis-level coverage claim, not a complete proof over the physical fault space",
+    ],
+    "paper_integration": {"main": "Sec 9.2 item 4 rewrite", "supplementary": "Appendix E",
+                          "anchors_untouched": True},
+}
+
+with io.open(os.path.join(OUT, "e52_fault_injection.md"), "w", encoding="utf-8", newline="") as f:
+    f.write(MD)
+with io.open(os.path.join(OUT, "e52_fault_injection.json"), "w", encoding="utf-8") as f:
+    json.dump(JSON, f, indent=2, ensure_ascii=False)
+print("E52 report + JSON written")

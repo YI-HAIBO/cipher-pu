@@ -1,0 +1,544 @@
+{
+  "our_params": {
+    "N": 4096,
+    "log_q": 45,
+    "label": "CIPHER-PU (本项目)",
+    "description": "N=2^12, q=2^44+131073, 45-bit 模数",
+    "security_bits": 82
+  },
+  "parameter_scan": [
+    {
+      "N": 1024,
+      "log_N": 10,
+      "log_q": 30,
+      "security_bits": 65,
+      "q_bits_total": 30,
+      "meets_128": false
+    },
+    {
+      "N": 1024,
+      "log_N": 10,
+      "log_q": 40,
+      "security_bits": 70,
+      "q_bits_total": 40,
+      "meets_128": false
+    },
+    {
+      "N": 1024,
+      "log_N": 10,
+      "log_q": 45,
+      "security_bits": 72,
+      "q_bits_total": 45,
+      "meets_128": false
+    },
+    {
+      "N": 1024,
+      "log_N": 10,
+      "log_q": 50,
+      "security_bits": 75,
+      "q_bits_total": 50,
+      "meets_128": false
+    },
+    {
+      "N": 1024,
+      "log_N": 10,
+      "log_q": 60,
+      "security_bits": 80,
+      "q_bits_total": 60,
+      "meets_128": false
+    },
+    {
+      "N": 1024,
+      "log_N": 10,
+      "log_q": 80,
+      "security_bits": 90,
+      "q_bits_total": 80,
+      "meets_128": false
+    },
+    {
+      "N": 1024,
+      "log_N": 10,
+      "log_q": 100,
+      "security_bits": 100,
+      "q_bits_total": 100,
+      "meets_128": false
+    },
+    {
+      "N": 1024,
+      "log_N": 10,
+      "log_q": 120,
+      "security_bits": 4,
+      "q_bits_total": 120,
+      "meets_128": false
+    },
+    {
+      "N": 1024,
+      "log_N": 10,
+      "log_q": 150,
+      "security_bits": 3,
+      "q_bits_total": 150,
+      "meets_128": false
+    },
+    {
+      "N": 2048,
+      "log_N": 11,
+      "log_q": 30,
+      "security_bits": 34,
+      "q_bits_total": 30,
+      "meets_128": false
+    },
+    {
+      "N": 2048,
+      "log_N": 11,
+      "log_q": 40,
+      "security_bits": 75,
+      "q_bits_total": 40,
+      "meets_128": false
+    },
+    {
+      "N": 2048,
+      "log_N": 11,
+      "log_q": 45,
+      "security_bits": 77,
+      "q_bits_total": 45,
+      "meets_128": false
+    },
+    {
+      "N": 2048,
+      "log_N": 11,
+      "log_q": 50,
+      "security_bits": 80,
+      "q_bits_total": 50,
+      "meets_128": false
+    },
+    {
+      "N": 2048,
+      "log_N": 11,
+      "log_q": 60,
+      "security_bits": 85,
+      "q_bits_total": 60,
+      "meets_128": false
+    },
+    {
+      "N": 2048,
+      "log_N": 11,
+      "log_q": 80,
+      "security_bits": 95,
+      "q_bits_total": 80,
+      "meets_128": false
+    },
+    {
+      "N": 2048,
+      "log_N": 11,
+      "log_q": 100,
+      "security_bits": 105,
+      "q_bits_total": 100,
+      "meets_128": false
+    },
+    {
+      "N": 2048,
+      "log_N": 11,
+      "log_q": 120,
+      "security_bits": 8,
+      "q_bits_total": 120,
+      "meets_128": false
+    },
+    {
+      "N": 2048,
+      "log_N": 11,
+      "log_q": 150,
+      "security_bits": 6,
+      "q_bits_total": 150,
+      "meets_128": false
+    },
+    {
+      "N": 4096,
+      "log_N": 12,
+      "log_q": 30,
+      "security_bits": 75,
+      "q_bits_total": 30,
+      "meets_128": false
+    },
+    {
+      "N": 4096,
+      "log_N": 12,
+      "log_q": 40,
+      "security_bits": 80,
+      "q_bits_total": 40,
+      "meets_128": false
+    },
+    {
+      "N": 4096,
+      "log_N": 12,
+      "log_q": 45,
+      "security_bits": 82,
+      "q_bits_total": 45,
+      "meets_128": false
+    },
+    {
+      "N": 4096,
+      "log_N": 12,
+      "log_q": 50,
+      "security_bits": 85,
+      "q_bits_total": 50,
+      "meets_128": false
+    },
+    {
+      "N": 4096,
+      "log_N": 12,
+      "log_q": 60,
+      "security_bits": 90,
+      "q_bits_total": 60,
+      "meets_128": false
+    },
+    {
+      "N": 4096,
+      "log_N": 12,
+      "log_q": 80,
+      "security_bits": 100,
+      "q_bits_total": 80,
+      "meets_128": false
+    },
+    {
+      "N": 4096,
+      "log_N": 12,
+      "log_q": 100,
+      "security_bits": 110,
+      "q_bits_total": 100,
+      "meets_128": false
+    },
+    {
+      "N": 4096,
+      "log_N": 12,
+      "log_q": 120,
+      "security_bits": 120,
+      "q_bits_total": 120,
+      "meets_128": false
+    },
+    {
+      "N": 4096,
+      "log_N": 12,
+      "log_q": 150,
+      "security_bits": 128,
+      "q_bits_total": 150,
+      "meets_128": true
+    },
+    {
+      "N": 8192,
+      "log_N": 13,
+      "log_q": 30,
+      "security_bits": 128,
+      "q_bits_total": 30,
+      "meets_128": true
+    },
+    {
+      "N": 8192,
+      "log_N": 13,
+      "log_q": 40,
+      "security_bits": 85,
+      "q_bits_total": 40,
+      "meets_128": false
+    },
+    {
+      "N": 8192,
+      "log_N": 13,
+      "log_q": 45,
+      "security_bits": 87,
+      "q_bits_total": 45,
+      "meets_128": false
+    },
+    {
+      "N": 8192,
+      "log_N": 13,
+      "log_q": 50,
+      "security_bits": 90,
+      "q_bits_total": 50,
+      "meets_128": false
+    },
+    {
+      "N": 8192,
+      "log_N": 13,
+      "log_q": 60,
+      "security_bits": 95,
+      "q_bits_total": 60,
+      "meets_128": false
+    },
+    {
+      "N": 8192,
+      "log_N": 13,
+      "log_q": 80,
+      "security_bits": 105,
+      "q_bits_total": 80,
+      "meets_128": false
+    },
+    {
+      "N": 8192,
+      "log_N": 13,
+      "log_q": 100,
+      "security_bits": 115,
+      "q_bits_total": 100,
+      "meets_128": false
+    },
+    {
+      "N": 8192,
+      "log_N": 13,
+      "log_q": 120,
+      "security_bits": 125,
+      "q_bits_total": 120,
+      "meets_128": false
+    },
+    {
+      "N": 8192,
+      "log_N": 13,
+      "log_q": 150,
+      "security_bits": 135,
+      "q_bits_total": 150,
+      "meets_128": true
+    },
+    {
+      "N": 16384,
+      "log_N": 14,
+      "log_q": 30,
+      "security_bits": 128,
+      "q_bits_total": 30,
+      "meets_128": true
+    },
+    {
+      "N": 16384,
+      "log_N": 14,
+      "log_q": 40,
+      "security_bits": 128,
+      "q_bits_total": 40,
+      "meets_128": true
+    },
+    {
+      "N": 16384,
+      "log_N": 14,
+      "log_q": 45,
+      "security_bits": 128,
+      "q_bits_total": 45,
+      "meets_128": true
+    },
+    {
+      "N": 16384,
+      "log_N": 14,
+      "log_q": 50,
+      "security_bits": 100,
+      "q_bits_total": 50,
+      "meets_128": false
+    },
+    {
+      "N": 16384,
+      "log_N": 14,
+      "log_q": 60,
+      "security_bits": 105,
+      "q_bits_total": 60,
+      "meets_128": false
+    },
+    {
+      "N": 16384,
+      "log_N": 14,
+      "log_q": 80,
+      "security_bits": 115,
+      "q_bits_total": 80,
+      "meets_128": false
+    },
+    {
+      "N": 16384,
+      "log_N": 14,
+      "log_q": 100,
+      "security_bits": 125,
+      "q_bits_total": 100,
+      "meets_128": false
+    },
+    {
+      "N": 16384,
+      "log_N": 14,
+      "log_q": 120,
+      "security_bits": 135,
+      "q_bits_total": 120,
+      "meets_128": true
+    },
+    {
+      "N": 16384,
+      "log_N": 14,
+      "log_q": 150,
+      "security_bits": 145,
+      "q_bits_total": 150,
+      "meets_128": true
+    },
+    {
+      "N": 32768,
+      "log_N": 15,
+      "log_q": 30,
+      "security_bits": 128,
+      "q_bits_total": 30,
+      "meets_128": true
+    },
+    {
+      "N": 32768,
+      "log_N": 15,
+      "log_q": 40,
+      "security_bits": 128,
+      "q_bits_total": 40,
+      "meets_128": true
+    },
+    {
+      "N": 32768,
+      "log_N": 15,
+      "log_q": 45,
+      "security_bits": 128,
+      "q_bits_total": 45,
+      "meets_128": true
+    },
+    {
+      "N": 32768,
+      "log_N": 15,
+      "log_q": 50,
+      "security_bits": 100,
+      "q_bits_total": 50,
+      "meets_128": false
+    },
+    {
+      "N": 32768,
+      "log_N": 15,
+      "log_q": 60,
+      "security_bits": 105,
+      "q_bits_total": 60,
+      "meets_128": false
+    },
+    {
+      "N": 32768,
+      "log_N": 15,
+      "log_q": 80,
+      "security_bits": 115,
+      "q_bits_total": 80,
+      "meets_128": false
+    },
+    {
+      "N": 32768,
+      "log_N": 15,
+      "log_q": 100,
+      "security_bits": 125,
+      "q_bits_total": 100,
+      "meets_128": false
+    },
+    {
+      "N": 32768,
+      "log_N": 15,
+      "log_q": 120,
+      "security_bits": 135,
+      "q_bits_total": 120,
+      "meets_128": true
+    },
+    {
+      "N": 32768,
+      "log_N": 15,
+      "log_q": 150,
+      "security_bits": 145,
+      "q_bits_total": 150,
+      "meets_128": true
+    }
+  ],
+  "recommended_128bit": [
+    {
+      "N": 4096,
+      "log_N": 12,
+      "log_q": 150,
+      "security_bits": 128,
+      "note": "达到 128-bit 安全"
+    },
+    {
+      "N": 8192,
+      "log_N": 13,
+      "log_q": 30,
+      "security_bits": 128,
+      "note": "达到 128-bit 安全"
+    },
+    {
+      "N": 8192,
+      "log_N": 13,
+      "log_q": 150,
+      "security_bits": 135,
+      "note": "达到 128-bit 安全"
+    },
+    {
+      "N": 16384,
+      "log_N": 14,
+      "log_q": 30,
+      "security_bits": 128,
+      "note": "达到 128-bit 安全"
+    },
+    {
+      "N": 16384,
+      "log_N": 14,
+      "log_q": 40,
+      "security_bits": 128,
+      "note": "达到 128-bit 安全"
+    },
+    {
+      "N": 16384,
+      "log_N": 14,
+      "log_q": 45,
+      "security_bits": 128,
+      "note": "达到 128-bit 安全"
+    },
+    {
+      "N": 16384,
+      "log_N": 14,
+      "log_q": 120,
+      "security_bits": 135,
+      "note": "达到 128-bit 安全"
+    },
+    {
+      "N": 16384,
+      "log_N": 14,
+      "log_q": 150,
+      "security_bits": 145,
+      "note": "达到 128-bit 安全"
+    },
+    {
+      "N": 32768,
+      "log_N": 15,
+      "log_q": 30,
+      "security_bits": 128,
+      "note": "达到 128-bit 安全"
+    },
+    {
+      "N": 32768,
+      "log_N": 15,
+      "log_q": 40,
+      "security_bits": 128,
+      "note": "达到 128-bit 安全"
+    },
+    {
+      "N": 32768,
+      "log_N": 15,
+      "log_q": 45,
+      "security_bits": 128,
+      "note": "达到 128-bit 安全"
+    },
+    {
+      "N": 32768,
+      "log_N": 15,
+      "log_q": 120,
+      "security_bits": 135,
+      "note": "达到 128-bit 安全"
+    },
+    {
+      "N": 32768,
+      "log_N": 15,
+      "log_q": 150,
+      "security_bits": 145,
+      "note": "达到 128-bit 安全"
+    }
+  ],
+  "gap_to_128": {
+    "current_security": 82,
+    "target_security": 128,
+    "gap": 46,
+    "recommended_N": 4096,
+    "recommended_log_q": 150,
+    "recommended_security": 128
+  }
+}

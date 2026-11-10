@@ -1,0 +1,449 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version     : Vivado v.2026.1 (win64) Build 6511674 Tue Jun 16 11:02:23 MDT 2026
+| Date             : Sat Oct 24 16:22:43 2026
+| Host             : Yi running 64-bit major release  (build 9200)
+| Command          : report_power -file PROJ_DIR/reports/experiments/e34_routed_power/e34_routed_saif.rpt -l 40
+| Design           : e2e_ckks_mult_ctrl_m4
+| Device           : xcau25p-ffvb676-1-e
+| Design State     : routed
+| Grade            : extended
+| Process          : typical
+| Characterization : Production
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Power Report
+
+Table of Contents
+-----------------
+1. Summary
+1.1 On-Chip Components
+1.2 Power Supply Summary
+1.3 Confidence Level
+2. Settings
+2.1 Environment
+2.2 Clock Constraints
+3. Detailed Reports
+3.1 By Hierarchy
+3.2 By Clock Domain
+3.3 By Resource Type
+3.3.1 Signals
+3.3.2 CLB Logic
+3.3.3 Block RAM
+3.3.4 DSPs
+
+1. Summary
+----------
+
++--------------------------+---------------------------------------------------------------------------------------------+
+| Total On-Chip Power (W)  | 0.698                                                                                       |
+| Design Power Budget (W)  | Unspecified*                                                                                |
+| Power Budget Margin (W)  | NA                                                                                          |
+| Dynamic (W)              | 0.244                                                                                       |
+| Device Static (W)        | 0.454                                                                                       |
+| Effective TJA (C/W)      | 1.7                                                                                         |
+| Max Ambient (C)          | 98.8                                                                                        |
+| Junction Temperature (C) | 26.2                                                                                        |
+| Confidence Level         | High                                                                                        |
+| Setting File             | ---                                                                                         |
+| Simulation Activity File | PROJ_DIR/scripts/gl_power/out_routed/routed.saif |
+| Design Nets Matched      | 99%   (393749/398749)                                                                       |
++--------------------------+---------------------------------------------------------------------------------------------+
+* Specify Design Power Budget using, set_operating_conditions -design_power_budget <value in Watts>
+
+
+1.1 On-Chip Components
+----------------------
+
++----------------+-----------+----------+-----------+-----------------+
+| On-Chip        | Power (W) | Used     | Available | Utilization (%) |
++----------------+-----------+----------+-----------+-----------------+
+| Clocks         |     0.018 |        3 |       --- |             --- |
+| CLB Logic      |     0.007 |   198447 |       --- |             --- |
+|   LUT as Logic |     0.007 |   113440 |    141000 |           80.45 |
+|   CARRY8       |    <0.001 |     1591 |     27120 |            5.87 |
+|   Register     |    <0.001 |     4736 |    282000 |            1.68 |
+|   Others       |     0.000 |      654 |       --- |             --- |
+|   F7/F8 Muxes  |     0.000 |    73620 |    216960 |           33.93 |
+| Signals        |     0.011 |    52559 |       --- |             --- |
+| Block RAM      |     0.201 |      180 |       300 |           60.00 |
+| DSPs           |     0.008 |       75 |      1200 |            6.25 |
+| Static Power   |     0.454 |          |           |                 |
+| Total          |     0.698 |          |           |                 |
++----------------+-----------+----------+-----------+-----------------+
+
+
+1.2 Power Supply Summary
+------------------------
+
++------------------+-------------+-----------+-------------+------------+-------------+-------------+------------+
+| Source           | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
++------------------+-------------+-----------+-------------+------------+-------------+-------------+------------+
+| Vccint           |       0.850 |     0.418 |       0.277 |      0.141 |       NA    | Unspecified | NA         |
+| Vccint_io        |       0.850 |     0.035 |       0.000 |      0.035 |       NA    | Unspecified | NA         |
+| Vccbram          |       0.850 |     0.013 |       0.010 |      0.002 |       NA    | Unspecified | NA         |
+| Vccaux           |       1.800 |     0.128 |       0.000 |      0.128 |       NA    | Unspecified | NA         |
+| Vccaux_io        |       1.800 |     0.031 |       0.000 |      0.031 |       NA    | Unspecified | NA         |
+| Vcco33           |       3.300 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| Vcco25           |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| Vcco18           |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| Vcco15           |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| Vcco135          |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| Vcco12           |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| Vcco10           |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| Vccadc           |       1.800 |     0.008 |       0.000 |      0.008 |       NA    | Unspecified | NA         |
+| VMGTAVCC (GTY)   |       0.900 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| VMGTAVTT (GTY)   |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
+| VMGTVCCAUX (GTY) |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
++------------------+-------------+-----------+-------------+------------+-------------+-------------+------------+
+
+
+1.3 Confidence Level
+--------------------
+
++-----------------------------+------------+------------------------------------------------+--------+
+| User Input Data             | Confidence | Details                                        | Action |
++-----------------------------+------------+------------------------------------------------+--------+
+| Design implementation state | High       | Design is routed                               |        |
+| Clock nodes activity        | High       | User specified more than 95% of clocks         |        |
+| I/O nodes activity          | High       | User specified more than 95% of inputs         |        |
+| Internal nodes activity     | High       | User specified more than 25% of internal nodes |        |
+| Device models               | High       | Device models are Production                   |        |
+|                             |            |                                                |        |
+| Overall confidence level    | High       |                                                |        |
++-----------------------------+------------+------------------------------------------------+--------+
+
+
+2. Settings
+-----------
+
+2.1 Environment
+---------------
+
++-----------------------+--------------------------+
+| Ambient Temp (C)      | 25.0                     |
+| ThetaJA (C/W)         | 1.7                      |
+| Airflow (LFM)         | 250                      |
+| Heat Sink             | medium (Medium Profile)  |
+| ThetaSA (C/W)         | 2.8                      |
+| Board Selection       | medium (10"x10")         |
+| # of Board Layers     | 12to15 (12 to 15 Layers) |
+| Board Temperature (C) | 25.0                     |
++-----------------------+--------------------------+
+
+
+2.2 Clock Constraints
+---------------------
+
++-------+--------+-----------------+
+| Clock | Domain | Constraint (ns) |
++-------+--------+-----------------+
+| clk   | clk    |            10.0 |
++-------+--------+-----------------+
+
+
+3. Detailed Reports
+-------------------
+
+3.1 By Hierarchy
+----------------
+
++-----------------------+-----------+
+| Name                  | Power (W) |
++-----------------------+-----------+
+| e2e_ckks_mult_ctrl_m4 |     0.244 |
+|   u_a_buf             |     0.006 |
+|     gen_ip.u_ip       |     0.006 |
+|       U0              |     0.006 |
+|   u_b_buf             |     0.006 |
+|     gen_ip.u_ip       |     0.006 |
+|       U0              |     0.006 |
+|   u_c0_1_buf          |     0.006 |
+|     gen_ip.u_ip       |     0.006 |
+|       U0              |     0.006 |
+|   u_c0_2_buf          |     0.006 |
+|     gen_ip.u_ip       |     0.006 |
+|       U0              |     0.006 |
+|   u_c1_1_buf          |     0.006 |
+|     gen_ip.u_ip       |     0.006 |
+|       U0              |     0.006 |
+|   u_c1_2_buf          |     0.006 |
+|     gen_ip.u_ip       |     0.006 |
+|       U0              |     0.006 |
+|   u_f0_out_buf        |     0.006 |
+|     gen_ip.u_ip       |     0.006 |
+|       U0              |     0.006 |
+|   u_f1_out_buf        |     0.006 |
+|     gen_ip.u_ip       |     0.006 |
+|       U0              |     0.006 |
+|   u_ksw               |     0.093 |
+|     u_a_buf           |     0.006 |
+|       gen_ip.u_ip     |     0.006 |
+|     u_b_buf           |     0.006 |
+|       gen_ip.u_ip     |     0.006 |
+|     u_e0_buf          |     0.006 |
+|       gen_ip.u_ip     |     0.006 |
+|     u_e1_buf          |     0.006 |
+|       gen_ip.u_ip     |     0.006 |
+|     u_e2_buf          |     0.006 |
+|       gen_ip.u_ip     |     0.006 |
+|     u_e2a_buf         |     0.006 |
+|       gen_ip.u_ip     |     0.006 |
+|     u_e2b_buf         |     0.006 |
+|       gen_ip.u_ip     |     0.006 |
+|     u_f0_buf          |     0.006 |
+|       gen_ip.u_ip     |     0.006 |
+|     u_f1_buf          |     0.006 |
+|       gen_ip.u_ip     |     0.006 |
+|     u_pm_ks           |     0.043 |
+|       u_a_hat_mem     |     0.006 |
+|       u_a_mem         |     0.006 |
+|       u_b_hat_mem     |     0.006 |
+|       u_b_mem         |     0.006 |
+|       u_c_hat_mem     |     0.006 |
+|       u_ntt           |     0.013 |
+|   u_ksw_f0_buf        |     0.006 |
+|     gen_ip.u_ip       |     0.006 |
+|       U0              |     0.006 |
+|   u_ksw_f1_buf        |     0.006 |
+|     gen_ip.u_ip       |     0.006 |
+|       U0              |     0.006 |
+|   u_m0_buf            |     0.006 |
+|     gen_ip.u_ip       |     0.006 |
+|       U0              |     0.006 |
+|   u_m1_data_buf       |     0.006 |
+|     gen_ip.u_ip       |     0.006 |
+|       U0              |     0.006 |
+|   u_m1a_buf           |     0.006 |
+|     gen_ip.u_ip       |     0.006 |
+|       U0              |     0.006 |
+|   u_m1b_buf           |     0.006 |
+|     gen_ip.u_ip       |     0.006 |
+|       U0              |     0.006 |
+|   u_m2_buf            |     0.006 |
+|     gen_ip.u_ip       |     0.006 |
+|       U0              |     0.006 |
+|   u_nmon              |     0.003 |
+|   u_pm_shared         |     0.061 |
+|     pm_inst           |     0.061 |
+|       u_a_hat_mem     |     0.006 |
+|       u_a_mem         |     0.006 |
+|       u_b_hat_mem     |     0.006 |
+|       u_b_mem         |     0.006 |
+|       u_c_hat_mem     |     0.006 |
+|       u_ntt           |     0.031 |
+|   u_rs0               |     0.001 |
+|   u_rs1               |     0.001 |
++-----------------------+-----------+
+
+
+3.2 By Clock Domain
+-------------------
+
++-------+-----------+-----------------+--------+-------------------------+---------------+------------+----------+-------------+------+
+| Name  | Power (W) | Frequency (MHz) | Buffer | Clock Buffer Enable (%) | Enable Signal | Bel Fanout | Sites    | Fanout/Site | Type |
++-------+-----------+-----------------+--------+-------------------------+---------------+------------+----------+-------------+------+
+| clk   |     0.018 |          100.00 | N/A    |                     N/A | N/A           |       4943 |     2253 |        2.19 | N/A  |
+|   clk |     0.018 |          100.00 | N/A    |                     N/A | N/A           |       4943 |     2253 |        2.19 | N/A  |
++-------+-----------+-----------------+--------+-------------------------+---------------+------------+----------+-------------+------+
+
+
+3.3 By Resource Type
+--------------------
+
+3.3.1 Signals
+-------------
+
++--------------------------------------------------------------------+-----------+---------------------+----------+----------+--------------+-------+------------+
+| Name                                                               | Power (W) | Signal Rate (Mtr/s) | % High   | Fanout   | Slice Fanout | Clock | Logic Type |
++--------------------------------------------------------------------+-----------+---------------------+----------+----------+--------------+-------+------------+
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/twiddle_exp_calc_w[2] |     0.003 |                1.79 |    10.75 |    23040 |         6507 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/twiddle_exp_calc_w[3] |     0.002 |                1.92 |    14.34 |    11520 |         6507 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/data0[10]                                |    <0.001 |               12.29 |    43.01 |      151 |           91 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_mem/wr_src_compute                     |    <0.001 |               24.58 |    12.29 |       76 |           27 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/CEB2                  |    <0.001 |               24.58 |    12.29 |       53 |           15 | clk   | DSP FF     |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/CEA2                  |    <0.001 |               24.58 |    12.29 |       32 |            9 | clk   | DSP FF     |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/stage_idx_reg[3]_114  |    <0.001 |                1.54 |     7.17 |     1002 |          145 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/twiddle_exp_calc_w[8] |    <0.001 |                2.04 |    32.26 |      180 |           90 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/twiddle_exp_calc_w[1] |    <0.001 |                1.54 |     7.17 |     1002 |          142 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/bf_idx_reg_n_0_[1]                       |    <0.001 |                6.14 |    43.01 |       60 |           40 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/stage_idx_reg[3]_94   |    <0.001 |                1.54 |     7.17 |     1002 |          150 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/stage_idx_reg[3]_93   |    <0.001 |                1.54 |     7.17 |     1002 |          146 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/stage_idx_reg[3]_105  |    <0.001 |                1.54 |     7.17 |     1002 |          145 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/stage_idx_reg[3]_118  |    <0.001 |                1.54 |     7.17 |     1002 |          142 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/stage_idx_reg[3]_128  |    <0.001 |                1.54 |     7.17 |     1002 |          144 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/stage_idx_reg[3]_126  |    <0.001 |                1.54 |     7.17 |     1002 |          143 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/stage_idx_reg[3]_92   |    <0.001 |                1.54 |     7.17 |     1002 |          143 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/stage_idx_reg[3]_98   |    <0.001 |                1.54 |     7.17 |     1002 |          147 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/stage_idx_reg[3]_97   |    <0.001 |                1.54 |     7.17 |     1002 |          143 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/stage_idx_reg[3]_125  |    <0.001 |                1.54 |     7.17 |     1002 |          146 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/stage_idx_reg[3]_127  |    <0.001 |                1.54 |     7.17 |     1002 |          145 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/stage_idx_reg[3]_99   |    <0.001 |                1.54 |     7.17 |     1002 |          144 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/stage_idx_reg[3]_106  |    <0.001 |                1.54 |     7.17 |     1002 |          142 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/stage_idx_reg[3]_112  |    <0.001 |                1.54 |     7.17 |     1002 |          145 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/stage_idx_reg[3]_124  |    <0.001 |                1.54 |     7.17 |     1002 |          148 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/stage_idx_reg[3]_122  |    <0.001 |                1.54 |     7.17 |     1002 |          145 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/stage_idx_reg[3]_117  |    <0.001 |                1.54 |     7.17 |     1002 |          146 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/stage_idx_reg[3]_95   |    <0.001 |                1.54 |     7.17 |     1002 |          141 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/stage_idx_reg[3]_109  |    <0.001 |                1.54 |     7.17 |     1002 |          142 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/stage_idx_reg[3]_132  |    <0.001 |                1.54 |     7.17 |      990 |          140 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/stage_idx_reg[3]_121  |    <0.001 |                1.54 |     7.17 |     1002 |          144 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/stage_idx_reg[3]_88   |    <0.001 |                1.54 |     7.17 |     1002 |          143 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/stage_idx_reg[3]_96   |    <0.001 |                1.54 |     7.17 |     1002 |          142 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/stage_idx_reg[3]_102  |    <0.001 |                1.54 |     7.17 |     1002 |          143 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/stage_idx_reg[3]_119  |    <0.001 |                1.54 |     7.17 |     1002 |          144 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/stage_idx_reg[3]_123  |    <0.001 |                1.54 |     7.17 |     1002 |          143 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/stage_idx_reg[3]_115  |    <0.001 |                1.54 |     7.17 |     1002 |          145 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/stage_idx_reg[3]_100  |    <0.001 |                1.54 |     7.17 |     1002 |          145 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/twiddle_exp_calc_w[9] |    <0.001 |                2.05 |    35.84 |      180 |           90 | clk   | N/A        |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/stage_idx_reg[3]_101  |    <0.001 |                1.54 |     7.17 |     1002 |          147 | clk   | N/A        |
++--------------------------------------------------------------------+-----------+---------------------+----------+----------+--------------+-------+------------+
+
+
+3.3.2 CLB Logic
+---------------
+
++----------------------------------------------------------------+-----------+--------+-------------+------------+---------------------+----------+
+| Name                                                           | Power (W) | Type   | Clock (MHz) | Clock Name | Signal Rate (Mtr/s) | % High   |
++----------------------------------------------------------------+-----------+--------+-------------+------------+---------------------+----------+
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/wait_cnt[1]_i_1   |    <0.001 | LUT    |         N/A | Async      |               24.58 |    49.15 |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/comp_state[1]_i_1 |    <0.001 | LUT    |         N/A | Async      |               24.58 |    49.15 |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/bf_valid_i_1      |    <0.001 | LUT    |         N/A | Async      |               24.58 |    12.29 |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/wait_cnt[0]_i_1   |    <0.001 | LUT    |         N/A | Async      |               49.15 |    75.41 |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/p_hi_lo_i_1       |    <0.001 | LUT    |         N/A | Async      |               24.58 |    12.29 |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/comp_state[1]_i_3 |    <0.001 | LUT    |         N/A | Async      |               49.15 |    24.58 |
+| u_pm_shared/pm_inst/u_ntt/comp_state[1]_i_5                    |    <0.001 | LUT    |         N/A | Async      |               49.15 |    24.58 |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/bf_addr_a[11]_i_1 |    <0.001 | LUT    |         N/A | Async      |               24.58 |    12.29 |
+| u_pm_shared/pm_inst/u_ntt/bf_idx[10]_i_3                       |    <0.001 | LUT    |         N/A | Async      |               24.58 |    87.70 |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/wait_cnt[1]_i_2   |    <0.001 | LUT    |         N/A | Async      |               24.58 |    75.41 |
+| u_pm_shared/pm_inst/u_ntt/u_mem/gen_ip_path.u_ip_i_61          |    <0.001 | LUT    |         N/A | Async      |               24.58 |    12.29 |
+| u_pm_shared/pm_inst/u_ntt/out_scale_prod_r_reg[88]_i_2         |    <0.001 | CARRY8 |         N/A | Async      |               19.04 |    76.95 |
+| u_ksw/u_pm_ks/u_ntt/out_scale_prod_r_reg[88]_i_2__0            |    <0.001 | CARRY8 |         N/A | Async      |               18.97 |    77.15 |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/s_valid_in_q_i_1  |    <0.001 | LUT    |         N/A | Async      |               24.58 |    12.29 |
+| u_pm_shared/pm_inst/u_ntt/u_mem/gen_ip_path.u_ip_i_60          |    <0.001 | LUT    |         N/A | Async      |               24.58 |    87.70 |
+| u_pm_shared/pm_inst/u_ntt/comp_state[1]_i_2                    |    <0.001 | LUT    |         N/A | Async      |               49.15 |    63.12 |
+| u_pm_shared/pm_inst/u_ntt/state[2]_i_5                         |    <0.001 | LUT    |         N/A | Async      |                0.00 |     0.00 |
+| u_pm_shared/pm_inst/u_ntt/stage_idx[3]_i_3                     |    <0.001 | LUT    |         N/A | Async      |               24.58 |    87.70 |
+| u_pm_shared/pm_inst/u_ntt/comp_state[0]_i_1                    |    <0.001 | LUT    |         N/A | Async      |               24.58 |    26.25 |
+| u_pm_shared/pm_inst/u_ntt/u_mem/gen_ip_path.u_ip_i_9           |    <0.001 | LUT    |         N/A | Async      |                0.60 |    41.28 |
+| u_pm_shared/pm_inst/u_ntt/u_mem/gen_ip_path.u_ip_i_14          |    <0.001 | LUT    |         N/A | Async      |               12.94 |    41.29 |
+| u_pm_shared/pm_inst/u_ntt/u_mem/gen_ip_path.u_ip_i_8           |    <0.001 | LUT    |         N/A | Async      |                0.36 |    41.28 |
+| u_pm_shared/pm_inst/u_ntt/u_mem/gen_ip_path.u_ip_i_69          |    <0.001 | LUT    |         N/A | Async      |                0.96 |    46.59 |
+| u_pm_shared/pm_inst/u_ntt/u_mem/gen_ip_path.u_ip_i_68          |    <0.001 | LUT    |         N/A | Async      |                0.51 |    46.59 |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/gen_ip_path.u_ip_i_39    |    <0.001 | LUT    |         N/A | Async      |                0.00 |     0.00 |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/gen_ip_path.u_ip_i_40    |    <0.001 | LUT    |         N/A | Async      |                0.00 |     0.00 |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/gen_ip_path.u_ip_i_45    |    <0.001 | LUT    |         N/A | Async      |                0.00 |     0.00 |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/gen_ip_path.u_ip_i_46    |    <0.001 | LUT    |         N/A | Async      |                0.00 |     0.00 |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/gen_ip_path.u_ip_i_47    |    <0.001 | LUT    |         N/A | Async      |                0.00 |     0.00 |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/gen_ip_path.u_ip_i_48    |    <0.001 | LUT    |         N/A | Async      |                0.00 |     0.00 |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/gen_ip_path.u_ip_i_53    |    <0.001 | LUT    |         N/A | Async      |                0.00 |     0.00 |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/gen_ip_path.u_ip_i_54    |    <0.001 | LUT    |         N/A | Async      |                0.00 |     0.00 |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/gen_ip_path.u_ip_i_59    |    <0.001 | LUT    |         N/A | Async      |                0.00 |     0.00 |
+| u_pm_shared/pm_inst/u_ntt/u_mem/gen_ip_path.u_ip_i_73          |    <0.001 | LUT    |         N/A | Async      |               11.26 |    58.89 |
+| u_pm_shared/pm_inst/u_ntt/u_mem/gen_ip_path.u_ip_i_12          |    <0.001 | LUT    |         N/A | Async      |                3.75 |    41.29 |
+| u_pm_shared/pm_inst/u_ntt/u_mem/gen_ip_path.u_ip_i_11          |    <0.001 | LUT    |         N/A | Async      |                2.01 |    41.28 |
+| u_pm_shared/pm_inst/u_ntt/out_scale_prod_r[87]_i_1             |    <0.001 | LUT    |         N/A | Async      |                0.00 |     0.00 |
+| u_ksw/u_pm_ks/u_ntt/out_scale_prod_r[84]_i_1__0                |    <0.001 | LUT    |         N/A | Async      |                0.00 |     0.00 |
+| u_pm_shared/pm_inst/u_ntt/u_mem/gen_ip_path.u_ip_i_71          |    <0.001 | LUT    |         N/A | Async      |                3.33 |    46.59 |
+| u_pm_shared/pm_inst/u_ntt/u_mem/gen_ip_path.u_ip_i_7           |    <0.001 | LUT    |         N/A | Async      |                0.28 |    41.28 |
++----------------------------------------------------------------+-----------+--------+-------------+------------+---------------------+----------+
+
+
+3.3.3 Block RAM
+---------------
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+-------------+--------------+---------------+-------------------+--------------+---------------+--------------+------------------+--------------+---------------+-------------------+--------------+---------------+--------------+------------------+
+| Name                                                                                                                                                                                                       | Power (W) | Mode   | Signal Rate | Clock Name A | Clock A (MHz) | Enable Rate A (%) | Read Width A | Write Width A | Write Mode A | Write Rate A (%) | Clock Name B | Clock B (MHz) | Enable Rate B (%) | Read Width B | Write Width B | Write Mode B | Write Rate B (%) |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+-------------+--------------+---------------+-------------------+--------------+---------------+--------------+------------------+--------------+---------------+-------------------+--------------+---------------+--------------+------------------+
+| u_ksw/u_pm_ks/u_ntt/u_mem/gen_ip_path.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram       |     0.002 | RAMB36 |        0.00 | clk          |        100.00 |             99.99 |            9 |             9 | WRITE_FIRST  |             0.00 | clk          |        100.00 |             99.99 |            9 |             9 | WRITE_FIRST  |             0.00 |
+| u_ksw/u_pm_ks/u_ntt/u_mem/gen_ip_path.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram       |     0.002 | RAMB36 |        0.00 | clk          |        100.00 |             99.99 |            9 |             9 | WRITE_FIRST  |             0.00 | clk          |        100.00 |             99.99 |            9 |             9 | WRITE_FIRST  |             0.00 |
+| u_ksw/u_pm_ks/u_ntt/u_mem/gen_ip_path.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram       |     0.002 | RAMB36 |        0.00 | clk          |        100.00 |             99.99 |            9 |             9 | WRITE_FIRST  |             0.00 | clk          |        100.00 |             99.99 |            9 |             9 | WRITE_FIRST  |             0.00 |
+| u_ksw/u_pm_ks/u_ntt/u_mem/gen_ip_path.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram       |     0.002 | RAMB36 |        0.00 | clk          |        100.00 |             99.99 |            9 |             9 | WRITE_FIRST  |             0.00 | clk          |        100.00 |             99.99 |            9 |             9 | WRITE_FIRST  |             0.00 |
+| u_ksw/u_pm_ks/u_ntt/u_mem/gen_ip_path.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram       |     0.002 | RAMB36 |        0.00 | clk          |        100.00 |             99.99 |            9 |             9 | WRITE_FIRST  |             0.00 | clk          |        100.00 |             99.99 |            9 |             9 | WRITE_FIRST  |             0.00 |
+| u_pm_shared/pm_inst/u_ntt/u_mem/gen_ip_path.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram |     0.002 | RAMB36 |        1.91 | clk          |        100.00 |             85.65 |            9 |             9 | WRITE_FIRST  |            14.34 | clk          |        100.00 |             87.70 |            9 |             9 | WRITE_FIRST  |            12.29 |
+| u_pm_shared/pm_inst/u_ntt/u_mem/gen_ip_path.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram |     0.002 | RAMB36 |        1.91 | clk          |        100.00 |             85.65 |            9 |             9 | WRITE_FIRST  |            14.34 | clk          |        100.00 |             87.70 |            9 |             9 | WRITE_FIRST  |            12.29 |
+| u_pm_shared/pm_inst/u_ntt/u_mem/gen_ip_path.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram |     0.002 | RAMB36 |        1.91 | clk          |        100.00 |             85.65 |            9 |             9 | WRITE_FIRST  |            14.34 | clk          |        100.00 |             87.70 |            9 |             9 | WRITE_FIRST  |            12.29 |
+| u_pm_shared/pm_inst/u_ntt/u_mem/gen_ip_path.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram |     0.002 | RAMB36 |        1.91 | clk          |        100.00 |             85.65 |            9 |             9 | WRITE_FIRST  |            14.34 | clk          |        100.00 |             87.70 |            9 |             9 | WRITE_FIRST  |            12.29 |
+| u_pm_shared/pm_inst/u_ntt/u_mem/gen_ip_path.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram |     0.002 | RAMB36 |        1.91 | clk          |        100.00 |             85.65 |            9 |             9 | WRITE_FIRST  |            14.34 | clk          |        100.00 |             87.70 |            9 |             9 | WRITE_FIRST  |            12.29 |
+| u_c0_1_buf/gen_ip.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram                           |     0.001 | RAMB36 |        0.34 | clk          |        100.00 |              2.05 |            9 |             9 | NO_CHANGE    |           100.00 | clk          |        100.00 |            100.00 |            9 |             9 | WRITE_FIRST  |             0.00 |
+| u_c0_1_buf/gen_ip.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram                           |     0.001 | RAMB36 |        0.34 | clk          |        100.00 |              2.05 |            9 |             9 | NO_CHANGE    |           100.00 | clk          |        100.00 |            100.00 |            9 |             9 | WRITE_FIRST  |             0.00 |
+| u_c0_1_buf/gen_ip.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram                           |     0.001 | RAMB36 |        0.34 | clk          |        100.00 |              2.05 |            9 |             9 | NO_CHANGE    |           100.00 | clk          |        100.00 |            100.00 |            9 |             9 | WRITE_FIRST  |             0.00 |
+| u_c0_1_buf/gen_ip.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram                           |     0.001 | RAMB36 |        0.34 | clk          |        100.00 |              2.05 |            9 |             9 | NO_CHANGE    |           100.00 | clk          |        100.00 |            100.00 |            9 |             9 | WRITE_FIRST  |             0.00 |
+| u_c0_1_buf/gen_ip.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram                           |     0.001 | RAMB36 |        0.34 | clk          |        100.00 |              2.05 |            9 |             9 | NO_CHANGE    |           100.00 | clk          |        100.00 |            100.00 |            9 |             9 | WRITE_FIRST  |             0.00 |
+| u_c0_2_buf/gen_ip.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram                           |     0.001 | RAMB36 |        0.34 | clk          |        100.00 |              2.05 |            9 |             9 | NO_CHANGE    |           100.00 | clk          |        100.00 |            100.00 |            9 |             9 | WRITE_FIRST  |             0.00 |
+| u_c0_2_buf/gen_ip.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram                           |     0.001 | RAMB36 |        0.34 | clk          |        100.00 |              2.05 |            9 |             9 | NO_CHANGE    |           100.00 | clk          |        100.00 |            100.00 |            9 |             9 | WRITE_FIRST  |             0.00 |
+| u_c0_2_buf/gen_ip.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram                           |     0.001 | RAMB36 |        0.34 | clk          |        100.00 |              2.05 |            9 |             9 | NO_CHANGE    |           100.00 | clk          |        100.00 |            100.00 |            9 |             9 | WRITE_FIRST  |             0.00 |
+| u_c0_2_buf/gen_ip.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram                           |     0.001 | RAMB36 |        0.34 | clk          |        100.00 |              2.05 |            9 |             9 | NO_CHANGE    |           100.00 | clk          |        100.00 |            100.00 |            9 |             9 | WRITE_FIRST  |             0.00 |
+| u_c0_2_buf/gen_ip.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram                           |     0.001 | RAMB36 |        0.34 | clk          |        100.00 |              2.05 |            9 |             9 | NO_CHANGE    |           100.00 | clk          |        100.00 |            100.00 |            9 |             9 | WRITE_FIRST  |             0.00 |
+| u_pm_shared/pm_inst/u_a_mem/gen_ip.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram          |     0.001 | RAMB36 |        0.25 | clk          |        100.00 |              2.05 |            9 |             9 | NO_CHANGE    |           100.00 | clk          |        100.00 |            100.00 |            9 |             9 | WRITE_FIRST  |             0.00 |
+| u_pm_shared/pm_inst/u_a_mem/gen_ip.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram          |     0.001 | RAMB36 |        0.22 | clk          |        100.00 |              2.05 |            9 |             9 | NO_CHANGE    |           100.00 | clk          |        100.00 |            100.00 |            9 |             9 | WRITE_FIRST  |             0.00 |
+| u_pm_shared/pm_inst/u_a_mem/gen_ip.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram          |     0.001 | RAMB36 |        0.22 | clk          |        100.00 |              2.05 |            9 |             9 | NO_CHANGE    |           100.00 | clk          |        100.00 |            100.00 |            9 |             9 | WRITE_FIRST  |             0.00 |
+| u_pm_shared/pm_inst/u_a_mem/gen_ip.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram          |     0.001 | RAMB36 |        0.22 | clk          |        100.00 |              2.05 |            9 |             9 | NO_CHANGE    |           100.00 | clk          |        100.00 |            100.00 |            9 |             9 | WRITE_FIRST  |             0.00 |
+| u_pm_shared/pm_inst/u_a_mem/gen_ip.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram          |     0.001 | RAMB36 |        0.22 | clk          |        100.00 |              2.05 |            9 |             9 | NO_CHANGE    |           100.00 | clk          |        100.00 |            100.00 |            9 |             9 | WRITE_FIRST  |             0.00 |
+| u_c1_1_buf/gen_ip.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram                           |     0.001 | RAMB36 |        0.11 | clk          |        100.00 |              2.05 |            9 |             9 | NO_CHANGE    |           100.00 | clk          |        100.00 |            100.00 |            9 |             9 | WRITE_FIRST  |             0.00 |
+| u_c1_1_buf/gen_ip.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram                           |     0.001 | RAMB36 |        0.11 | clk          |        100.00 |              2.05 |            9 |             9 | NO_CHANGE    |           100.00 | clk          |        100.00 |            100.00 |            9 |             9 | WRITE_FIRST  |             0.00 |
+| u_c1_1_buf/gen_ip.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram                           |     0.001 | RAMB36 |        0.11 | clk          |        100.00 |              2.05 |            9 |             9 | NO_CHANGE    |           100.00 | clk          |        100.00 |            100.00 |            9 |             9 | WRITE_FIRST  |             0.00 |
+| u_c1_2_buf/gen_ip.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram                           |     0.001 | RAMB36 |        0.11 | clk          |        100.00 |              2.05 |            9 |             9 | NO_CHANGE    |           100.00 | clk          |        100.00 |            100.00 |            9 |             9 | WRITE_FIRST  |             0.00 |
+| u_a_buf/gen_ip.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram                              |     0.001 | RAMB36 |        0.11 | clk          |        100.00 |              2.05 |            9 |             9 | NO_CHANGE    |           100.00 | clk          |        100.00 |            100.00 |            9 |             9 | WRITE_FIRST  |             0.00 |
+| u_a_buf/gen_ip.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram                              |     0.001 | RAMB36 |        0.11 | clk          |        100.00 |              2.05 |            9 |             9 | NO_CHANGE    |           100.00 | clk          |        100.00 |            100.00 |            9 |             9 | WRITE_FIRST  |             0.00 |
+| u_b_buf/gen_ip.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram                              |     0.001 | RAMB36 |        0.11 | clk          |        100.00 |              2.05 |            9 |             9 | NO_CHANGE    |           100.00 | clk          |        100.00 |            100.00 |            9 |             9 | WRITE_FIRST  |             0.00 |
+| u_b_buf/gen_ip.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram                              |     0.001 | RAMB36 |        0.11 | clk          |        100.00 |              2.05 |            9 |             9 | NO_CHANGE    |           100.00 | clk          |        100.00 |            100.00 |            9 |             9 | WRITE_FIRST  |             0.00 |
+| u_c1_1_buf/gen_ip.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram                           |     0.001 | RAMB36 |        0.11 | clk          |        100.00 |              2.05 |            9 |             9 | NO_CHANGE    |           100.00 | clk          |        100.00 |            100.00 |            9 |             9 | WRITE_FIRST  |             0.00 |
+| u_c1_1_buf/gen_ip.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram                           |     0.001 | RAMB36 |        0.11 | clk          |        100.00 |              2.05 |            9 |             9 | NO_CHANGE    |           100.00 | clk          |        100.00 |            100.00 |            9 |             9 | WRITE_FIRST  |             0.00 |
+| u_c1_2_buf/gen_ip.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram                           |     0.001 | RAMB36 |        0.11 | clk          |        100.00 |              2.05 |            9 |             9 | NO_CHANGE    |           100.00 | clk          |        100.00 |            100.00 |            9 |             9 | WRITE_FIRST  |             0.00 |
+| u_c1_2_buf/gen_ip.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[3].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram                           |     0.001 | RAMB36 |        0.11 | clk          |        100.00 |              2.05 |            9 |             9 | NO_CHANGE    |           100.00 | clk          |        100.00 |            100.00 |            9 |             9 | WRITE_FIRST  |             0.00 |
+| u_a_buf/gen_ip.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram                              |     0.001 | RAMB36 |        0.11 | clk          |        100.00 |              2.05 |            9 |             9 | NO_CHANGE    |           100.00 | clk          |        100.00 |            100.00 |            9 |             9 | WRITE_FIRST  |             0.00 |
+| u_a_buf/gen_ip.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram                              |     0.001 | RAMB36 |        0.11 | clk          |        100.00 |              2.05 |            9 |             9 | NO_CHANGE    |           100.00 | clk          |        100.00 |            100.00 |            9 |             9 | WRITE_FIRST  |             0.00 |
+| u_a_buf/gen_ip.u_ip/U0/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[4].ram.r/prim_noinit.ram/DEVICE_8SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram                              |     0.001 | RAMB36 |        0.11 | clk          |        100.00 |              2.05 |            9 |             9 | NO_CHANGE    |           100.00 | clk          |        100.00 |            100.00 |            9 |             9 | WRITE_FIRST  |             0.00 |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+-------------+--------------+---------------+-------------------+--------------+---------------+--------------+------------------+--------------+---------------+-------------------+--------------+---------------+--------------+------------------+
+
+
+3.3.4 DSPs
+----------
+
++---------------------------------------------------------+-----------+---------------+------------+------------+------------+-----------------+-------------+
+| Name                                                    | Power (W) | Clock A (MHz) | Clock Name | MULT Used? | MREG Used? | Pre-Adder Used? | Signal Rate |
++---------------------------------------------------------+-----------+---------------+------------+------------+------------+-----------------+-------------+
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/p_lo_lo    |    <0.001 |        100.00 | clk        | Yes        | No         | No              |        0.00 |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/p_lo_lo__0 |    <0.001 |        100.00 | clk        | Yes        | No         | No              |        0.00 |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/p_lo_hi    |    <0.001 |        100.00 | clk        | Yes        | No         | No              |        0.00 |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/p_hi_hi    |    <0.001 |        100.00 | clk        | Yes        | No         | No              |        0.00 |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/p_hi_hi__0 |    <0.001 |        100.00 | clk        | Yes        | No         | No              |        0.00 |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/p_lo_hi__0 |    <0.001 |        100.00 | clk        | Yes        | No         | No              |        0.00 |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/p_hi_lo    |    <0.001 |        100.00 | clk        | Yes        | No         | No              |        0.00 |
+| u_pm_shared/pm_inst/u_ntt/u_butterfly/u_mult/p_hi_lo__0 |    <0.001 |        100.00 | clk        | Yes        | No         | No              |        0.00 |
+| u_pm_shared/pm_inst/u_ntt/a_addr_calc                   |    <0.001 |           N/A | N/A        | Yes        | No         | No              |        2.05 |
+| u_pm_shared/pm_inst/u_ntt/p_1_out__2                    |    <0.001 |           N/A | N/A        | Yes        | No         | No              |        2.17 |
+| u_pm_shared/pm_inst/u_ntt/p_1_out__5                    |    <0.001 |           N/A | N/A        | Yes        | No         | No              |        2.24 |
+| u_pm_shared/pm_inst/u_ntt/p_1_out__6                    |    <0.001 |           N/A | N/A        | Yes        | No         | No              |        3.58 |
+| u_ksw/u_pm_ks/prod_r0                                   |    <0.001 |           N/A | N/A        | Yes        | No         | No              |        0.00 |
+| u_ksw/u_pm_ks/prod_r0__0                                |    <0.001 |           N/A | N/A        | Yes        | No         | No              |        0.00 |
+| u_ksw/u_pm_ks/prod_r0__1                                |    <0.001 |           N/A | N/A        | Yes        | No         | No              |        0.00 |
+| u_ksw/u_pm_ks/prod_r0__2                                |    <0.001 |           N/A | N/A        | Yes        | No         | No              |        0.00 |
+| u_ksw/u_pm_ks/prod_r0__3                                |    <0.001 |           N/A | N/A        | Yes        | No         | No              |        0.00 |
+| u_ksw/u_pm_ks/prod_r0__4                                |    <0.001 |           N/A | N/A        | Yes        | No         | No              |        0.00 |
+| u_ksw/u_pm_ks/prod_r_reg                                |    <0.001 |        100.00 | clk        | Yes        | No         | No              |        0.00 |
+| u_ksw/u_pm_ks/prod_r_reg__0                             |    <0.001 |        100.00 | clk        | Yes        | No         | No              |        0.00 |
+| u_ksw/u_pm_ks/prod_r_reg__1                             |    <0.001 |        100.00 | clk        | Yes        | No         | No              |        0.00 |
+| u_ksw/u_pm_ks/u_ntt/a_addr_calc                         |    <0.001 |           N/A | N/A        | Yes        | No         | No              |        0.00 |
+| u_ksw/u_pm_ks/u_ntt/p_1_out                             |    <0.001 |           N/A | N/A        | Yes        | No         | No              |        0.00 |
+| u_ksw/u_pm_ks/u_ntt/p_1_out__0                          |    <0.001 |           N/A | N/A        | Yes        | No         | No              |        0.00 |
+| u_ksw/u_pm_ks/u_ntt/p_1_out__1                          |    <0.001 |           N/A | N/A        | Yes        | No         | No              |        0.00 |
+| u_ksw/u_pm_ks/u_ntt/p_1_out__2                          |    <0.001 |           N/A | N/A        | Yes        | No         | No              |        0.00 |
+| u_ksw/u_pm_ks/u_ntt/p_1_out__3                          |    <0.001 |           N/A | N/A        | Yes        | No         | No              |        0.00 |
+| u_ksw/u_pm_ks/u_ntt/p_1_out__4                          |    <0.001 |           N/A | N/A        | Yes        | No         | No              |        0.00 |
+| u_ksw/u_pm_ks/u_ntt/p_1_out__5                          |    <0.001 |           N/A | N/A        | Yes        | No         | No              |        0.00 |
+| u_ksw/u_pm_ks/u_ntt/p_1_out__6                          |    <0.001 |           N/A | N/A        | Yes        | No         | No              |        0.00 |
+| u_ksw/u_pm_ks/u_ntt/p_1_out__7                          |    <0.001 |           N/A | N/A        | Yes        | No         | No              |        0.00 |
+| u_ksw/u_pm_ks/u_ntt/u_butterfly/u_mult/p_hi_hi          |    <0.001 |        100.00 | clk        | Yes        | No         | No              |        0.00 |
+| u_ksw/u_pm_ks/u_ntt/u_butterfly/u_mult/p_hi_hi__0       |    <0.001 |        100.00 | clk        | Yes        | No         | No              |        0.00 |
+| u_ksw/u_pm_ks/u_ntt/u_butterfly/u_mult/p_hi_lo          |    <0.001 |        100.00 | clk        | Yes        | No         | No              |        0.00 |
+| u_ksw/u_pm_ks/u_ntt/u_butterfly/u_mult/p_hi_lo__0       |    <0.001 |        100.00 | clk        | Yes        | No         | No              |        0.00 |
+| u_ksw/u_pm_ks/u_ntt/u_butterfly/u_mult/p_lo_hi          |    <0.001 |        100.00 | clk        | Yes        | No         | No              |        0.00 |
+| u_ksw/u_pm_ks/u_ntt/u_butterfly/u_mult/p_lo_hi__0       |    <0.001 |        100.00 | clk        | Yes        | No         | No              |        0.00 |
+| u_ksw/u_pm_ks/u_ntt/u_butterfly/u_mult/p_lo_lo          |    <0.001 |        100.00 | clk        | Yes        | No         | No              |        0.00 |
+| u_ksw/u_pm_ks/u_ntt/u_butterfly/u_mult/p_lo_lo__0       |    <0.001 |        100.00 | clk        | Yes        | No         | No              |        0.00 |
+| u_nmon/s_sq                                             |    <0.001 |           N/A | N/A        | Yes        | No         | No              |        0.00 |
++---------------------------------------------------------+-----------+---------------+------------+------------+------------+-----------------+-------------+
+
+

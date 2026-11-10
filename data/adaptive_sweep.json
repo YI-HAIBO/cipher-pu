@@ -1,0 +1,990 @@
+{
+  "n_layers": 20,
+  "n_trials": 20,
+  "R_MAX": 0.5,
+  "results": {
+    "0.5": {
+      "adaptive": {
+        "failed_layers": 160,
+        "failed_rate": 0.4,
+        "avg_final_r": 14.371163,
+        "std_final_r": 0.832846,
+        "avg_throughput": 2.2,
+        "gear_distribution": {
+          "Gear 0": 160,
+          "Gear 3": 240
+        },
+        "mode_gear_sequence": [
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0"
+        ]
+      },
+      "static_G0": {
+        "failed_layers": 0,
+        "failed_rate": 0.0,
+        "avg_final_r": 0.00019,
+        "std_final_r": 1.1e-05,
+        "avg_throughput": 1.0,
+        "gear_distribution": {
+          "Gear 0": 400
+        },
+        "mode_gear_sequence": [
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0"
+        ]
+      },
+      "static_G1": {
+        "failed_layers": 0,
+        "failed_rate": 0.0,
+        "avg_final_r": 0.000512,
+        "std_final_r": 3e-05,
+        "avg_throughput": 1.3,
+        "gear_distribution": {
+          "Gear 1": 400
+        },
+        "mode_gear_sequence": [
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1"
+        ]
+      },
+      "static_G2": {
+        "failed_layers": 0,
+        "failed_rate": 0.0,
+        "avg_final_r": 0.029871,
+        "std_final_r": 0.001731,
+        "avg_throughput": 2.0,
+        "gear_distribution": {
+          "Gear 2": 400
+        },
+        "mode_gear_sequence": [
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2"
+        ]
+      },
+      "static_G3": {
+        "failed_layers": 160,
+        "failed_rate": 0.4,
+        "avg_final_r": 25704.678933,
+        "std_final_r": 1489.652356,
+        "avg_throughput": 3.0,
+        "gear_distribution": {
+          "Gear 3": 400
+        },
+        "mode_gear_sequence": [
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3"
+        ]
+      }
+    },
+    "0.8": {
+      "adaptive": {
+        "failed_layers": 157,
+        "failed_rate": 0.3925,
+        "avg_final_r": 11.611104,
+        "std_final_r": 0.672893,
+        "avg_throughput": 2.15,
+        "gear_distribution": {
+          "Gear 0": 160,
+          "Gear 2": 20,
+          "Gear 3": 220
+        },
+        "mode_gear_sequence": [
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 2",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0"
+        ]
+      },
+      "static_G0": {
+        "failed_layers": 0,
+        "failed_rate": 0.0,
+        "avg_final_r": 0.000304,
+        "std_final_r": 1.8e-05,
+        "avg_throughput": 1.0,
+        "gear_distribution": {
+          "Gear 0": 400
+        },
+        "mode_gear_sequence": [
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0"
+        ]
+      },
+      "static_G1": {
+        "failed_layers": 0,
+        "failed_rate": 0.0,
+        "avg_final_r": 0.000819,
+        "std_final_r": 4.7e-05,
+        "avg_throughput": 1.3,
+        "gear_distribution": {
+          "Gear 1": 400
+        },
+        "mode_gear_sequence": [
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1"
+        ]
+      },
+      "static_G2": {
+        "failed_layers": 0,
+        "failed_rate": 0.0,
+        "avg_final_r": 0.047793,
+        "std_final_r": 0.00277,
+        "avg_throughput": 2.0,
+        "gear_distribution": {
+          "Gear 2": 400
+        },
+        "mode_gear_sequence": [
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2"
+        ]
+      },
+      "static_G3": {
+        "failed_layers": 180,
+        "failed_rate": 0.45,
+        "avg_final_r": 41127.486292,
+        "std_final_r": 2383.443769,
+        "avg_throughput": 3.0,
+        "gear_distribution": {
+          "Gear 3": 400
+        },
+        "mode_gear_sequence": [
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3"
+        ]
+      }
+    },
+    "1.0": {
+      "adaptive": {
+        "failed_layers": 160,
+        "failed_rate": 0.4,
+        "avg_final_r": 14.51388,
+        "std_final_r": 0.841117,
+        "avg_throughput": 2.15,
+        "gear_distribution": {
+          "Gear 0": 160,
+          "Gear 2": 20,
+          "Gear 3": 220
+        },
+        "mode_gear_sequence": [
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 2",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0"
+        ]
+      },
+      "static_G0": {
+        "failed_layers": 0,
+        "failed_rate": 0.0,
+        "avg_final_r": 0.00038,
+        "std_final_r": 2.2e-05,
+        "avg_throughput": 1.0,
+        "gear_distribution": {
+          "Gear 0": 400
+        },
+        "mode_gear_sequence": [
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0"
+        ]
+      },
+      "static_G1": {
+        "failed_layers": 0,
+        "failed_rate": 0.0,
+        "avg_final_r": 0.001024,
+        "std_final_r": 5.9e-05,
+        "avg_throughput": 1.3,
+        "gear_distribution": {
+          "Gear 1": 400
+        },
+        "mode_gear_sequence": [
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1"
+        ]
+      },
+      "static_G2": {
+        "failed_layers": 0,
+        "failed_rate": 0.0,
+        "avg_final_r": 0.059741,
+        "std_final_r": 0.003462,
+        "avg_throughput": 2.0,
+        "gear_distribution": {
+          "Gear 2": 400
+        },
+        "mode_gear_sequence": [
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2"
+        ]
+      },
+      "static_G3": {
+        "failed_layers": 180,
+        "failed_rate": 0.45,
+        "avg_final_r": 51409.357865,
+        "std_final_r": 2979.304711,
+        "avg_throughput": 3.0,
+        "gear_distribution": {
+          "Gear 3": 400
+        },
+        "mode_gear_sequence": [
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3"
+        ]
+      }
+    },
+    "1.2": {
+      "adaptive": {
+        "failed_layers": 160,
+        "failed_rate": 0.4,
+        "avg_final_r": 15.106023,
+        "std_final_r": 0.873917,
+        "avg_throughput": 2.125,
+        "gear_distribution": {
+          "Gear 0": 160,
+          "Gear 1": 14,
+          "Gear 2": 6,
+          "Gear 3": 220
+        },
+        "mode_gear_sequence": [
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 1",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0"
+        ]
+      },
+      "static_G0": {
+        "failed_layers": 0,
+        "failed_rate": 0.0,
+        "avg_final_r": 0.000456,
+        "std_final_r": 2.6e-05,
+        "avg_throughput": 1.0,
+        "gear_distribution": {
+          "Gear 0": 400
+        },
+        "mode_gear_sequence": [
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0"
+        ]
+      },
+      "static_G1": {
+        "failed_layers": 0,
+        "failed_rate": 0.0,
+        "avg_final_r": 0.001229,
+        "std_final_r": 7.1e-05,
+        "avg_throughput": 1.3,
+        "gear_distribution": {
+          "Gear 1": 400
+        },
+        "mode_gear_sequence": [
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1"
+        ]
+      },
+      "static_G2": {
+        "failed_layers": 0,
+        "failed_rate": 0.0,
+        "avg_final_r": 0.07169,
+        "std_final_r": 0.004155,
+        "avg_throughput": 2.0,
+        "gear_distribution": {
+          "Gear 2": 400
+        },
+        "mode_gear_sequence": [
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2"
+        ]
+      },
+      "static_G3": {
+        "failed_layers": 180,
+        "failed_rate": 0.45,
+        "avg_final_r": 61691.229438,
+        "std_final_r": 3575.165653,
+        "avg_throughput": 3.0,
+        "gear_distribution": {
+          "Gear 3": 400
+        },
+        "mode_gear_sequence": [
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3"
+        ]
+      }
+    },
+    "1.5": {
+      "adaptive": {
+        "failed_layers": 171,
+        "failed_rate": 0.4275,
+        "avg_final_r": 17.064301,
+        "std_final_r": 0.794341,
+        "avg_throughput": 2.103,
+        "gear_distribution": {
+          "Gear 0": 176,
+          "Gear 1": 4,
+          "Gear 3": 220
+        },
+        "mode_gear_sequence": [
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0"
+        ]
+      },
+      "static_G0": {
+        "failed_layers": 0,
+        "failed_rate": 0.0,
+        "avg_final_r": 0.00057,
+        "std_final_r": 3.3e-05,
+        "avg_throughput": 1.0,
+        "gear_distribution": {
+          "Gear 0": 400
+        },
+        "mode_gear_sequence": [
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0"
+        ]
+      },
+      "static_G1": {
+        "failed_layers": 0,
+        "failed_rate": 0.0,
+        "avg_final_r": 0.001536,
+        "std_final_r": 8.9e-05,
+        "avg_throughput": 1.3,
+        "gear_distribution": {
+          "Gear 1": 400
+        },
+        "mode_gear_sequence": [
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1"
+        ]
+      },
+      "static_G2": {
+        "failed_layers": 0,
+        "failed_rate": 0.0,
+        "avg_final_r": 0.089612,
+        "std_final_r": 0.005193,
+        "avg_throughput": 2.0,
+        "gear_distribution": {
+          "Gear 2": 400
+        },
+        "mode_gear_sequence": [
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2"
+        ]
+      },
+      "static_G3": {
+        "failed_layers": 180,
+        "failed_rate": 0.45,
+        "avg_final_r": 77114.036798,
+        "std_final_r": 4468.957067,
+        "avg_throughput": 3.0,
+        "gear_distribution": {
+          "Gear 3": 400
+        },
+        "mode_gear_sequence": [
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3"
+        ]
+      }
+    },
+    "2.0": {
+      "adaptive": {
+        "failed_layers": 180,
+        "failed_rate": 0.45,
+        "avg_final_r": 22.54171,
+        "std_final_r": 1.30635,
+        "avg_throughput": 2.1,
+        "gear_distribution": {
+          "Gear 0": 180,
+          "Gear 3": 220
+        },
+        "mode_gear_sequence": [
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0"
+        ]
+      },
+      "static_G0": {
+        "failed_layers": 0,
+        "failed_rate": 0.0,
+        "avg_final_r": 0.00076,
+        "std_final_r": 4.4e-05,
+        "avg_throughput": 1.0,
+        "gear_distribution": {
+          "Gear 0": 400
+        },
+        "mode_gear_sequence": [
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0",
+          "Gear 0"
+        ]
+      },
+      "static_G1": {
+        "failed_layers": 0,
+        "failed_rate": 0.0,
+        "avg_final_r": 0.002048,
+        "std_final_r": 0.000119,
+        "avg_throughput": 1.3,
+        "gear_distribution": {
+          "Gear 1": 400
+        },
+        "mode_gear_sequence": [
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1",
+          "Gear 1"
+        ]
+      },
+      "static_G2": {
+        "failed_layers": 0,
+        "failed_rate": 0.0,
+        "avg_final_r": 0.119483,
+        "std_final_r": 0.006924,
+        "avg_throughput": 2.0,
+        "gear_distribution": {
+          "Gear 2": 400
+        },
+        "mode_gear_sequence": [
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2",
+          "Gear 2"
+        ]
+      },
+      "static_G3": {
+        "failed_layers": 180,
+        "failed_rate": 0.45,
+        "avg_final_r": 102818.715731,
+        "std_final_r": 5958.609422,
+        "avg_throughput": 3.0,
+        "gear_distribution": {
+          "Gear 3": 400
+        },
+        "mode_gear_sequence": [
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3",
+          "Gear 3"
+        ]
+      }
+    }
+  }
+}

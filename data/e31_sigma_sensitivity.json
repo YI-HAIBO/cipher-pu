@@ -1,0 +1,223 @@
+{
+  "tiers": [
+    {
+      "tier": "S82",
+      "N": 4096,
+      "log_q": 45,
+      "sigma_scan": [
+        {
+          "sigma_e": 2.0,
+          "secret": "uniform",
+          "log_q_equivalent": 45.678,
+          "security_point_estimate": 309.9,
+          "security_lower_bound": ">=256",
+          "slope_bits_per_logq": -3.765,
+          "native_depth_layers": 5.12
+        },
+        {
+          "sigma_e": 2.0,
+          "secret": "ternary",
+          "log_q_equivalent": 45.678,
+          "security_point_estimate": 302.4,
+          "security_lower_bound": ">=256",
+          "slope_bits_per_logq": -3.765,
+          "native_depth_layers": 5.12
+        },
+        {
+          "sigma_e": 3.2,
+          "secret": "uniform",
+          "log_q_equivalent": 45.0,
+          "security_point_estimate": 312.5,
+          "security_lower_bound": ">=256",
+          "slope_bits_per_logq": -3.765,
+          "native_depth_layers": 2.0
+        },
+        {
+          "sigma_e": 3.2,
+          "secret": "ternary",
+          "log_q_equivalent": 45.0,
+          "security_point_estimate": 304.9,
+          "security_lower_bound": ">=256",
+          "slope_bits_per_logq": -3.765,
+          "native_depth_layers": 2.0
+        },
+        {
+          "sigma_e": 4.5,
+          "secret": "uniform",
+          "log_q_equivalent": 44.508,
+          "security_point_estimate": 314.3,
+          "security_lower_bound": ">=256",
+          "slope_bits_per_logq": -3.765,
+          "native_depth_layers": 1.01
+        },
+        {
+          "sigma_e": 4.5,
+          "secret": "ternary",
+          "log_q_equivalent": 44.508,
+          "security_point_estimate": 306.8,
+          "security_lower_bound": ">=256",
+          "slope_bits_per_logq": -3.765,
+          "native_depth_layers": 1.01
+        }
+      ]
+    },
+    {
+      "tier": "S90",
+      "N": 8192,
+      "log_q": 45,
+      "sigma_scan": [
+        {
+          "sigma_e": 2.0,
+          "secret": "uniform",
+          "log_q_equivalent": 45.678,
+          "security_point_estimate": 395.9,
+          "security_lower_bound": ">=256",
+          "slope_bits_per_logq": -1.882,
+          "native_depth_layers": 5.12
+        },
+        {
+          "sigma_e": 2.0,
+          "secret": "ternary",
+          "log_q_equivalent": 45.678,
+          "security_point_estimate": 392.1,
+          "security_lower_bound": ">=256",
+          "slope_bits_per_logq": -1.882,
+          "native_depth_layers": 5.12
+        },
+        {
+          "sigma_e": 3.2,
+          "secret": "uniform",
+          "log_q_equivalent": 45.0,
+          "security_point_estimate": 397.2,
+          "security_lower_bound": ">=256",
+          "slope_bits_per_logq": -1.882,
+          "native_depth_layers": 2.0
+        },
+        {
+          "sigma_e": 3.2,
+          "secret": "ternary",
+          "log_q_equivalent": 45.0,
+          "security_point_estimate": 393.4,
+          "security_lower_bound": ">=256",
+          "slope_bits_per_logq": -1.882,
+          "native_depth_layers": 2.0
+        },
+        {
+          "sigma_e": 4.5,
+          "secret": "uniform",
+          "log_q_equivalent": 44.508,
+          "security_point_estimate": 398.1,
+          "security_lower_bound": ">=256",
+          "slope_bits_per_logq": -1.882,
+          "native_depth_layers": 1.01
+        },
+        {
+          "sigma_e": 4.5,
+          "secret": "ternary",
+          "log_q_equivalent": 44.508,
+          "security_point_estimate": 394.3,
+          "security_lower_bound": ">=256",
+          "slope_bits_per_logq": -1.882,
+          "native_depth_layers": 1.01
+        }
+      ]
+    },
+    {
+      "tier": "S128",
+      "N": 16384,
+      "log_q": 45,
+      "sigma_scan": [
+        {
+          "sigma_e": 2.0,
+          "secret": "uniform",
+          "log_q_equivalent": 45.678,
+          "security_point_estimate": 438.0,
+          "security_lower_bound": ">=256",
+          "slope_bits_per_logq": -0.941,
+          "native_depth_layers": 5.12
+        },
+        {
+          "sigma_e": 2.0,
+          "secret": "ternary",
+          "log_q_equivalent": 45.678,
+          "security_point_estimate": 436.1,
+          "security_lower_bound": ">=256",
+          "slope_bits_per_logq": -0.941,
+          "native_depth_layers": 5.12
+        },
+        {
+          "sigma_e": 3.2,
+          "secret": "uniform",
+          "log_q_equivalent": 45.0,
+          "security_point_estimate": 438.6,
+          "security_lower_bound": ">=256",
+          "slope_bits_per_logq": -0.941,
+          "native_depth_layers": 2.0
+        },
+        {
+          "sigma_e": 3.2,
+          "secret": "ternary",
+          "log_q_equivalent": 45.0,
+          "security_point_estimate": 436.7,
+          "security_lower_bound": ">=256",
+          "slope_bits_per_logq": -0.941,
+          "native_depth_layers": 2.0
+        },
+        {
+          "sigma_e": 4.5,
+          "secret": "uniform",
+          "log_q_equivalent": 44.508,
+          "security_point_estimate": 439.1,
+          "security_lower_bound": ">=256",
+          "slope_bits_per_logq": -0.941,
+          "native_depth_layers": 1.01
+        },
+        {
+          "sigma_e": 4.5,
+          "secret": "ternary",
+          "log_q_equivalent": 44.508,
+          "security_point_estimate": 437.2,
+          "security_lower_bound": ">=256",
+          "slope_bits_per_logq": -0.941,
+          "native_depth_layers": 1.01
+        }
+      ]
+    }
+  ],
+  "grid": [],
+  "conclusions": {
+    "worst_case_security": 302.4,
+    "best_case_security": 439.1,
+    "per_tier_spread": [
+      {
+        "tier": "S82",
+        "min": 302.4,
+        "max": 314.3,
+        "spread": 11.9
+      },
+      {
+        "tier": "S90",
+        "min": 392.1,
+        "max": 398.1,
+        "spread": 6.0
+      },
+      {
+        "tier": "S128",
+        "min": 436.1,
+        "max": 439.1,
+        "spread": 3.0
+      }
+    ],
+    "sensitivity_spread_bits": 11.9,
+    "all_cells_ge_256bit": true,
+    "alpha_shift_bits": {
+      "2.0": 0.678,
+      "4.5": -0.492
+    },
+    "native_depth_range": {
+      "sigma_2.0": 5.12,
+      "sigma_3.2": 2.0,
+      "sigma_4.5": 1.01
+    }
+  }
+}

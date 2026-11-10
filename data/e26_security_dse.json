@@ -1,0 +1,199 @@
+{
+  "experiment": "E26",
+  "title": "三档安全参数设计空间探索 (Security DSE)",
+  "date": "2026-10-24T08:30:00+08:00",
+  "device": "xcau25p-ffvb676-1-e",
+  "vivado": "2026.1",
+  "synth_mode": "out_of_context",
+  "target_freq_mhz": 100,
+  "q_width": 45,
+  "use_fastred": 1,
+  "device_capacity": {
+    "lut": 141000,
+    "ff": 282000,
+    "bram36": 300,
+    "dsp": 1200,
+    "uram": 0,
+    "f7_mux": 108480,
+    "f8_mux": 54240
+  },
+  "security_tiers": [
+    {
+      "tier": "S82",
+      "N": 4096,
+      "log_n": 12,
+      "q_width": 45,
+      "q_value": 17592186175489,
+      "n_inv": 17587891208161,
+      "estimated_security_bits": 82,
+      "meets_128bit": false,
+      "approx_poly_mult": {
+        "data_source": "measured",
+        "dcp_dir": "reports/synth/prod_blocks_au25p_n12",
+        "lut": 53542,
+        "lut_pct": 37.97,
+        "lut_as_memory": 0,
+        "ff": 932,
+        "bram36": 30,
+        "dsp": 27,
+        "f7_mux": 24570,
+        "f8_mux": 12240,
+        "carry8": 425,
+        "wns_ns": -0.612,
+        "tns_ns": -26.998
+      },
+      "e2e_top": {
+        "data_source": "measured",
+        "lut": 113586,
+        "lut_pct": 80.56,
+        "ff": 4618,
+        "bram36": 180,
+        "bram36_pct": 60.0,
+        "dsp": 75,
+        "f7_mux": 49140,
+        "f7_pct": 45.30,
+        "f8_mux": 24480,
+        "f8_pct": 45.13,
+        "wns_ns": 2.438,
+        "dcp_mb": 48.02
+      }
+    },
+    {
+      "tier": "S90",
+      "N": 8192,
+      "log_n": 13,
+      "q_width": 45,
+      "q_value": 17592186175489,
+      "n_inv": 17590038691825,
+      "estimated_security_bits": 87,
+      "meets_128bit": false,
+      "approx_poly_mult": {
+        "data_source": "measured",
+        "dcp_dir": "reports/synth/prod_blocks_au25p_n13",
+        "lut": 103239,
+        "lut_pct": 73.22,
+        "lut_as_memory": 0,
+        "ff": 1178,
+        "bram36": 60,
+        "bram36_pct": 20.0,
+        "dsp": 27,
+        "f7_mux": 49140,
+        "wns_ns": 3.250,
+        "dcp_mb": 41.27,
+        "synthesis_date": "2026-10-24",
+        "rtl_fix": "ntt_mem_tdp_prod.sv True_Dual_Port port names fixed (.clka/.clkb/.addra/.addrb)"
+      }
+    },
+    {
+      "tier": "S128",
+      "N": 16384,
+      "log_n": 14,
+      "q_width": 45,
+      "q_value": 17592186175489,
+      "n_inv": 17591112433657,
+      "estimated_security_bits": 128,
+      "meets_128bit": true,
+      "approx_poly_mult": {
+        "data_source": "measured",
+        "dcp_dir": "reports/synth/prod_blocks_au25p",
+        "lut": 251380,
+        "lut_pct": 178.28,
+        "lut_as_memory": 39936,
+        "ff": 1176,
+        "bram36": 60,
+        "dsp": 28,
+        "f7_mux": 102870,
+        "f8_mux": 51255,
+        "carry8": 464,
+        "wns_ns": -6.623,
+        "tns_ns": -28878.254,
+        "dcp_mb": 88.03
+      },
+      "e2e_top": {
+        "data_source": "not_measured",
+        "note": "单模块已溢出 2x，顶层 e2e_ckks_mult_ctrl_m4 综合不可行"
+      }
+    }
+  ],
+  "scaling_analysis": {
+    "lut_S82": 53542,
+    "lut_S90": 103239,
+    "lut_S128": 251380,
+    "lut_ratio_S90_S82": 1.93,
+    "lut_ratio_S128_S90": 2.44,
+    "lut_ratio_S128_S82": 4.70,
+    "lut_growth_exponent": 1.13,
+    "bram_S82": 30,
+    "bram_S90": 60,
+    "bram_S128": 60,
+    "bram_growth_exponent": 1.00,
+    "dsp_growth_exponent": 0.07,
+    "wns_S82": -0.612,
+    "wns_S90": 3.250,
+    "wns_S128": -6.623,
+    "wns_degradation_factor_S82_to_S128": 10.8,
+    "n_ratio_S82_to_S128": 4.0,
+    "note": "WNS 非单调：LOG_N=13 因面积适中反而时序最优"
+  },
+  "hardware_ceiling": {
+    "device": "xcau25p-ffvb676-1-e",
+    "max_feasible_security_bits": 90,
+    "max_feasible_N_at_q45": 8192,
+    "max_feasible_log_n_at_q45": 13,
+    "conclusion": "单芯片最高可行安全 ≈ 90 bit；128-bit 需外部辅助"
+  },
+  "landing_paths": [
+    {
+      "id": "A",
+      "name": "单芯片扩大 N",
+      "params": {"N": 16384, "Q_WIDTH": 45},
+      "feasible": false,
+      "evidence": "approx_poly_mult 单模块 LUT 178.28%",
+      "cost": "overflow",
+      "recommends": false
+    },
+    {
+      "id": "B",
+      "name": "单芯片增大 Q_WIDTH",
+      "params": {"N": 4096, "Q_WIDTH": 150},
+      "feasible": false,
+      "evidence": "面积 ∝ Q^2，45→150 扩 ~11x，超容量",
+      "cost": "RTL 大改 + 面积溢出",
+      "recommends": false
+    },
+    {
+      "id": "C",
+      "name": "RNS 多模数组合",
+      "params": {"N": 4096, "q_moduli": "3x55-bit"},
+      "feasible": true,
+      "evidence": "HEAX/OpenFHE 主流做法，3x55 面积比 1x150 节省 2.8x",
+      "cost": "2-3 周 RTL + CRT/INT 模块",
+      "recommends": true,
+      "note": "首选路径"
+    },
+    {
+      "id": "D",
+      "name": "换更大器件",
+      "params": {"device": "xcu250/xck260/xck325"},
+      "feasible": true,
+      "evidence": "N=16384/Q=45 在 xcu250 上约 37% LUT",
+      "cost": "1-2 周换板 + 芯片成本 4-6x",
+      "recommends": true,
+      "note": "备选路径"
+    }
+  ],
+  "paper_recommendations": {
+    "current_security_claim": "N=4096/Q=45 估计 82-bit（经验拟合，建议用 homeml.org 精确评估）",
+    "hardware_ceiling_claim": "xcau25p 单芯片最高可行 ~90 bit，128-bit 需 RNS 或多芯片",
+    "future_work": "RNS 分解 (3×55-bit 模数组合) 是主流 128-bit 落地路径",
+    "discussion_note": "本 E26 安全级别估算基于 E20 经验拟合，可能因密钥分布/攻击模型偏差 ±10 bit；建议投稿时用 homeml.org 复核"
+  },
+  "artifacts": {
+    "report_md": "reports/experiments/e26_security_dse.md",
+    "report_json": "reports/experiments/e26_security_dse.json",
+    "synth_s82": "reports/synth/prod_blocks_au25p_n12",
+    "synth_s90": "reports/synth/prod_blocks_au25p_n13 (2026-10-24 measured)",
+    "synth_s128": "reports/synth/prod_blocks_au25p",
+    "rtl_fix": "rtl/m1/ntt_mem_tdp_prod.sv (True_Dual_Port port names fixed 2026-10-24)"
+  }
+}

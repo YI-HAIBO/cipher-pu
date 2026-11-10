@@ -1,0 +1,49 @@
+{
+  "title": "E27b: SageMath/lattice-estimator 精确复核可行性 + 手工指示性估计",
+  "date": "2026-10-24",
+  "sagemath_install_attempts": {
+    "pip_install_sage": "No matching distribution (PyPI 无包)",
+    "pip_install_sagemath_standard": "dry-run 30s timeout",
+    "pip_install_lattice_estimator": "PyPI 无发行版",
+    "lattice_estimator_clone": "源码可读，estimator/reduction.py 硬依赖 sage.all",
+    "conda_mamba": "本机未安装",
+    "docker_sagemath": "未启用"
+  },
+  "fallback_method": "HE Standard v1.1 官方锚点 + linear-in-log_q 外推",
+  "source": {
+    "paper": "Ding et al. 2019, Homomorphic Encryption Standard v1.1, ePrint 2019/939",
+    "cost_model": "BKZ.sieve (ADPS16 classical sieving, c=0.292β)",
+    "error_sigma": 3.2,
+    "secret_distribution": "uniform over error distribution (CKKS default)"
+  },
+  "results": {
+    "S82": {
+      "N": 4096, "log_q": 45,
+      "conservative_lower_bound": "≥ 256 bit (HE Standard v1.1 anchor)",
+      "linear_extrapolated_estimate": 312.5,
+      "slope_256_to_192": -3.765,
+      "distance_from_256bit_anchor": 15,
+      "caveat": "linear extrapolation ±30 bit"
+    },
+    "S90": {
+      "N": 8192, "log_q": 45,
+      "conservative_lower_bound": "≥ 256 bit (HE Standard v1.1 anchor)",
+      "linear_extrapolated_estimate": 397.2,
+      "slope_256_to_192": -1.882,
+      "distance_from_256bit_anchor": 75,
+      "caveat": "linear extrapolation ±30 bit"
+    },
+    "S128": {
+      "N": 16384, "log_q": 45,
+      "conservative_lower_bound": "≥ 256 bit (HE Standard v1.1 anchor)",
+      "linear_extrapolated_estimate": 438.6,
+      "slope_256_to_192": -0.941,
+      "distance_from_256bit_anchor": 194,
+      "caveat": "linear extrapolation ±30 bit"
+    }
+  },
+  "paper_usage": {
+    "conservative_claim": "三档全部 ≥ 256-bit 后量子安全",
+    "indicative_estimate": "三档指示性估计 312 / 397 / 439 bit"
+  }
+}

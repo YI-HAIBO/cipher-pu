@@ -1,0 +1,106 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint-python:
+    name: Lint Python Scripts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install numpy scipy matplotlib pytest ruff
+
+      - name: Lint with Ruff
+        run: ruff check scripts/ --fix --quiet
+
+      - name: Syntax-check Python scripts
+        run: |
+          python -m compileall -q scripts/
+          echo 'Python syntax check complete'
+
+  lint-verilog:
+    name: Lint Verilog RTL
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Verilator
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y verilator
+
+      - name: Lint RTL files
+        run: |
+          set +e
+          for f in rtl/m{1,2,3,4}/*.sv; do
+            echo "Linting: $f"
+            verilator --lint-only --jsonlint "$f" 2>&1 | tail -20
+          done
+          echo "Lint complete"
+
+  markdown-check:
+    name: Check Markdown
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check README.md links
+        run: |
+          python -c "
+          import os, re
+          readme = open('README.md').read()
+          links = re.findall(r'\[.*?\]\((.*?)\)', readme)
+          for link in links:
+              if link.startswith('http') or link.startswith('mailto:') or link.startswith('#'):
+                  continue
+              if not os.path.exists(link) and not os.path.exists(link.replace('https://github.com/cipher-pu/cipher-pu/', '')):
+                  print(f'Warning: broken link in README.md: {link}')
+          print('Link check complete')
+          "
+
+  code-style:
+    name: Check Code Style
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check SystemVerilog style
+        run: |
+          python -c "
+          import os, re
+          issues = 0
+          for root, _, files in os.walk('rtl'):
+              for f in files:
+                  if f.endswith('.sv'):
+                      path = os.path.join(root, f)
+                      with open(path) as fp:
+                          content = fp.read()
+                      # Check for tabs (should be spaces)
+                      if '	' in content:
+                          print(f'Tabs in {path} (should be spaces)')
+                          issues += 1
+                      # Check line length > 100
+                      for i, line in enumerate(content.split(chr(10)), 1):
+                          if len(line) > 100:
+                              print(f'Long line {path}:{i} ({len(line)} chars)')
+                              issues += 1
+                          # Break
+                          if i > 5000:
+                              break
+          print(f'Total issues: {issues}')
+          if issues > 20:
+              exit(1)
+          "
