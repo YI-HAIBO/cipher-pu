@@ -13,7 +13,7 @@ CIPHER-PU is an FPGA-accelerated CKKS (Cheon-Kim-Kim-Song) Fully Homomorphic Enc
 
 - **0.698 W** total on-chip power (routed, SAIF-annotated, High confidence)
 - **48.01 MS/s** effective throughput, **1,702 MLP samples/s**, **988 CNN samples/s**
-- **20.5× energy efficiency** vs. Poseidon (HPCA'23, Alveo U280) in samples/s/W
+- **2.27× per-watt card-level efficiency** vs. Poseidon (Alveo U280, E42), 39.1× chip-level, and 14.6× / 58.4× when normalized per-LUT-per-card-watt (E54)
 - **≥ 256-bit post-quantum security** (HE Standard v1.1, BKZ.sieve + BKZ.qsieve)
 - **Runtime adaptive sparse feedback loop** (noise monitor + adaptive gear controller) — unique contribution
 - **DARE bootstrap-lite** via decrypt-reencrypt — reduces noise growth from exponential to linear
@@ -26,7 +26,7 @@ CIPHER-PU is an FPGA-accelerated CKKS (Cheon-Kim-Kim-Song) Fully Homomorphic Enc
 
 3. **Structural Block Sparsity**: Block-level pruning integrated with CKKS polynomial multiplication, reducing compute while preserving encrypted inference precision.
 
-4. **Edge-Oriented Design**: 6.4× smaller than Poseidon (113K vs 728K LUT), 190× lower power, no HBM dependency.
+4. **Edge-Oriented Design**: 7.05× smaller than Poseidon (103K module vs 728K LUT), 286× lower power, no HBM dependency.
 
 ## Device & Configuration
 
@@ -92,8 +92,8 @@ cipher-pu/
 ├── scripts/                # Python utility scripts
 ├── ip_repo/                # Generated Vivado IP (BRAM, etc.)
 ├── benchmarks/             # Throughput/power/energy metrics
-├── reports/                # Experiment reports (E1-E29)
-│   └── experiments/        # 29 experiment reports
+├── reports/                # Experiment reports (E1-E54)
+│   └── experiments/        # 54 experiment reports
 ├── docs/                   # Design documents
 ├── figures/                # Paper figures (SVG/PDF/PNG)
 ├── data/                   # Benchmark datasets & seeds
@@ -110,7 +110,7 @@ cipher-pu/
 
 ## Experiments
 
-29 experiments conducted (E1-E29). See `reports/experiments/` for detailed reports:
+54 experiments conducted (E1-E54). See `reports/experiments/` for detailed reports:
 
 | Experiment | Topic | Report |
 |-----------|-------|--------|
@@ -134,7 +134,7 @@ cipher-pu/
 | LUT | 113K | 728K | 690K | — |
 | Security (bit) | ≥256 | — | — | ≥128 |
 
-**CIPHER-PU achieves 20.5× higher energy efficiency than Poseidon, and 451× than cuFHE (A100).**
+**CIPHER-PU achieves 2.27× per-watt card-level efficiency vs. Poseidon (E42), 39.1× chip-level, and 451× vs. cuFHE (A100); normalized per-LUT-per-card-watt it leads 14.6× / 58.4× (E54).**
 
 ## Security Analysis
 
@@ -142,11 +142,11 @@ All parameters verified with HomomorphicEncryption.org v1.1 standard:
 
 | Parameter Set | N | LOG_N | Q_WIDTH | Classical (BKZ.sieve) | Post-Quantum (BKZ.qsieve) |
 |:-------------:|:---:|:---:|:---:|:---:|:---:|
-| S82 | 4096 | 12 | 45 | ≥256-bit (312 bit est.) | ≥256-bit (309 bit est.) |
-| S90 | 8192 | 13 | 45 | ≥256-bit (397 bit est.) | ≥256-bit (394 bit est.) |
-| S128 | 16384 | 14 | 45 | ≥256-bit (439 bit est.) | ≥256-bit (435 bit est.) |
+| S82 | 4096 | 12 | 45 | ≥256-bit (366 bit, E50) | ≥256-bit (335 bit, E50) |
+| S90 | 8192 | 13 | 45 | ≥256-bit (812 bit, E50) | ≥256-bit (740 bit, E50) |
+| S128 | 16384 | 14 | 45 | ≥256-bit (1795 bit, E50) | ≥256-bit (1632 bit, E50) |
 
-Estimates based on HE Standard v1.1 anchors + linear-in-log_q extrapolation. Precise values to 0.1 bit require SageMath + `malb/lattice-estimator`.
+Security levels computed with the E50 PrimalUSVP-GSA re-implementation, validated on all nine HE Standard v1.1 anchors within 4.4 bit (SageMath not available on the author's workstation).
 
 ## Design Principles
 
@@ -164,6 +164,7 @@ Estimates based on HE Standard v1.1 anchors + linear-in-log_q extrapolation. Pre
   in the experiment data for historical comparison only.
 - **Poseidon RTL not open source**: Poseidon comparison uses four-source cross-reference (HPCA'23 + EFFACT 2025 + Anaheim HPCA'25 + Cheddar 2024).
 - **LOG_N=14 (S128)**: Single module overflows 178% LUT on xcau25p; requires larger device (U280/xck260).
+- **RNS depth extension (E37, M-D')**: A 3-prime 115-bit RNS path on xcku5p (3-way parallel, 13,600 LUT / 88 BRAM / 48 DSP) closes timing at 100 MHz (WNS +0.077 ns) and extends safe depth to 8-10 layers; routed power 0.647 W (SAIF).
 
 ## Citation
 
